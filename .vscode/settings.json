@@ -1,0 +1,12 @@
+// Workspace settings
+{
+    "files.exclude": 
+    {
+        "**/*.class": true,
+        "**/*.ctxt": true,
+        "**/*.TXT": true,
+        "**/*.gitignore": true,
+        "**/*.gitattributes": true,
+        "**/*.greenfoot": true
+    }
+}
