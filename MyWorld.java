@@ -10,7 +10,7 @@ public class MyWorld extends World
 {
     int x = getWidth()/2;
     int y = getHeight()/2;
-    
+
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -20,6 +20,20 @@ public class MyWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1280, 720, 1); 
         addObject(new Pig(), x, y);
-        addObject(new Platforms(), x, y);
+        prepare();
+    }
+    
+    /**
+     * Prepare the world for the start of the program.
+     * That is: create the initial objects and add them to the world.
+     */
+    private void prepare()
+    {
+        PlatformX platformX = new PlatformX();
+        addObject(platformX,656,487);
+        PlatformYL platformYL = new PlatformYL();
+        addObject(platformYL,346,589);
+        PlatformYR platformYR = new PlatformYR();
+        addObject(platformYR,966,590);
     }
 }

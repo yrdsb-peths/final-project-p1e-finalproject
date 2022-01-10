@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Platforms extends Actor
+public class PlatformX extends Actor
 {
     /**
      * Act - do whatever the Platforms wants to do. This method is called whenever
