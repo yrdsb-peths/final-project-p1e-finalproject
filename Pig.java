@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Pig extends Character
+public class Pig extends Actor implements Abilities
 {
     /**
      * Act - do whatever the Pig wants to do. This method is called whenever
@@ -14,7 +14,15 @@ public class Pig extends Character
      */
     public void act()
     {
-        controls();
-        gravity();
+    }
+
+    public int auto() {
+        System.out.println("Pig attacks!");
+        return 1;
+    }
+
+    public int special() {
+        System.out.println("Pig uses special!");
+        return 1;
     }
 }

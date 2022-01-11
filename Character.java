@@ -16,35 +16,50 @@ public class Character extends Actor
     // Jump counter
     private int counter = 0;
 
+    private String up = "w";
+    private String left = "a";
+    private String down = "s";
+    private String right = "d";
+
+    // Interface
+    private Abilities object;
+
+    public Character(Abilities object) {
+        this.object = object;
+    }
+    
+    public void act() {
+        controls();
+        gravity();
+    }
+
     public void controls() {
         // Jump
-        if ("w".equals(Greenfoot.getKey())) {
+        if (up.equals(Greenfoot.getKey())) {
             if (counter < 2) {
                 jump();
                 counter++;
             }
         }
         // Move left
-        if (Greenfoot.isKeyDown("a")) {
+        if (Greenfoot.isKeyDown(left)) {
             if (isTouchingR() && isInAir()) move(2);
             else if (isInAir()) move(-2);
             else move(-5);
         }
         // Duck down
-        if (Greenfoot.isKeyDown("s")) {
+        if (Greenfoot.isKeyDown(down)) {
             System.out.println(getY());
         }
         // Move right
-        if (Greenfoot.isKeyDown("d")) {
+        if (Greenfoot.isKeyDown(right)) {
             if (isTouchingL() && isInAir()) move(-2);
             else if (isInAir()) move(2);
             else move(5);
         }
-        // Dev: Reset jump counter
-        if (Greenfoot.isKeyDown("q")) print(isTouchingL());
+        // Auto
+        // Special
     }
-
-    public void print(Object x) {System.out.println(x);}
 
     public void gravity() {
         if (!isOnGround()) fall();
