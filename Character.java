@@ -64,7 +64,7 @@ public class Character extends Actor
         }
         // Duck down
         if (Greenfoot.isKeyDown(down)) {
-            System.out.println(getY());
+            if (isTouchingPlatform()) while (isTouchingPlatform()) fall();
         }
         // Move right
         if (Greenfoot.isKeyDown(right)) {
@@ -85,7 +85,7 @@ public class Character extends Actor
     }
 
     private void gravity() {
-        if (!isOnGround()) fall();
+        if (!isOnGround() && !isTouchingPlatform()) fall();
         else {
             velocity = 0;
             counter = 0;
@@ -109,7 +109,7 @@ public class Character extends Actor
     }
 
     private boolean isInAir() {
-        if (isOnGround()) return false;
+        if (isOnGround() || isTouchingPlatform()) return false;
         return true;
     }
 
@@ -121,5 +121,11 @@ public class Character extends Actor
     private boolean isTouchingR() {
         if (isTouching(PlatformYR.class)) return true;
         return false;
+    }
+
+    private boolean isTouchingPlatform() {
+        Actor platform = getOneObjectAtOffset(0, getImage().getHeight()/2, Platform.class);
+        if (platform != null) setLocation(getX(), 288); // Locks character in place. Determine y.
+        return platform != null;
     }
 }

@@ -19,7 +19,7 @@ public class MyWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1280, 720, 1); 
-        addObject(new Character(new Pig(), "w", "a", "s", "d", "g", "h"), x, y);
+        addObject(new Character(new Pig(), "w", "a", "s", "d", "g", "h"), 462, 435);
         prepare();
     }
     
@@ -35,5 +35,7 @@ public class MyWorld extends World
         addObject(platformYL,346,589);
         PlatformYR platformYR = new PlatformYR();
         addObject(platformYR,966,590);
+        Platform platform = new Platform();
+        addObject(platform,857,312);
     }
 }
