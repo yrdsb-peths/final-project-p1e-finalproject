@@ -16,16 +16,31 @@ public class Character extends Actor
     // Jump counter
     private int counter = 0;
 
-    private String up = "w";
-    private String left = "a";
-    private String down = "s";
-    private String right = "d";
+    // Movement variables
+    private String up;
+    private String left;
+    private String down;
+    private String right;
+    private String auto;
+    private String special;
 
     // Interface
-    private Abilities object;
+    private Playable object;
+    
+    // Cooldown tracker
+    private SimpleTimer autoTimer = new SimpleTimer();
+    private SimpleTimer specialTimer = new SimpleTimer();
 
-    public Character(Abilities object) {
+    public Character(Playable object, String up, String left, String down, String right, String auto, String special) {
         this.object = object;
+        setImage(this.object.getImage());
+
+        this.up = up;
+        this.left = left;
+        this.down = down;
+        this.right = right;
+        this.auto = auto;
+        this.special = special;
     }
     
     public void act() {
@@ -33,7 +48,7 @@ public class Character extends Actor
         gravity();
     }
 
-    public void controls() {
+    private void controls() {
         // Jump
         if (up.equals(Greenfoot.getKey())) {
             if (counter < 2) {
@@ -58,10 +73,18 @@ public class Character extends Actor
             else move(5);
         }
         // Auto
+        if (autoTimer.millisElapsed() > 500 && Greenfoot.isKeyDown(auto)) {
+            object.auto();
+            autoTimer.mark();
+        }
         // Special
+        if (specialTimer.millisElapsed() > 2000 && Greenfoot.isKeyDown(special)) {
+            object.special();
+            specialTimer.mark();
+        }
     }
 
-    public void gravity() {
+    private void gravity() {
         if (!isOnGround()) fall();
         else {
             velocity = 0;
@@ -69,33 +92,33 @@ public class Character extends Actor
         }
     }
 
-    public void jump() {
+    private void jump() {
         velocity = jumpHeight; 
         fall(); 
     }
 
-    public void fall() {
+    private void fall() {
         setLocation(getX(), getY() + (int) velocity);
         velocity = velocity + acceleration;
     }
     
-    public boolean isOnGround() {
+    private boolean isOnGround() {
         Actor platform = getOneObjectAtOffset(0, getImage().getHeight()/2, PlatformX.class);
-        if (platform != null) setLocation(getX(), 438);
+        if (platform != null) setLocation(getX(), 438); // Locks character in place. Determine y.
         return platform != null;
     }
 
-    public boolean isInAir() {
+    private boolean isInAir() {
         if (isOnGround()) return false;
         return true;
     }
 
-    public boolean isTouchingL() {
+    private boolean isTouchingL() {
         if (isTouching(PlatformYL.class)) return true;
         return false;
     }
 
-    public boolean isTouchingR() {
+    private boolean isTouchingR() {
         if (isTouching(PlatformYR.class)) return true;
         return false;
     }

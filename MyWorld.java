@@ -19,7 +19,7 @@ public class MyWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1280, 720, 1); 
-        addObject(new Character(new Pig()), x, y);
+        addObject(new Character(new Pig(), "w", "a", "s", "d", "g", "h"), x, y);
         prepare();
     }
     
