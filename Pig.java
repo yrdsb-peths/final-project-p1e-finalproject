@@ -31,4 +31,8 @@ public class Pig extends Actor implements Playable
         System.out.println("Pig uses special!");
         return 1;
     }
+
+    public void turnTowards() {
+        
+    }
 }

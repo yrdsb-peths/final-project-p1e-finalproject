@@ -31,6 +31,9 @@ public class Character extends Actor
     private SimpleTimer autoTimer = new SimpleTimer();
     private SimpleTimer specialTimer = new SimpleTimer();
 
+    // Loop control
+    private boolean kDown;
+
     public Character(Playable object, String up, String left, String down, String right, String auto, String special) {
         this.object = object;
         setImage(this.object.getImage());
@@ -51,8 +54,9 @@ public class Character extends Actor
 
     private void controls() {
         // Jump
-        if (up.equals(Greenfoot.getKey())) {
-            if (counter < 2) {
+        if (kDown != Greenfoot.isKeyDown(up)) {
+            kDown = !kDown;
+            if (kDown && counter < 2) {
                 jump();
                 counter++;
             }
