@@ -46,6 +46,7 @@ public class Character extends Actor
     public void act() {
         controls();
         gravity();
+        if (isAtEdge()) System.out.println("Game end"); // Do something
     }
 
     private void controls() {
@@ -127,5 +128,9 @@ public class Character extends Actor
         Actor platform = getOneObjectAtOffset(0, getImage().getHeight()/2, Platform.class);
         if (platform != null) setLocation(getX(), 288); // Locks character in place. Determine y.
         return platform != null;
+    }
+
+    private void death() {
+        // What to do when character touches the edge of the world
     }
 }

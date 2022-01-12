@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=ReadFile
+comment0.text=\r\n\ Class\ used\ for\ word\ extracting\r\n\ \r\n\ @author\ Carl\r\n\ @version\ 2021.11.06\r\n
+comment1.params=
+comment1.target=java.util.ArrayList\ extractScores()
+comment1.text=\r\n\ @author\ Carl\r\n\ \r\n\ Method\ accesses\ Words.txt\ and\ stores\ all\ entries\ into\ an\ \r\n\ ArrayList\ called\ wordList\ \r\n
+numComments=2

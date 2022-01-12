@@ -11,17 +11,17 @@ import java.io.*; // Used for file reading
 public class ReadFile  
 {
     /**
-     * @author - Carl
+     * @author Carl
      * 
      * Method accesses Words.txt and stores all entries into an 
      * ArrayList called wordList 
      */
-    public static ArrayList<String> extractWords()
+    public static ArrayList<String> extractScores()
     {
         ArrayList<String> output = new ArrayList<String>();
         try
         {
-            File file = new File("Words.txt"); // File that contains words
+            File file = new File("Scores.txt"); // File that contains words
             Scanner scanner = new Scanner(file); // To extract words
             
             while (scanner.hasNextLine())
@@ -33,7 +33,7 @@ public class ReadFile
         }
         catch (FileNotFoundException e)
         {
-            System.out.println("Something went wrong while trying to read Words.txt.");
+            System.out.println("Something went wrong while trying to read Scores.txt.");
         }
         return output;
     }
