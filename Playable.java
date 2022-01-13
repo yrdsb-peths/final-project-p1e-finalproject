@@ -4,5 +4,4 @@ public interface Playable {
     public int auto();
     public int special();
     public GreenfootImage getImage();
-    private void turnTowards();
 }

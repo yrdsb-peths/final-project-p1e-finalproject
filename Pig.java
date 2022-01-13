@@ -24,6 +24,7 @@ public class Pig extends Actor implements Playable
 
     public int auto() {
         System.out.println("Pig attacks!");
+        Greenfoot.delay(100);
         return 1;
     }
 
