@@ -16,6 +16,7 @@ public class Pig extends Actor implements Playable
      */
     public void act()
     {
+
     }
     
     public GreenfootImage getImage() {
@@ -31,4 +32,6 @@ public class Pig extends Actor implements Playable
         System.out.println("Pig uses special!");
         return 1;
     }
+
+    
 }

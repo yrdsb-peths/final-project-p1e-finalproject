@@ -51,10 +51,10 @@ public class Character extends Actor
     private void controls() {
         // Jump
         if (up.equals(Greenfoot.getKey())) {
-            if (counter < 2) {
+            //if (counter < 2) {
                 jump();
                 counter++;
-            }
+            //}
         }
         // Move left
         if (Greenfoot.isKeyDown(left)) {
