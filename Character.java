@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
 
 /**
  * Write a description of class Character here.
@@ -87,6 +88,9 @@ public class Character extends Actor
             object.special();
             specialTimer.mark();
         }
+        if (Greenfoot.isKeyDown("space")) {
+            System.out.println(death());
+        }
     }
 
     private void gravity() {
@@ -134,7 +138,12 @@ public class Character extends Actor
         return platform != null;
     }
 
-    private void death() {
-        // What to do when character touches the edge of the world
+    private int death() {
+        List list = getWorld().getObjects(Character.class);
+        for (int i = 0; i < list.size()-1; i++) {
+            if (this == list.get(i));
+            return i;
+        }
+        return -1;
     }
 }
