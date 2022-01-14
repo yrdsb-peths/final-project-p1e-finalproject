@@ -63,9 +63,9 @@ public class Character extends Actor
         }
         // Move left
         if (Greenfoot.isKeyDown(left)) {
-            if (isTouchingR() && isInAir()) move(2);
-            else if (isInAir()) move(-2);
-            else move(-5);
+            if (isTouchingR() && isInAir()) setLocation(getX()+2, getY());
+            else if (isInAir()) setLocation(getX()-2, getY());
+            else setLocation(getX()-5, getY());
         }
         // Duck down
         if (Greenfoot.isKeyDown(down)) {
@@ -73,9 +73,9 @@ public class Character extends Actor
         }
         // Move right
         if (Greenfoot.isKeyDown(right)) {
-            if (isTouchingL() && isInAir()) move(-2);
-            else if (isInAir()) move(2);
-            else move(5);
+            if (isTouchingL() && isInAir()) setLocation(getX()-2, getY());
+            else if (isInAir()) setLocation(getX()+2, getY());
+            else setLocation(getX()+5, getY());
         }
         // Auto
         if (autoTimer.millisElapsed() > 500 && Greenfoot.isKeyDown(auto)) {
