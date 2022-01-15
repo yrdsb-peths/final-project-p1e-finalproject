@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.io.*; // Used for file reading
 
 /**
- * Class used for word extracting
+ * Class used for score extracting
  * 
  * @author Carl
  * @version 2021.11.06
