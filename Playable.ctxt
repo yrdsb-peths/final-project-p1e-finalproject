@@ -4,6 +4,4 @@ comment1.params=
 comment1.target=int\ auto()
 comment2.params=
 comment2.target=int\ special()
-comment3.params=
-comment3.target=greenfoot.GreenfootImage\ getImage()
-numComments=4
+numComments=3

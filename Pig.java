@@ -6,21 +6,42 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Pig extends Actor implements Playable
+public class Pig extends Character implements Playable
 {
-    GreenfootImage image = new GreenfootImage("pig.png");
-    GreenfootImage imageDirectionB = new GreenfootImage("pig_left.png");
+    // Movement variables
+    private String up;
+    private String left;
+    private String down;
+    private String right;
+    private String auto;
+    private String special;
     
+    // Direction
+    private String direction = "right";
+
+    GreenfootImage imageRight = new GreenfootImage("pig.png");
+    GreenfootImage imageLeft = new GreenfootImage("pig_left.png");
+    
+    public Pig(String up, String left, String down, String right, String auto, String special) {
+        this.up = up;
+        this.left = left;
+        this.down = down;
+        this.right = right;
+        this.auto = auto;
+        this.special = special;
+    }
+
     /**
      * Act - do whatever the Pig wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
     {
-    }
-    
-    public GreenfootImage getImage() {
-        return image;
+        controls(up, left, down, right, auto, special, this);
+        gravity();
+        if (Greenfoot.isKeyDown(left)) direction = "left";
+        if (Greenfoot.isKeyDown(right)) direction = "right";
+        direction();
     }
 
     public int auto() {
@@ -34,13 +55,8 @@ public class Pig extends Actor implements Playable
         return 1;
     }
 
-    /**
-     * facingDirection - Facing right
-     * 
-     * DirectionB - Actor facing left
-     */
-    public void setDirection(String direction) {
-        if (direction.equals("right")) setImage(image);
-        else setImage(imageDirectionB);
+    public void direction() {
+        if (direction.equals("left")) setImage(imageLeft);
+        if (direction.equals("right")) setImage(imageRight);
     }
 }

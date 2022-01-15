@@ -16,17 +16,6 @@ public class Character extends Actor
 
     // Jump counter
     private int counter = 0;
-
-    // Movement variables
-    private String up;
-    private String left;
-    private String down;
-    private String right;
-    private String auto;
-    private String special;
-
-    // Interface
-    private Playable object;
     
     // Cooldown tracker
     private SimpleTimer autoTimer = new SimpleTimer();
@@ -35,29 +24,7 @@ public class Character extends Actor
     // Loop control
     private boolean kDown;
 
-    // Facing direction
-    private String direction = "right";
-
-    public Character(Playable object, String up, String left, String down, String right, String auto, String special) {
-        this.object = object;
-        setImage(this.object.getImage());
-
-        this.up = up;
-        this.left = left;
-        this.down = down;
-        this.right = right;
-        this.auto = auto;
-        this.special = special;
-    }
-    
-    public void act() {
-        controls();
-        gravity();
-        if (isAtEdge()) System.out.println("Game end"); // Do something
-        object.setDirection(direction);
-    }
-
-    private void controls() {
+    public void controls(String up, String left, String down, String right, String auto, String special, Playable actor) {
         // Jump
         if (kDown != Greenfoot.isKeyDown(up)) {
             kDown = !kDown;
@@ -68,7 +35,6 @@ public class Character extends Actor
         }
         // Move left
         if (Greenfoot.isKeyDown(left)) {
-            direction = "left";
             if (isTouchingR() && isInAir()) setLocation(getX()+2, getY());
             else if (isInAir()) setLocation(getX()-2, getY());
             else setLocation(getX()-5, getY());
@@ -79,27 +45,23 @@ public class Character extends Actor
         }
         // Move right
         if (Greenfoot.isKeyDown(right)) {
-            direction = "right";
             if (isTouchingL() && isInAir()) setLocation(getX()-2, getY());
             else if (isInAir()) setLocation(getX()+2, getY());
             else setLocation(getX()+5, getY());
         }
         // Auto
         if (autoTimer.millisElapsed() > 500 && Greenfoot.isKeyDown(auto)) {
-            object.auto();
+            actor.auto();
             autoTimer.mark();
         }
         // Special
         if (specialTimer.millisElapsed() > 2000 && Greenfoot.isKeyDown(special)) {
-            object.special();
+            actor.special();
             specialTimer.mark();
-        }
-        if (Greenfoot.isKeyDown("space")) {
-            System.out.println(death());
         }
     }
 
-    private void gravity() {
+    public void gravity() {
         if (!isOnGround() && !isTouchingPlatform()) fall();
         else {
             velocity = 0;
@@ -140,16 +102,7 @@ public class Character extends Actor
 
     private boolean isTouchingPlatform() {
         Actor platform = getOneObjectAtOffset(0, getImage().getHeight()/2, Platform.class);
-        if (platform != null) setLocation(getX(), 288); // Locks character in place. Determine y.
+        if (platform != null) setLocation(getX(), 288); // Locks character in place. Determine y experimentally.
         return platform != null;
-    }
-
-    private int death() {
-        List list = getWorld().getObjects(Character.class);
-        for (int i = 0; i < list.size()-1; i++) {
-            if (this == list.get(i));
-            return i;
-        }
-        return -1;
     }
 }

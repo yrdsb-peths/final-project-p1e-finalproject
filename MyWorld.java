@@ -21,8 +21,8 @@ public class MyWorld extends World
         // "w", "a", "s", "d", "g", "h"
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1280, 720, 1); 
-        addObject(new Character(new Pig(), "w", "a", "s", "d", "g", "h"), 462, 435);
-        addObject(new Character(new MrOrange(), "up", "left", "down", "right", "n", "m"), 900, 425);
+        addObject(new Pig("w", "a", "s", "d", "g", "h"), 462, 435);
+        addObject(new MrOrange("up", "left", "down", "right", "n", "m"), 900, 425);
         prepare();
     }
     

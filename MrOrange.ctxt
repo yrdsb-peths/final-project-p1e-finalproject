@@ -1,16 +1,15 @@
 #BlueJ class context
 comment0.target=MrOrange
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ MrOrange\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=
-comment1.target=void\ act()
-comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ MrOrange\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment1.params=up\ left\ down\ right\ auto\ special
+comment1.target=MrOrange(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
 comment2.params=
-comment2.target=greenfoot.GreenfootImage\ getImage()
+comment2.target=void\ act()
+comment2.text=\r\n\ Act\ -\ do\ whatever\ the\ MrOrange\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
 comment3.params=
 comment3.target=int\ auto()
 comment4.params=
 comment4.target=int\ special()
-comment5.params=direction
-comment5.target=void\ setDirection(java.lang.String)
-comment5.text=\r\n\ facingDirection\ -\ Facing\ right\r\n\ \r\n\ DirectionB\ -\ Actor\ facing\ left\r\n
+comment5.params=
+comment5.target=void\ direction()
 numComments=6

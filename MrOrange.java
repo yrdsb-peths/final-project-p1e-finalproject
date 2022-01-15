@@ -6,10 +6,30 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MrOrange extends Actor implements Playable
+public class MrOrange extends Character implements Playable
 {
-    GreenfootImage image = new GreenfootImage("ppl3.png");
-    GreenfootImage imageDirectionB = new GreenfootImage("ppl3_left.png");
+    // Facing Direction
+    private String direction = "left";
+
+    // Movement variables
+    private String up;
+    private String left;
+    private String down;
+    private String right;
+    private String auto;
+    private String special;
+
+    public static GreenfootImage imageRight = new GreenfootImage("ppl3.png");
+    public static GreenfootImage imageLeft = new GreenfootImage("ppl3_left.png");
+    
+    public MrOrange(String up, String left, String down, String right, String auto, String special) {
+        this.up = up;
+        this.left = left;
+        this.down = down;
+        this.right = right;
+        this.auto = auto;
+        this.special = special;
+    }
 
     /**
      * Act - do whatever the MrOrange wants to do. This method is called whenever
@@ -17,11 +37,11 @@ public class MrOrange extends Actor implements Playable
      */
     public void act()
     {
-        // Add your action code here.
-    }
-
-    public GreenfootImage getImage() {
-        return image;
+        controls(up, left, down, right, auto, special, this);
+        gravity();
+        if (Greenfoot.isKeyDown(left)) direction = "left";
+        if (Greenfoot.isKeyDown(right)) direction = "right";
+        direction();
     }
 
     public int auto() {
@@ -32,15 +52,10 @@ public class MrOrange extends Actor implements Playable
     public int special() {
         System.out.println("Mr Orange uses special!");
         return 1;
-    }
+    } 
 
-    /**
-     * facingDirection - Facing right
-     * 
-     * DirectionB - Actor facing left
-     */
-    public void setDirection(String direction) {
-        if (direction.equals("right")) setImage(image);
-        else setImage(imageDirectionB);
+    public void direction() {
+        if (direction.equals("left")) setImage(imageLeft);
+        if (direction.equals("right")) setImage(imageRight);
     }
 }
