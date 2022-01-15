@@ -23,7 +23,7 @@ public class Character extends Actor
 
     // Loop control
     private boolean kDown;
-
+    
     public void controls(String up, String left, String down, String right, String auto, String special, Playable actor) {
         // Jump
         if (kDown != Greenfoot.isKeyDown(up)) {
@@ -35,6 +35,7 @@ public class Character extends Actor
         }
         // Move left
         if (Greenfoot.isKeyDown(left)) {
+            actor.direction("left");
             if (isTouchingR() && isInAir()) setLocation(getX()+2, getY());
             else if (isInAir()) setLocation(getX()-2, getY());
             else setLocation(getX()-5, getY());
@@ -45,6 +46,7 @@ public class Character extends Actor
         }
         // Move right
         if (Greenfoot.isKeyDown(right)) {
+            actor.direction("right");
             if (isTouchingL() && isInAir()) setLocation(getX()-2, getY());
             else if (isInAir()) setLocation(getX()+2, getY());
             else setLocation(getX()+5, getY());

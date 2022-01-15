@@ -8,9 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MrOrange extends Character implements Playable
 {
-    // Facing Direction
-    private String direction = "left";
-
     // Movement variables
     private String up;
     private String left;
@@ -18,6 +15,9 @@ public class MrOrange extends Character implements Playable
     private String right;
     private String auto;
     private String special;
+
+    // Facing Direction
+    private String direction = "left";
 
     public static GreenfootImage imageRight = new GreenfootImage("ppl3.png");
     public static GreenfootImage imageLeft = new GreenfootImage("ppl3_left.png");
@@ -39,9 +39,6 @@ public class MrOrange extends Character implements Playable
     {
         controls(up, left, down, right, auto, special, this);
         gravity();
-        if (Greenfoot.isKeyDown(left)) direction = "left";
-        if (Greenfoot.isKeyDown(right)) direction = "right";
-        direction();
     }
 
     public int auto() {
@@ -54,7 +51,7 @@ public class MrOrange extends Character implements Playable
         return 1;
     } 
 
-    public void direction() {
+    public void direction(String direction) {
         if (direction.equals("left")) setImage(imageLeft);
         if (direction.equals("right")) setImage(imageRight);
     }

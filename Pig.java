@@ -19,6 +19,9 @@ public class Pig extends Character implements Playable
     // Direction
     private String direction = "right";
 
+    // Stocks
+    public int stock = 3;
+
     GreenfootImage imageRight = new GreenfootImage("pig.png");
     GreenfootImage imageLeft = new GreenfootImage("pig_left.png");
     
@@ -39,9 +42,6 @@ public class Pig extends Character implements Playable
     {
         controls(up, left, down, right, auto, special, this);
         gravity();
-        if (Greenfoot.isKeyDown(left)) direction = "left";
-        if (Greenfoot.isKeyDown(right)) direction = "right";
-        direction();
     }
 
     public int auto() {
@@ -55,7 +55,7 @@ public class Pig extends Character implements Playable
         return 1;
     }
 
-    public void direction() {
+    public void direction(String direction) {
         if (direction.equals("left")) setImage(imageLeft);
         if (direction.equals("right")) setImage(imageRight);
     }
