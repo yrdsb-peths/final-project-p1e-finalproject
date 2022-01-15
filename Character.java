@@ -35,6 +35,9 @@ public class Character extends Actor
     // Loop control
     private boolean kDown;
 
+    // Facing direction
+    private String direction = "right";
+
     public Character(Playable object, String up, String left, String down, String right, String auto, String special) {
         this.object = object;
         setImage(this.object.getImage());
@@ -51,6 +54,7 @@ public class Character extends Actor
         controls();
         gravity();
         if (isAtEdge()) System.out.println("Game end"); // Do something
+        object.setDirection(direction);
     }
 
     private void controls() {
@@ -64,6 +68,7 @@ public class Character extends Actor
         }
         // Move left
         if (Greenfoot.isKeyDown(left)) {
+            direction = "left";
             if (isTouchingR() && isInAir()) setLocation(getX()+2, getY());
             else if (isInAir()) setLocation(getX()-2, getY());
             else setLocation(getX()-5, getY());
@@ -74,6 +79,7 @@ public class Character extends Actor
         }
         // Move right
         if (Greenfoot.isKeyDown(right)) {
+            direction = "right";
             if (isTouchingL() && isInAir()) setLocation(getX()-2, getY());
             else if (isInAir()) setLocation(getX()+2, getY());
             else setLocation(getX()+5, getY());

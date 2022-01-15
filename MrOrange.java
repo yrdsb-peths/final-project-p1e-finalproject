@@ -9,6 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MrOrange extends Actor implements Playable
 {
     GreenfootImage image = new GreenfootImage("ppl3.png");
+    GreenfootImage imageDirectionB = new GreenfootImage("ppl3_left.png");
+
     /**
      * Act - do whatever the MrOrange wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -32,7 +34,13 @@ public class MrOrange extends Actor implements Playable
         return 1;
     }
 
-    public void turnTowards() {
-        
+    /**
+     * facingDirection - Facing right
+     * 
+     * DirectionB - Actor facing left
+     */
+    public void setDirection(String direction) {
+        if (direction.equals("right")) setImage(image);
+        else setImage(imageDirectionB);
     }
 }

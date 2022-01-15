@@ -8,7 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Pig extends Actor implements Playable
 {
-    public static GreenfootImage image = new GreenfootImage("pig.png");
+    GreenfootImage image = new GreenfootImage("pig.png");
+    GreenfootImage imageDirectionB = new GreenfootImage("pig_left.png");
     
     /**
      * Act - do whatever the Pig wants to do. This method is called whenever
@@ -33,7 +34,13 @@ public class Pig extends Actor implements Playable
         return 1;
     }
 
-    public void turnTowards() {
-        
+    /**
+     * facingDirection - Facing right
+     * 
+     * DirectionB - Actor facing left
+     */
+    public void setDirection(String direction) {
+        if (direction.equals("right")) setImage(image);
+        else setImage(imageDirectionB);
     }
 }
