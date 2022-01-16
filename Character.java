@@ -16,6 +16,10 @@ public class Character extends Actor
     // Jump counter
     private int counter = 0;
 
+    // Character variables
+    private String id;
+    private int orientation;
+    
     // Movement variables
     private String up;
     private String left;
@@ -31,10 +35,16 @@ public class Character extends Actor
     private SimpleTimer autoTimer = new SimpleTimer();
     private SimpleTimer specialTimer = new SimpleTimer();
 
-    public Character(Playable object, String up, String left, String down, String right, String auto, String special) {
+    // Loop control
+    private boolean kDown;
+
+    public Character(Playable object, String id, int orientation, String up, String left, String down, String right, String auto, String special) {
         this.object = object;
         setImage(this.object.getImage());
 
+        this.id = id;
+        this.orientation = orientation;
+        
         this.up = up;
         this.left = left;
         this.down = down;
@@ -46,18 +56,26 @@ public class Character extends Actor
     public void act() {
         controls();
         gravity();
+        if (isAtEdge()) System.out.println("Game end"); // Do something
     }
 
     private void controls() {
         // Jump
-        if (up.equals(Greenfoot.getKey())) {
-            //if (counter < 2) {
+        if (kDown != Greenfoot.isKeyDown(up)) {
+            kDown = !kDown;
+            if (kDown && counter < 2) {
                 jump();
                 counter++;
-            //}
+            }
         }
         // Move left
         if (Greenfoot.isKeyDown(left)) {
+            if(this.id == "snake"){
+                Bullet.setDirection(1);
+                this.setImage("snake2left.png");
+            } else if(this.id == "pig"){
+                this.setImage("pigleft.png");
+            }
             if (isTouchingR() && isInAir()) move(2);
             else if (isInAir()) move(-2);
             else move(-5);
@@ -68,6 +86,12 @@ public class Character extends Actor
         }
         // Move right
         if (Greenfoot.isKeyDown(right)) {
+            if(this.id == "snake"){
+                this.setImage("snake2.png");
+                Bullet.setDirection(1);
+            } else if(this.id == "pig"){
+                this.setImage("pig.png");
+            }
             if (isTouchingL() && isInAir()) move(-2);
             else if (isInAir()) move(2);
             else move(5);
@@ -127,5 +151,9 @@ public class Character extends Actor
         Actor platform = getOneObjectAtOffset(0, getImage().getHeight()/2, Platform.class);
         if (platform != null) setLocation(getX(), 288); // Locks character in place. Determine y.
         return platform != null;
+    }
+
+    private void death() {
+        // What to do when character touches the edge of the world
     }
 }

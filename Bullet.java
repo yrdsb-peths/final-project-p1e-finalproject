@@ -36,7 +36,7 @@ public class Bullet extends Actor
         if(this.getX() <= 0 || this.getX() >= 1200){
             getWorld().removeObject(this);
         } else if (isTouching(Character.class)){
-            
+            getWorld().removeObject(this);
         }
     }
     

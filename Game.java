@@ -47,12 +47,12 @@ public class Game extends World
         
         // Add two characers
         pigClass = new Pig();
-        pig = new Character(pigClass, "w", "a", "s", "d", "g", "h");
+        pig = new Character(pigClass, "pig", 1,"w", "a", "s", "d", "g", "h");
         player1 = pig;
         addObject(pig, 462, 235);
         
         snakeClass = new Snake();
-        snake = new Character(snakeClass, "up", "left", "down", "right", "o", "p");
+        snake = new Character(snakeClass, "snake",-1, "up", "left", "down", "right", "o", "p");
         player2 = snake;
         addObject(snake, 800, 200);
 
@@ -89,7 +89,6 @@ public class Game extends World
     }
     
     public void act(){
-        orient();
         checkDeath();
         try{
             String keyPress = Greenfoot.getKey();
@@ -102,20 +101,26 @@ public class Game extends World
     }
     
     public void inflatePig(){
-        pig.setLocation(400, 100);
-        pig.getImage().scale(200, 200);
-        pig.setImage(pig.getImage());
+        if(pig == player1){
+            if(pig.getX() < player2.getX()){
+                pig.setLocation(pig.getX() + 100, pig.getY());
+            } else {
+                pig.setLocation(pig.getX() - 100, pig.getY());
+            }
+        }
+
+        //pig.setImage(pig.getImage());
     }
     
     public void shootBullet(){
         if(snake.getX() < pig.getX()){
             Bullet b = new Bullet(1);
             bulletList.add(b);
-            addObject(b, snake.getX(), snake.getY());
+            addObject(b, snake.getX() + 50, snake.getY());
         } else {
             Bullet b = new Bullet(-1);
             bulletList.add(b);
-            addObject(b, snake.getX(), snake.getY());
+            addObject(b, snake.getX() - 50, snake.getY());
         }
     }
     
@@ -136,50 +141,5 @@ public class Game extends World
         removeObject(c);
         addObject(c, 600, 200);
     }
-    
-    public void orient(){
-        if(player1 == snake || player2 == snake){
-            orientSnake();
-        }
-        if (player1 == pig || player2 == pig){
-            orientPig();
-        }
 
-    }
-    
-    public void orientSnake(){
-        if(player1 == snake){
-            if(player1.getX() > player2.getX()){
-                player1.setImage("snake2left.png");
-                Bullet.setDirection(-1);
-            } else {
-                player1.setImage("snake2.png");
-                Bullet.setDirection(1);
-            }
-        } else {
-            if(player2.getX() < player1.getX()){
-                player2.setImage("snake2.png");
-                Bullet.direction = 1;
-            } else {
-                player2.setImage("snake2left.png");
-                Bullet.setDirection(-1);
-            }
-        }
-    }
-    
-    public void orientPig(){
-        if(player1 == pig){
-            if(player1.getX() > player2.getX()){
-                player1.setImage("pigleft.png");
-            } else {
-                player1.setImage("pig.png");
-            }
-        } else {
-            if(player2.getX() < player1.getX()){
-                player2.setImage("pig.png");
-            } else {
-                player2.setImage("pigleft.png");
-            }
-        }
-    }
 }

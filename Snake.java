@@ -25,7 +25,6 @@ public class Snake extends Actor implements Playable
     }
 
     public int auto() {
-        System.out.println("Snake attacks!");
         return 1;
     }
 
