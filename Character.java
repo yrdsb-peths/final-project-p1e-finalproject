@@ -62,6 +62,15 @@ public class Character extends Actor
             specialTimer.mark();
         }
     }
+    
+    // Getters and Setters
+    public SimpleTimer getAutoTimer(){
+        return autoTimer;
+    }
+    
+    public SimpleTimer getSpecialTimer(){
+        return specialTimer;
+    }
 
     public void gravity() {
         if (!isOnGround() && !isTouchingPlatform()) fall();

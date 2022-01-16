@@ -14,13 +14,34 @@ public class MyWorld extends World
  
     // Players
     Pig player1;
-    MrOrange player2; 
+    Snake player2; 
 
     // Player stocks
     int oneStock = 3;
     int twoStock = 3;
+    
+    Label player1Label;
+    Label player2Label;
+    
+    // Game bars
+    GreenfootImage player1HPBar;
+    GreenfootImage player2HPBar;
+    GreenfootImage player1SpecialBar;
+    GreenfootImage player2SpecialBar;
+    
+    // Timer variables
+    SimpleTimer minTimer;
+    SimpleTimer secTimer;
+    
+    Label minLabel;
+    Label secLabel;
+    Label colonLabel;
+    
+    int currentMins;
+    int currentSecs;
 
     public void act() {
+        updateTimer();
         try {
             if (player1.isAtEdge()) {
                 if (oneStock > 0) {
@@ -66,9 +87,26 @@ public class MyWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1280, 720, 1); 
         player1 = new Pig("w", "a", "s", "d", "g", "h");
-        player2 = new MrOrange("up", "left", "down", "right", "n", "m");
+        player2 = new Snake("up", "left", "down", "right", "n", "m");
         addObject(player1, 462, 435);
         addObject(player2, 900, 425);
+        
+        // Timers
+        minTimer = new SimpleTimer();
+        minTimer.mark();
+        secTimer = new SimpleTimer();
+        secTimer.mark();
+        
+        currentMins = 1;
+        currentSecs = 11;
+        minLabel = new Label(currentMins, 70);
+        secLabel = new Label(currentSecs, 70);
+        colonLabel = new Label(":", 70);
+        addObject(minLabel, 600, 50);
+        addObject(secLabel, 700, 50);
+        addObject(colonLabel, 650, 50);
+        
+        addLabels();
         prepare();
     }
     
@@ -86,5 +124,43 @@ public class MyWorld extends World
         addObject(platformYR,966,590);
         Platform platform = new Platform();
         addObject(platform,857,312);
+    }
+    
+    // Add labels to the game
+    private void addLabels(){
+        player1Label = new Label("Player 1", 50);
+        addObject(player1Label, 100, 50);
+        player2Label = new Label("Player 2", 50);
+        addObject(player2Label, 1150, 50);
+    }
+    
+    private void addBars(){
+        
+    }
+    
+    // Updates the timer at the top of the screen
+    private void updateTimer(){
+        if(secTimer.millisElapsed() > 1000){
+            currentSecs--;
+            if(currentSecs == -1){
+                currentMins--;
+                minLabel.setValue(currentMins);
+                minTimer.mark();                
+            }
+            if(currentSecs < 0){
+                currentSecs = 59;
+            }
+            if(currentSecs < 10){
+                secLabel.setValue("0" + currentSecs);
+            } else {
+                secLabel.setValue(currentSecs);
+            }
+            secTimer.mark();
+        }
+        
+        // Game over when time reaches 0
+        if(currentSecs == 0 && currentMins < 0){
+            Greenfoot.setWorld(new GameOver());
+        }
     }
 }

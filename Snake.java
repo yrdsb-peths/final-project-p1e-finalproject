@@ -1,12 +1,11 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import greenfoot.*;
 /**
- * Write a description of class Pig here.
+ * Write a description of class Snake here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Pig extends Character implements Playable
+public class Snake extends Character implements Playable
 {
     // Movement variables
     private String up;
@@ -24,8 +23,11 @@ public class Pig extends Character implements Playable
 
     GreenfootImage imageRight = new GreenfootImage("pig.png");
     GreenfootImage imageLeft = new GreenfootImage("pig_left.png");
-    
-    public Pig(String up, String left, String down, String right, String auto, String special) {
+
+    /**
+     * Constructor for objects of class Snake
+     */
+    public Snake(String up, String left, String down, String right, String auto, String special) {
         this.up = up;
         this.left = left;
         this.down = down;
@@ -35,7 +37,7 @@ public class Pig extends Character implements Playable
     }
 
     /**
-     * Act - do whatever the Pig wants to do. This method is called whenever
+     * Act - do whatever the Snake wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
@@ -45,11 +47,18 @@ public class Pig extends Character implements Playable
     }
 
     public int auto() {
+        Bullet b;
+        if(getImage() == imageLeft){
+            b = new Bullet(-5);
+        } else {
+            b = new Bullet(5);
+        }
+        getWorld().addObject(b, this.getX(), this.getY());
         return 1;
     }
 
     public int special() {
-        System.out.println("Pig uses special!");
+        System.out.println("Snake uses special!");
         return 1;
     }
 
