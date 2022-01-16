@@ -1,7 +1,10 @@
 #Greenfoot project file
+<<<<<<< Updated upstream
 class.Bear.image=wombat.png
 class.Bullet.image=button-green.png
 class.Game.image=World.png
+=======
+>>>>>>> Stashed changes
 class.Pig.image=pig.png
 class.Platform.image=Platform.png
 class.PlatformX.image=MainPlatformX.png
@@ -11,6 +14,7 @@ class.Snake.image=snake2.png
 dependency1.from=Game
 dependency1.to=Label
 dependency1.type=UsesDependency
+<<<<<<< Updated upstream
 dependency10.from=Game
 dependency10.to=Platform
 dependency10.type=UsesDependency
@@ -71,6 +75,53 @@ editor.fx.0.x=761
 editor.fx.0.y=0
 height=905
 package.numDependencies=19
+=======
+dependency10.from=Character
+dependency10.to=Playable
+dependency10.type=UsesDependency
+dependency11.from=Character
+dependency11.to=PlatformX
+dependency11.type=UsesDependency
+dependency12.from=Character
+dependency12.to=PlatformYL
+dependency12.type=UsesDependency
+dependency13.from=Character
+dependency13.to=PlatformYR
+dependency13.type=UsesDependency
+dependency14.from=Character
+dependency14.to=Platform
+dependency14.type=UsesDependency
+dependency2.from=MyWorld
+dependency2.to=MrOrange
+dependency2.type=UsesDependency
+dependency3.from=MyWorld
+dependency3.to=Character
+dependency3.type=UsesDependency
+dependency4.from=MyWorld
+dependency4.to=PlatformX
+dependency4.type=UsesDependency
+dependency5.from=MyWorld
+dependency5.to=PlatformYL
+dependency5.type=UsesDependency
+dependency6.from=MyWorld
+dependency6.to=PlatformYR
+dependency6.type=UsesDependency
+dependency7.from=MyWorld
+dependency7.to=Platform
+dependency7.type=UsesDependency
+dependency8.from=ScoresWorld
+dependency8.to=ReadFile
+dependency8.type=UsesDependency
+dependency9.from=Character
+dependency9.to=SimpleTimer
+dependency9.type=UsesDependency
+editor.fx.0.height=737
+editor.fx.0.width=814
+editor.fx.0.x=360
+editor.fx.0.y=26
+height=830
+package.numDependencies=14
+>>>>>>> Stashed changes
 package.numTargets=15
 project.charset=windows-1252
 publish.hasSource=false
@@ -192,7 +243,12 @@ target9.width=120
 target9.x=0
 target9.y=0
 version=3.0.0
+<<<<<<< Updated upstream
 width=1528
 world.lastInstantiated=Game
+=======
+width=1550
+world.lastInstantiated=ScoresWorld
+>>>>>>> Stashed changes
 xPosition=0
 yPosition=0
