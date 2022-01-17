@@ -49,18 +49,26 @@ public class Pig extends Character implements Playable
     }
 
     public int auto() {
-        if(getImage() == imageRight){
+        /*if(getImage() == imageRight){
             move(100);
-            checkKnockback();
+            if(isTouching(Snake.class)){
+                MyWorld.player2.setLocation(MyWorld.player2.getX() + 200, MyWorld.player2.getY() - 50);
+            }
         } else {
             move(-100);
-            checkKnockback();
+            if(isTouching(Snake.class)){
+                MyWorld.player2.setLocation(MyWorld.player2.getX() - 200, MyWorld.player2.getY() - 50);
+            }
         }
+        return 1;*/
+        setLocation(getX(), getY() - 200);
+        getImage().scale(100, 100);
         return 1;
     }
 
     public int special() {
-        System.out.println("Pig uses special!");
+        setLocation(getX(), getY() - 100);
+        getImage().scale(200, 200);
         return 1;
     }
 
@@ -79,8 +87,6 @@ public class Pig extends Character implements Playable
     }
     
     public void checkKnockback(){
-        if(isTouching(Snake.class)){
-            
-        }
+        
     }
 }
