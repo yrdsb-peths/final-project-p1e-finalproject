@@ -16,7 +16,7 @@ public class Snake extends Character implements Playable
     private String special;
     
     // Direction
-    private String direction = "right";
+    private String direction = "left";
 
     // Stocks
     public int stock = 3;
@@ -38,6 +38,7 @@ public class Snake extends Character implements Playable
         this.right = right;
         this.auto = auto;
         this.special = special;
+        setImage(imageLeft);
     }
 
     /**
@@ -53,11 +54,11 @@ public class Snake extends Character implements Playable
     public int auto() {
         Bullet b;
         if(getImage() == imageLeft){
-            b = new Bullet(-3);
+            b = new Bullet(-3, direction);
             b.getImage().scale(20, 20);
             getWorld().addObject(b, this.getX() - 50, this.getY());
         } else {
-            b = new Bullet(3);
+            b = new Bullet(3, direction);
             b.getImage().scale(20, 20);
             getWorld().addObject(b, this.getX() + 50, this.getY());
         }
@@ -68,11 +69,11 @@ public class Snake extends Character implements Playable
     public int special() {
         Bullet b;
         if(getImage() == imageLeft){
-            b = new Bullet(-10);
+            b = new Bullet(-10, direction);
             b.getImage().scale(200, 200);
             getWorld().addObject(b, this.getX() - 100, this.getY());
         } else {
-            b = new Bullet(10);
+            b = new Bullet(10, direction);
             b.getImage().scale(200, 200);
             getWorld().addObject(b, this.getX() + 100, this.getY());
         }
@@ -82,6 +83,7 @@ public class Snake extends Character implements Playable
     }
 
     public void direction(String direction) {
+        this.direction = direction;
         if (direction.equals("left")) setImage(imageLeft);
         if (direction.equals("right")) setImage(imageRight);
     }

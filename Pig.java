@@ -36,6 +36,7 @@ public class Pig extends Character implements Playable
         this.right = right;
         this.auto = auto;
         this.special = special;
+        setImage(imageRight);
     }
 
     /**
@@ -86,7 +87,9 @@ public class Pig extends Character implements Playable
         HP = newHP;
     }
     
-    public void checkKnockback(){
-        
+    public void hit(){
+        if (isTouching(Bullet.class)) {
+            
+        }
     }
 }

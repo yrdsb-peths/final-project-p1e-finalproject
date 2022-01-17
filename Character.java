@@ -19,7 +19,6 @@ public class Character extends Actor
     
     // Cooldown tracker
     private SimpleTimer autoTimer = new SimpleTimer();
-    //private SimpleTimer specialTimer = new SimpleTimer();
     private boolean canUseSpecial = false;
 
     // Loop control
@@ -117,5 +116,4 @@ public class Character extends Actor
         if (platform != null) setLocation(getX(), 288); // Locks character in place. Determine y experimentally.
         return platform != null;
     }
-    
 }

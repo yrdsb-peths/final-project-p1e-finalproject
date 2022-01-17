@@ -17,5 +17,5 @@ comment6.target=int\ getHP()
 comment7.params=newHP
 comment7.target=void\ setHP(int)
 comment8.params=
-comment8.target=void\ checkKnockback()
+comment8.target=void\ hit()
 numComments=9
