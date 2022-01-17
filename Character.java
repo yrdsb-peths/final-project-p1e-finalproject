@@ -19,7 +19,8 @@ public class Character extends Actor
     
     // Cooldown tracker
     private SimpleTimer autoTimer = new SimpleTimer();
-    private SimpleTimer specialTimer = new SimpleTimer();
+    //private SimpleTimer specialTimer = new SimpleTimer();
+    private boolean canUseSpecial = false;
 
     // Loop control
     private boolean kDown;
@@ -57,9 +58,9 @@ public class Character extends Actor
             autoTimer.mark();
         }
         // Special
-        if (specialTimer.millisElapsed() > 2000 && Greenfoot.isKeyDown(special)) {
+        if (canUseSpecial && Greenfoot.isKeyDown(special)) {
             actor.special();
-            specialTimer.mark();
+            canUseSpecial = false;
         }
     }
     
@@ -68,8 +69,8 @@ public class Character extends Actor
         return autoTimer;
     }
     
-    public SimpleTimer getSpecialTimer(){
-        return specialTimer;
+    public void setCanUseSpecial(boolean newCanUseSpecial){
+        canUseSpecial = newCanUseSpecial;
     }
 
     public void gravity() {
@@ -116,4 +117,5 @@ public class Character extends Actor
         if (platform != null) setLocation(getX(), 288); // Locks character in place. Determine y experimentally.
         return platform != null;
     }
+    
 }

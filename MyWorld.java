@@ -13,8 +13,8 @@ public class MyWorld extends World
     int y = getHeight()/2;
  
     // Players
-    Pig player1;
-    Snake player2; 
+    public static Pig player1;
+    public static Snake player2; 
 
     // Player stocks
     int oneStock = 3;
@@ -23,11 +23,19 @@ public class MyWorld extends World
     Label player1Label;
     Label player2Label;
     
-    // Game bars
-    GreenfootImage player1HPBar;
-    GreenfootImage player2HPBar;
-    GreenfootImage player1SpecialBar;
-    GreenfootImage player2SpecialBar;
+    // HP bar variables
+    public static HPBar player1HPBar;
+    public static HPBar player2HPBar;
+    Label player1HPLabel;
+    Label player2HPLabel;
+    HPBarEmpty player1HPBarEmpty;
+    HPBarEmpty player2HPBarEmpty;
+    
+    // Special bar variables
+    public static SpecialBar player1SpecialBar;
+    public static SpecialBar player2SpecialBar;
+    Label player1SpecialBarLabel;
+    Label player2SpecialBarLabel;
     
     // Timer variables
     SimpleTimer minTimer;
@@ -42,6 +50,7 @@ public class MyWorld extends World
 
     public void act() {
         updateTimer();
+        checkAlive();
         try {
             if (player1.isAtEdge()) {
                 if (oneStock > 0) {
@@ -56,6 +65,12 @@ public class MyWorld extends World
                     twoStock--;
                 }
                 else gameOver(player2);
+            }
+            
+            if(player1.getHP() <= 0){
+                player1.getImage().setTransparency(0);
+                respawn(player1);
+                player1.setHP(4);
             }
         }
         catch (Exception e){} // Change world
@@ -72,8 +87,11 @@ public class MyWorld extends World
         }
     }
 
+    // Respawn a character in the middle of the world
     public void respawn(Character actor) {
+        Greenfoot.delay(100);
         actor.setLocation(x,y);
+        actor.getImage().setTransparency(255);
     }
 
     /**
@@ -84,8 +102,9 @@ public class MyWorld extends World
     {   
         // "up", "left", "down", "right", "n", "m"
         // "w", "a", "s", "d", "g", "h"
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1280, 720, 1); 
+        
+        // Add players to world
         player1 = new Pig("w", "a", "s", "d", "g", "h");
         player2 = new Snake("up", "left", "down", "right", "n", "m");
         addObject(player1, 462, 435);
@@ -97,15 +116,7 @@ public class MyWorld extends World
         secTimer = new SimpleTimer();
         secTimer.mark();
         
-        currentMins = 1;
-        currentSecs = 11;
-        minLabel = new Label(currentMins, 70);
-        secLabel = new Label(currentSecs, 70);
-        colonLabel = new Label(":", 70);
-        addObject(minLabel, 600, 50);
-        addObject(secLabel, 700, 50);
-        addObject(colonLabel, 650, 50);
-        
+        addBars();
         addLabels();
         prepare();
     }
@@ -128,14 +139,52 @@ public class MyWorld extends World
     
     // Add labels to the game
     private void addLabels(){
+        // Add player name labels
         player1Label = new Label("Player 1", 50);
         addObject(player1Label, 100, 50);
         player2Label = new Label("Player 2", 50);
-        addObject(player2Label, 1150, 50);
+        addObject(player2Label, 1180, 50);
+        
+        // Add HP labels
+        player1HPLabel = new Label("HP", 20);
+        addObject(player1HPLabel, 35, 100);
+        player2HPLabel = new Label("HP", 20);
+        addObject(player2HPLabel, 1235, 100);
+        
+        // Add Special Labels
+        player1SpecialBarLabel = new Label("Ultimate", 20);
+        addObject(player1SpecialBarLabel, 55, 120);
+        player2SpecialBarLabel = new Label("Ultimate", 20);
+        addObject(player2SpecialBarLabel, 1215, 120);
+        
+        // Add timer labels
+        currentMins = 1;
+        currentSecs = 11;
+        minLabel = new Label(currentMins, 70);
+        secLabel = new Label(currentSecs, 70);
+        colonLabel = new Label(":", 70);
+        addObject(minLabel, 600, 50);
+        addObject(secLabel, 700, 50);
+        addObject(colonLabel, 650, 50);
     }
     
+    // Add needed rectangular bars to game
     private void addBars(){
+        // HP Bars
+        player1HPBarEmpty = new HPBarEmpty();
+        addObject(player1HPBarEmpty, 220, 100);
+        player2HPBarEmpty = new HPBarEmpty();
+        addObject(player2HPBarEmpty, 1050, 100);
+        player1HPBar = new HPBar("one");
+        addObject(player1HPBar, 220, 100);
+        player2HPBar = new HPBar("two");
+        addObject(player2HPBar, 1050, 100);
         
+        // Special Bars
+        player1SpecialBar = new SpecialBar("one");
+        addObject(player1SpecialBar, 45, 120);
+        player2SpecialBar = new SpecialBar("two");
+        addObject(player2SpecialBar, 1225, 120);
     }
     
     // Updates the timer at the top of the screen
@@ -162,5 +211,9 @@ public class MyWorld extends World
         if(currentSecs == 0 && currentMins < 0){
             Greenfoot.setWorld(new GameOver());
         }
+    }
+    
+    private void checkAlive(){
+
     }
 }

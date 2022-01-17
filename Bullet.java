@@ -18,15 +18,27 @@ public class Bullet extends Actor
         this.direction = direction;
     }
     
+    // Getter and Setter
+    public int getDirection(){
+        return direction;
+    }
+    
+    public void setDirection(int newDirection){
+        direction = newDirection;
+    }
+    
     public void act()
     {
-        // Add your action code here.
-        move(direction);
-        if(getX() <= 0 || getX() >= 900){
+        if(this.getX() <= 50 || this.getX() >= 1230){
             getWorld().removeObject(this);
-        }
-        if(isTouching(Pig.class)){
+        } else if(isTouching(Pig.class)){
             getWorld().removeObject(this);
+            MyWorld.player1.setHP(MyWorld.player1.getHP() - 1);
+            MyWorld.player1HPBar.setWidth(MyWorld.player1HPBar.getWidth() - 100);
+            MyWorld.player2.setSpecial(MyWorld.player2.getSpecial() + 1);
+            MyWorld.player2SpecialBar.setWidth(MyWorld.player2.getSpecial() + 1);
+        } else {
+            move(direction);
         }
     }
     

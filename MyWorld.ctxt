@@ -19,4 +19,6 @@ comment7.params=
 comment7.target=void\ addBars()
 comment8.params=
 comment8.target=void\ updateTimer()
-numComments=9
+comment9.params=
+comment9.target=void\ checkAlive()
+numComments=10

@@ -20,9 +20,13 @@ public class Snake extends Character implements Playable
 
     // Stocks
     public int stock = 3;
+    
+    private int originalHP = 4;
+    private int HP = 4;
+    private int SP = 1;
 
-    GreenfootImage imageRight = new GreenfootImage("pig.png");
-    GreenfootImage imageLeft = new GreenfootImage("pig_left.png");
+    GreenfootImage imageRight = new GreenfootImage("snake.png");
+    GreenfootImage imageLeft = new GreenfootImage("snake_left.png");
 
     /**
      * Constructor for objects of class Snake
@@ -49,16 +53,31 @@ public class Snake extends Character implements Playable
     public int auto() {
         Bullet b;
         if(getImage() == imageLeft){
-            b = new Bullet(-5);
+            b = new Bullet(-3);
+            b.getImage().scale(20, 20);
+            getWorld().addObject(b, this.getX() - 50, this.getY());
         } else {
-            b = new Bullet(5);
+            b = new Bullet(3);
+            b.getImage().scale(20, 20);
+            getWorld().addObject(b, this.getX() + 50, this.getY());
         }
-        getWorld().addObject(b, this.getX(), this.getY());
+        
         return 1;
     }
 
     public int special() {
-        System.out.println("Snake uses special!");
+        Bullet b;
+        if(getImage() == imageLeft){
+            b = new Bullet(-10);
+            b.getImage().scale(200, 200);
+            getWorld().addObject(b, this.getX() - 100, this.getY());
+        } else {
+            b = new Bullet(10);
+            b.getImage().scale(200, 200);
+            getWorld().addObject(b, this.getX() + 100, this.getY());
+        }
+        SP = 0;
+        MyWorld.player2SpecialBar.setWidth(2);
         return 1;
     }
 
@@ -66,4 +85,22 @@ public class Snake extends Character implements Playable
         if (direction.equals("left")) setImage(imageLeft);
         if (direction.equals("right")) setImage(imageRight);
     }
+    
+    // Getters and Setters
+    public int getHP(){
+        return HP;
+    }
+    
+    public void setHP(int newHP){
+        HP = newHP;
+    }
+    
+    public int getSpecial(){
+        return SP;
+    }
+    
+    public void setSpecial(int newSP){
+        SP = newSP;
+    }
+    
 }

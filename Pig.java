@@ -21,6 +21,10 @@ public class Pig extends Character implements Playable
 
     // Stocks
     public int stock = 3;
+    
+    private int originalHP = 4;
+    private int HP = 4;
+    private int SP = 1;
 
     GreenfootImage imageRight = new GreenfootImage("pig.png");
     GreenfootImage imageLeft = new GreenfootImage("pig_left.png");
@@ -45,6 +49,13 @@ public class Pig extends Character implements Playable
     }
 
     public int auto() {
+        if(getImage() == imageRight){
+            move(100);
+            checkKnockback();
+        } else {
+            move(-100);
+            checkKnockback();
+        }
         return 1;
     }
 
@@ -56,5 +67,20 @@ public class Pig extends Character implements Playable
     public void direction(String direction) {
         if (direction.equals("left")) setImage(imageLeft);
         if (direction.equals("right")) setImage(imageRight);
+    }
+    
+    // Getter and Setter
+    public int getHP(){
+        return HP;
+    }
+    
+    public void setHP(int newHP){
+        HP = newHP;
+    }
+    
+    public void checkKnockback(){
+        if(isTouching(Snake.class)){
+            
+        }
     }
 }
