@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class player1 extends Player
+public class pig extends Player
 {
     
     
@@ -14,17 +14,17 @@ public class player1 extends Player
      * Act - do whatever the player1 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    GreenfootImage[] p1jump = new GreenfootImage[12];
-    GreenfootImage p1idle = new GreenfootImage("p1idle1.png");
+    GreenfootImage[] p2jump = new GreenfootImage[12];
+    GreenfootImage p2idle = new GreenfootImage("p2idle1.png");
     
-    public player1()
+    public pig()
     {
-        p1idle.scale(30,90);
-        setImage(p1idle);
+        p2idle.scale(105,115);
+        setImage(p2idle);
     }
     
     public void act()
     {
-        player1movement(p1jump, p1idle);
+        player2movement(p2jump, p2idle);
     }
 }

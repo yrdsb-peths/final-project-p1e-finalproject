@@ -43,5 +43,7 @@ public class Platforms extends World
         player1 player1 = new player1();
         addObject(player1,464,415);
 
+        pig pig = new pig();
+        addObject(pig,882,415);
     }
 }

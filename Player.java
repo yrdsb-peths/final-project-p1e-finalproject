@@ -27,11 +27,11 @@ public class Player extends Actor
         // Add your action code here.
     }
     
-    public void player1movement(GreenfootImage[] p1jump)
+    public void player1movement(GreenfootImage[] p1jump, GreenfootImage p1idle)
     {
         if(Greenfoot.isKeyDown("w") && inAir == false)
         {
-            jump(p1jump);
+            jump(p1jump, p1idle,1);
             inAir = false;
         }
         if(Greenfoot.isKeyDown("a"))
@@ -48,39 +48,61 @@ public class Player extends Actor
         }
     }
     
-    public void jump(GreenfootImage[] x)
+    public void player2movement(GreenfootImage[] p2jump, GreenfootImage p2idle)
+    {
+        if(Greenfoot.isKeyDown("up") && inAir == false)
+        {
+            jump(p2jump,p2idle,2);
+            inAir = false;
+        }
+        if(Greenfoot.isKeyDown("left"))
+        {
+            this.setLocation(getX() - moveSpeed, getY());
+        }
+        if(Greenfoot.isKeyDown("down"))
+        {
+            
+        }
+        if(Greenfoot.isKeyDown("right"))
+        {
+            this.setLocation(getX() + moveSpeed, getY());
+        }
+    }
+    
+    public void jump(GreenfootImage[] jumping, GreenfootImage idle, int player)
     {
         
-        GreenfootImage standing = new GreenfootImage("p1idle1.png");
-        standing.scale(30,90);
         int fakeGrav = 0;
         
+        int width = 40;
+        int height = 90;
+        
+        if(player == 2)
+        {
+            width = 105;
+            height = 115;
+        }
+        
+        
         inAir = true;
-        for(int i = 1; i < 3; i++)
+        for(int i = 1; i < 12; i++)
         {
-            x[i] = new GreenfootImage("p1jump" + i + ".png");
-            x[i].scale(40,90);
-            setImage(x[i]);
-            Greenfoot.delay(4);
+            jumping[i] = new GreenfootImage("p" + player + "jump" + i + ".png");
+            jumping[i].scale(width, height);
+            setImage(jumping[i]);
+            Greenfoot.delay(2);
+            if(i < 6)this.setLocation(getX(), getY() - (i * 15));
+            else{
+                while(this.getY() < h)
+                {
+                    this.setLocation(getX(), getY() + fakeGrav);
+                    fakeGrav++;
+                    Greenfoot.delay(1);
+                }
+            }
+            
         }
-        for(int i = 0; i < 5; i++)
-        {
-            setImage(standing);
-            this.setLocation(getX(), getY() - (i * 15));
-        }
-        while(this.getY() < h)
-        {
-            this.setLocation(getX(), getY() + fakeGrav);
-            fakeGrav++;
-            Greenfoot.delay(1);
-        }
-        for(int i = 2; i < 0; i--)
-        {
-            x[i] = new GreenfootImage("p1jump" + i + ".png");
-            x[i].scale(40,90);
-            setImage(x[i]);
-            Greenfoot.delay(4);
-        }
-        setImage(standing);
+        
+        setImage(idle);
     }
 }
