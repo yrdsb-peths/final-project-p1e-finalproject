@@ -40,6 +40,8 @@ public class MyWorld extends World
     // Timer variables
     SimpleTimer minTimer;
     SimpleTimer secTimer;
+    SimpleTimer player1RespawnTimer;
+    SimpleTimer player2RespawnTimer;
     
     Label minLabel;
     Label secLabel;
@@ -50,48 +52,88 @@ public class MyWorld extends World
 
     public void act() {
         updateTimer();
-        checkAlive();
         try {
-            if (player1.isAtEdge()) {
+            if (player1.isAtEdge() && player1.getBeingRespawned() == false) {
                 if (oneStock > 0) {
-                    respawn(player1);
+                    player1.setAlive(false);
+                    player1.setBeingRespawned(true);
                     oneStock--;
+                    startRespawn();
                 }
                 else gameOver(player1);
             }
-            if (player2.isAtEdge()) {
+            if (player2.isAtEdge() && player2.getBeingRespawned() == false) {
                 if (twoStock > 0) {
-                    respawn(player2);
+                    player2.setAlive(false);
+                    player2.setBeingRespawned(true);
                     twoStock--;
+                    startRespawn();
                 }
                 else gameOver(player2);
             }
             
             if(player1.getHP() <= 0){
                 player1.getImage().setTransparency(0);
-                respawn(player1);
+                respawnPlayer1();
                 player1.setHP(4);
+            }
+            
+            // Checks if enough time has passed before characters respawn
+            if(player1.getBeingRespawned() == true){
+                if(player1RespawnTimer.millisElapsed() > 3000){
+                    respawnPlayer1();
+                    player1.setBeingRespawned(false);
+                }
+            }
+            if(player2.getBeingRespawned() == true){
+                if(player2RespawnTimer.millisElapsed() > 3000){
+                    respawnPlayer2();
+                    player2.setBeingRespawned(false);
+                }
             }
         }
         catch (Exception e){} // Change world
     }
 
     public void gameOver(Character actor) {
-        if (oneStock == 0) { 
+        /*if (oneStock == 0) { 
             removeObject(actor);
             System.out.println("Player 2 wins");
         }
         else { 
             removeObject(actor);
             System.out.println("Player 1 wins");
-        }
+        }*/
     }
 
     // Respawn a character in the middle of the world
     public void respawn(Character actor) {
-        Greenfoot.delay(100);
         actor.setLocation(x,y);
         actor.getImage().setTransparency(255);
+    }
+    
+    private void respawnPlayer1(){
+        player1.setLocation(x, y);
+        player1.setAlive(true);
+        player1.getImage().setTransparency(255);
+    }
+    
+    private void respawnPlayer2(){
+        player2.setLocation(x, y);
+        player2.setAlive(true);
+        player2.getImage().setTransparency(255);
+    }
+    
+    // Start respawn timer if a player dies
+    private void startRespawn(){
+        if(player1.getAlive() == false){
+            player1.getImage().setTransparency(0);
+            player1RespawnTimer.mark();
+        }
+        if(player2.getAlive() == false){
+            player2.getImage().setTransparency(0);
+            player2RespawnTimer.mark();
+        }
     }
 
     /**
@@ -115,6 +157,8 @@ public class MyWorld extends World
         minTimer.mark();
         secTimer = new SimpleTimer();
         secTimer.mark();
+        player1RespawnTimer = new SimpleTimer();
+        player2RespawnTimer = new SimpleTimer();
         
         addBars();
         addLabels();
@@ -211,9 +255,5 @@ public class MyWorld extends World
         if(currentSecs == 0 && currentMins < 0){
             Greenfoot.setWorld(new GameOver());
         }
-    }
-    
-    private void checkAlive(){
-
     }
 }

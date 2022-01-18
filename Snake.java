@@ -24,6 +24,8 @@ public class Snake extends Character implements Playable
     private int originalHP = 4;
     private int HP = 4;
     private int SP = 1;
+    private boolean alive = true;
+    private boolean beingRespawned = false;
 
     GreenfootImage imageRight = new GreenfootImage("snake.png");
     GreenfootImage imageLeft = new GreenfootImage("snake_left.png");
@@ -97,6 +99,14 @@ public class Snake extends Character implements Playable
         HP = newHP;
     }
     
+    public boolean getAlive(){
+        return alive;
+    }
+    
+    public void setAlive(boolean newAlive){
+        alive = newAlive;
+    }
+    
     public int getSpecial(){
         return SP;
     }
@@ -105,4 +115,11 @@ public class Snake extends Character implements Playable
         SP = newSP;
     }
     
+    public boolean getBeingRespawned(){
+        return beingRespawned;
+    }
+    
+    public void setBeingRespawned(boolean newBeingRespawned){
+        beingRespawned = newBeingRespawned;
+    }
 }

@@ -25,6 +25,8 @@ public class Pig extends Character implements Playable
     private int originalHP = 4;
     private int HP = 4;
     private int SP = 1;
+    private boolean alive = true;
+    private boolean beingRespawned = false;
 
     GreenfootImage imageRight = new GreenfootImage("pig.png");
     GreenfootImage imageLeft = new GreenfootImage("pig_left.png");
@@ -85,6 +87,22 @@ public class Pig extends Character implements Playable
     
     public void setHP(int newHP){
         HP = newHP;
+    }
+    
+    public boolean getAlive(){
+        return alive;
+    }
+    
+    public void setAlive(boolean newAlive){
+        alive = newAlive;
+    }
+    
+    public boolean getBeingRespawned(){
+        return beingRespawned;
+    }
+    
+    public void setBeingRespawned(boolean newBeingRespawned){
+        beingRespawned = newBeingRespawned;
     }
     
     public void hit(){
