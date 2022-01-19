@@ -104,14 +104,14 @@ public class Pig extends Character implements Playable
             if(specialDashTimer.millisElapsed() % 1 == 0){
                 specialDashTicker++;
                 if(getImage() == bigImageRight){
-                    move(20);
+                    move(15);
                 } else if(getImage() == bigImageLeft){
-                    move(-20);
+                    move(-15);
                 }
             }
             checkLandedHit();
             // Stops dash animation
-            if(specialDashTicker >= 10){
+            if(specialDashTicker >= 15){
                 startedSpecial = false;
                 specialDashTicker = 0;
                 if(getImage() == bigImageRight){
@@ -126,24 +126,21 @@ public class Pig extends Character implements Playable
     // Check if dash hits opposing player
     public void checkLandedHit(){
         if(isTouching(Snake.class) && canUpdateSpecialBar == true){
-            canUpdateSpecialBar = false;
+            //canUpdateSpecialBar = false;
             MyWorld.player2.setHP(MyWorld.player2.getHP() - 1);
             MyWorld.player2HPBar.setWidth(MyWorld.player2HPBar.getWidth() - 100);
             MyWorld.player1.setSpecial(MyWorld.player1.getSpecial() + 1);
             MyWorld.player1SpecialBar.setWidth(MyWorld.player1.getSpecial() + 1);
-            if(changedSpecialLocation = false){
-                changedSpecialLocation = true;
-                if(getImage() == imageRight){
-                    MyWorld.player2.setLocation(getX() + 200, getY());
-                } else if(getImage() == imageLeft){
-                    MyWorld.player2.setLocation(getX() - 200, getY());
-                } else if(getImage() == bigImageLeft){
-                    MyWorld.player2.setLocation(getX() + 300, getY() + 100);
-                } else if(getImage() == bigImageRight){
-                    MyWorld.player2.setLocation(getX() - 300, getY() + 100);
-                }
-            }
 
+            if(getImage() == imageRight || getImage() == bigImageRight){
+                MyWorld.player2.setLocation(getX() + 200, getY());
+            } else if(getImage() == imageLeft || getImage() == bigImageLeft){
+                MyWorld.player2.setLocation(getX() - 200, getY());
+            } else if(getImage() == bigImageLeft){
+                MyWorld.player2.setLocation(getX() + 300, getY() + 100);
+            } else if(getImage() == bigImageRight){
+                MyWorld.player2.setLocation(getX() - 300, getY() + 100);
+            }
         }
     }
     
@@ -162,7 +159,7 @@ public class Pig extends Character implements Playable
         MyWorld.player2SpecialBar.setWidth(2);
         if(getImage() == imageLeft){
             setImage(bigImageLeft);
-            setLocation(getX(), getY() - 43);
+            setLocation(getX(), getY() - 21);
         } else if(getImage() == imageRight){
             setImage(bigImageRight);
             setLocation(getX(), getY() - 43);
