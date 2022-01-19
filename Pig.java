@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Pig extends Character implements Playable
 {
     // Movement variables
+    private String id;
     private String up;
     private String left;
     private String down;
@@ -27,11 +28,16 @@ public class Pig extends Character implements Playable
     private int SP = 1;
     private boolean alive = true;
     private boolean beingRespawned = false;
+    private boolean startedDash = false;
 
     GreenfootImage imageRight = new GreenfootImage("pig.png");
     GreenfootImage imageLeft = new GreenfootImage("pig_left.png");
     
-    public Pig(String up, String left, String down, String right, String auto, String special) {
+    SimpleTimer dashTimer = new SimpleTimer();
+    private int dashTicker = 0;
+    
+    public Pig(String id, String up, String left, String down, String right, String auto, String special) {
+        this.id = id;
         this.up = up;
         this.left = left;
         this.down = down;
@@ -47,26 +53,52 @@ public class Pig extends Character implements Playable
      */
     public void act()
     {
-        controls(up, left, down, right, auto, special, this);
+        controls(id, up, left, down, right, auto, special, this);
         gravity();
+        checkDash();
     }
 
     public int auto() {
-        /*if(getImage() == imageRight){
-            move(100);
-            if(isTouching(Snake.class)){
-                MyWorld.player2.setLocation(MyWorld.player2.getX() + 200, MyWorld.player2.getY() - 50);
+        dashTimer.mark();
+        startedDash = true;
+        return 1;
+    }
+    
+    public void dash(){
+        
+    }
+    
+    // Dash if player can dash
+    public void checkDash(){
+        // Check if can dash
+        if(startedDash == true){
+            // Start dash animation
+            if(dashTimer.millisElapsed() % 1 == 0){
+                dashTicker++;
+                if(getImage() == imageRight){
+                    move(10);
+                } else {
+                    move(-10);
+                }
             }
-        } else {
-            move(-100);
-            if(isTouching(Snake.class)){
-                MyWorld.player2.setLocation(MyWorld.player2.getX() - 200, MyWorld.player2.getY() - 50);
+            checkLandedHit();
+            // Stops dash animation
+            if(dashTicker >= 20){
+                startedDash = false;
+                dashTicker = 0;
             }
         }
-        return 1;*/
-        setLocation(getX(), getY() - 200);
-        getImage().scale(100, 100);
-        return 1;
+    }
+    
+    // Check if dash hits opposing player
+    public void checkLandedHit(){
+        if(isTouching(Snake.class)){
+            if(getImage() == imageRight){
+                MyWorld.player2.setLocation(getX() + 200, getY());
+            } else {
+                MyWorld.player2.setLocation(getX() - 200, getY());
+            }
+        }
     }
 
     public int special() {
@@ -95,6 +127,14 @@ public class Pig extends Character implements Playable
     
     public void setAlive(boolean newAlive){
         alive = newAlive;
+    }
+    
+    public boolean getStartedDash(){
+        return startedDash;
+    }
+    
+    public void setStartedDash(boolean newStartedDash){
+        startedDash = newStartedDash;
     }
     
     public boolean getBeingRespawned(){

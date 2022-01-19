@@ -8,6 +8,7 @@ import greenfoot.*;
 public class Snake extends Character implements Playable
 {
     // Movement variables
+    private String id;
     private String up;
     private String left;
     private String down;
@@ -26,6 +27,7 @@ public class Snake extends Character implements Playable
     private int SP = 1;
     private boolean alive = true;
     private boolean beingRespawned = false;
+    private boolean isHit = false;
 
     GreenfootImage imageRight = new GreenfootImage("snake.png");
     GreenfootImage imageLeft = new GreenfootImage("snake_left.png");
@@ -33,7 +35,8 @@ public class Snake extends Character implements Playable
     /**
      * Constructor for objects of class Snake
      */
-    public Snake(String up, String left, String down, String right, String auto, String special) {
+    public Snake(String id, String up, String left, String down, String right, String auto, String special) {
+        this.id = id;
         this.up = up;
         this.left = left;
         this.down = down;
@@ -49,18 +52,19 @@ public class Snake extends Character implements Playable
      */
     public void act()
     {
-        controls(up, left, down, right, auto, special, this);
+        controls(id, up, left, down, right, auto, special, this);
         gravity();
+        checkHit();
     }
 
     public int auto() {
         Bullet b;
         if(getImage() == imageLeft){
-            b = new Bullet(-3, direction);
+            b = new Bullet(-1, direction);
             b.getImage().scale(20, 20);
             getWorld().addObject(b, this.getX() - 50, this.getY());
         } else {
-            b = new Bullet(3, direction);
+            b = new Bullet(1, direction);
             b.getImage().scale(20, 20);
             getWorld().addObject(b, this.getX() + 50, this.getY());
         }
@@ -82,6 +86,14 @@ public class Snake extends Character implements Playable
         SP = 0;
         MyWorld.player2SpecialBar.setWidth(2);
         return 1;
+    }
+    
+    public void checkHit(){
+        if(MyWorld.player1.getStartedDash() == true){
+            if(isTouching(Pig.class)){
+                
+            }
+        }
     }
 
     public void direction(String direction) {
@@ -109,6 +121,14 @@ public class Snake extends Character implements Playable
     
     public int getSpecial(){
         return SP;
+    }
+    
+    public boolean getIsHit(){
+        return isHit;
+    }
+    
+    public void setIsHit(boolean newIsHit){
+        isHit = newIsHit;
     }
     
     public void setSpecial(int newSP){

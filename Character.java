@@ -24,7 +24,8 @@ public class Character extends Actor
     // Loop control
     private boolean kDown;
     
-    public void controls(String up, String left, String down, String right, String auto, String special, Playable actor) {
+    
+    public void controls(String id, String up, String left, String down, String right, String auto, String special, Playable actor) {
         // Jump
         if (kDown != Greenfoot.isKeyDown(up)) {
             kDown = !kDown;
