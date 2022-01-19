@@ -17,7 +17,7 @@ public class MyWorld extends World
     public static Snake player2; 
 
     // Player stocks
-    int oneStock = 3;
+    int oneStock = 0; // CHANGE THIS BACK
     int twoStock = 3;
     
     Label player1Label;
@@ -96,42 +96,33 @@ public class MyWorld extends World
     }
 
     public void gameOver(Character actor) {
-        /*if (oneStock == 0) { 
-            removeObject(actor);
-            System.out.println("Player 2 wins");
+        if (oneStock == 0) { 
+            actor.getImage().setTransparency(0);
+            ScoresWorld sw = new ScoresWorld(2, currentMins, currentSecs);
+            Greenfoot.setWorld(sw);
         }
         else { 
-            removeObject(actor);
-            System.out.println("Player 1 wins");
-        }*/
-    }
-
-    // Respawn a character in the middle of the world
-    public void respawn(Character actor) {
-        actor.setLocation(x,y);
-        actor.getImage().setTransparency(255);
+            actor.getImage().setTransparency(0);
+            Greenfoot.setWorld(new ScoresWorld(1, currentMins, currentSecs));
+        }
     }
     
     private void respawnPlayer1(){
         player1.setLocation(x, y);
         player1.setAlive(true);
-        player1.getImage().setTransparency(255);
     }
     
     private void respawnPlayer2(){
         player2.setLocation(x, y);
         player2.setAlive(true);
-        player2.getImage().setTransparency(255);
     }
     
     // Start respawn timer if a player dies
     private void startRespawn(){
         if(player1.getAlive() == false){
-            player1.getImage().setTransparency(0);
             player1RespawnTimer.mark();
         }
         if(player2.getAlive() == false){
-            player2.getImage().setTransparency(0);
             player2RespawnTimer.mark();
         }
     }
@@ -253,7 +244,7 @@ public class MyWorld extends World
         
         // Game over when time reaches 0
         if(currentSecs == 0 && currentMins < 0){
-            Greenfoot.setWorld(new GameOver());
+            Greenfoot.setWorld(new ScoresWorld(0, currentMins, currentSecs));
         }
     }
 }
