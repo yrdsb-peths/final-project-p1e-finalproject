@@ -44,7 +44,7 @@ public class SpecialBar extends Actor
             width = newWidth;
             getImage().scale(50 * (newWidth-1), 20);
             if(player.equals("one")){
-                setLocation(getX() + 25 * newWidth, getY());
+                setLocation(20 + 25 * (newWidth - 1), getY());
             } else {
                 setLocation(1225 - 25 * (newWidth - 2), getY());
             }             

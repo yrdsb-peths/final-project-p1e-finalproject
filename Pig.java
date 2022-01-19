@@ -29,6 +29,7 @@ public class Pig extends Character implements Playable
     private boolean alive = true;
     private boolean beingRespawned = false;
     private boolean startedDash = false;
+    private boolean canUpdateSpecialBar = true;
 
     GreenfootImage imageRight = new GreenfootImage("pig.png");
     GreenfootImage imageLeft = new GreenfootImage("pig_left.png");
@@ -58,14 +59,12 @@ public class Pig extends Character implements Playable
         checkDash();
     }
 
+    // Start auto attack
     public int auto() {
         dashTimer.mark();
         startedDash = true;
+        canUpdateSpecialBar = true;
         return 1;
-    }
-    
-    public void dash(){
-        
     }
     
     // Dash if player can dash
@@ -92,7 +91,12 @@ public class Pig extends Character implements Playable
     
     // Check if dash hits opposing player
     public void checkLandedHit(){
-        if(isTouching(Snake.class)){
+        if(isTouching(Snake.class) && canUpdateSpecialBar == true){
+            canUpdateSpecialBar = false;
+            MyWorld.player2.setHP(MyWorld.player2.getHP() - 1);
+            MyWorld.player2HPBar.setWidth(MyWorld.player2HPBar.getWidth() - 100);
+            MyWorld.player1.setSpecial(MyWorld.player1.getSpecial() + 1);
+            MyWorld.player1SpecialBar.setWidth(MyWorld.player1.getSpecial() + 1);
             if(getImage() == imageRight){
                 MyWorld.player2.setLocation(getX() + 200, getY());
             } else {
@@ -112,7 +116,7 @@ public class Pig extends Character implements Playable
         if (direction.equals("right")) setImage(imageRight);
     }
     
-    // Getter and Setter
+    // Getters and Setters
     public int getHP(){
         return HP;
     }
@@ -129,6 +133,14 @@ public class Pig extends Character implements Playable
         alive = newAlive;
     }
     
+    public int getSpecial(){
+        return SP;
+    }
+    
+    public void setSpecial(int newSP){
+        SP = newSP;
+    }
+    
     public boolean getStartedDash(){
         return startedDash;
     }
@@ -143,11 +155,5 @@ public class Pig extends Character implements Playable
     
     public void setBeingRespawned(boolean newBeingRespawned){
         beingRespawned = newBeingRespawned;
-    }
-    
-    public void hit(){
-        if (isTouching(Bullet.class)) {
-            
-        }
     }
 }

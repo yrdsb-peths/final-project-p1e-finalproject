@@ -88,10 +88,14 @@ public class Snake extends Character implements Playable
         return 1;
     }
     
+    // Check if hit by pig dash
     public void checkHit(){
         if(MyWorld.player1.getStartedDash() == true){
             if(isTouching(Pig.class)){
-                
+                /*MyWorld.player2.setHP(MyWorld.player2.getHP() - 1);
+                MyWorld.player2HPBar.setWidth(MyWorld.player2HPBar.getWidth() - 100);
+                MyWorld.player1.setSpecial(MyWorld.player1.getSpecial() + 1);
+                MyWorld.player1SpecialBar.setWidth(MyWorld.player1.getSpecial() + 1);*/
             }
         }
     }
@@ -123,16 +127,16 @@ public class Snake extends Character implements Playable
         return SP;
     }
     
+    public void setSpecial(int newSP){
+        SP = newSP;
+    }
+    
     public boolean getIsHit(){
         return isHit;
     }
     
     public void setIsHit(boolean newIsHit){
         isHit = newIsHit;
-    }
-    
-    public void setSpecial(int newSP){
-        SP = newSP;
     }
     
     public boolean getBeingRespawned(){

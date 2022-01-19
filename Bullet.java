@@ -51,11 +51,6 @@ public class Bullet extends Actor
             } else {
                 MyWorld.player1.setLocation(MyWorld.player1.getX() + 80, MyWorld.player1.getY());
             }
-            
-            //MyWorld.player1.setHP(MyWorld.player1.getHP() - 1);
-            //MyWorld.player1HPBar.setWidth(MyWorld.player1HPBar.getWidth() - 100);
-            //MyWorld.player2.setSpecial(MyWorld.player2.getSpecial() + 1);
-            //MyWorld.player2SpecialBar.setWidth(MyWorld.player2.getSpecial() + 1);
         } else {
             move(speed * bulletDirection);
         }
