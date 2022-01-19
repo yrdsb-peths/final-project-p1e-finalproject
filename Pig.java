@@ -29,13 +29,19 @@ public class Pig extends Character implements Playable
     private boolean alive = true;
     private boolean beingRespawned = false;
     private boolean startedDash = false;
+    private boolean startedSpecial = false;
     private boolean canUpdateSpecialBar = true;
+    private boolean changedSpecialLocation = false;
 
     GreenfootImage imageRight = new GreenfootImage("pig.png");
     GreenfootImage imageLeft = new GreenfootImage("pig_left.png");
+    GreenfootImage bigImageRight = new GreenfootImage("bigPig.png");
+    GreenfootImage bigImageLeft = new GreenfootImage("bigPig_left.png");
     
     SimpleTimer dashTimer = new SimpleTimer();
+    SimpleTimer specialDashTimer = new SimpleTimer();
     private int dashTicker = 0;
+    private int specialDashTicker = 0;
     
     public Pig(String id, String up, String left, String down, String right, String auto, String special) {
         this.id = id;
@@ -57,6 +63,7 @@ public class Pig extends Character implements Playable
         controls(id, up, left, down, right, auto, special, this);
         gravity();
         checkDash();
+        checkSpecialDash();
     }
 
     // Start auto attack
@@ -76,7 +83,7 @@ public class Pig extends Character implements Playable
                 dashTicker++;
                 if(getImage() == imageRight){
                     move(10);
-                } else {
+                } else if(getImage() == imageLeft){
                     move(-10);
                 }
             }
@@ -89,6 +96,33 @@ public class Pig extends Character implements Playable
         }
     }
     
+    // Dash if player can special dash
+    public void checkSpecialDash(){
+        // Check if can special dash
+        if(startedSpecial == true){
+            // Start dash animation
+            if(specialDashTimer.millisElapsed() % 1 == 0){
+                specialDashTicker++;
+                if(getImage() == bigImageRight){
+                    move(20);
+                } else if(getImage() == bigImageLeft){
+                    move(-20);
+                }
+            }
+            checkLandedHit();
+            // Stops dash animation
+            if(specialDashTicker >= 10){
+                startedSpecial = false;
+                specialDashTicker = 0;
+                if(getImage() == bigImageRight){
+                    setImage(imageRight);
+                } else if(getImage() == bigImageLeft){
+                    setImage(imageLeft);
+                }
+            }
+        }
+    }
+    
     // Check if dash hits opposing player
     public void checkLandedHit(){
         if(isTouching(Snake.class) && canUpdateSpecialBar == true){
@@ -97,23 +131,60 @@ public class Pig extends Character implements Playable
             MyWorld.player2HPBar.setWidth(MyWorld.player2HPBar.getWidth() - 100);
             MyWorld.player1.setSpecial(MyWorld.player1.getSpecial() + 1);
             MyWorld.player1SpecialBar.setWidth(MyWorld.player1.getSpecial() + 1);
-            if(getImage() == imageRight){
-                MyWorld.player2.setLocation(getX() + 200, getY());
-            } else {
-                MyWorld.player2.setLocation(getX() - 200, getY());
+            if(changedSpecialLocation = false){
+                changedSpecialLocation = true;
+                if(getImage() == imageRight){
+                    MyWorld.player2.setLocation(getX() + 200, getY());
+                } else if(getImage() == imageLeft){
+                    MyWorld.player2.setLocation(getX() - 200, getY());
+                } else if(getImage() == bigImageLeft){
+                    MyWorld.player2.setLocation(getX() + 300, getY() + 100);
+                } else if(getImage() == bigImageRight){
+                    MyWorld.player2.setLocation(getX() - 300, getY() + 100);
+                }
             }
+
+        }
+    }
+    
+    public void resetSize(){
+        if(getImage() == bigImageLeft){
+            setImage(imageLeft);
+        } else if(getImage() == bigImageRight){
+            setImage(imageRight);
         }
     }
 
     public int special() {
-        setLocation(getX(), getY() - 100);
-        getImage().scale(200, 200);
+        specialDashTimer.mark();
+        startedSpecial = true;
+        SP = 0;
+        MyWorld.player2SpecialBar.setWidth(2);
+        if(getImage() == imageLeft){
+            setImage(bigImageLeft);
+            setLocation(getX(), getY() - 43);
+        } else if(getImage() == imageRight){
+            setImage(bigImageRight);
+            setLocation(getX(), getY() - 43);
+        }
         return 1;
     }
 
     public void direction(String direction) {
-        if (direction.equals("left")) setImage(imageLeft);
-        if (direction.equals("right")) setImage(imageRight);
+        if (direction.equals("left")){
+            if(specialDashTicker > 0){
+                setImage(bigImageLeft);
+            } else {
+                setImage(imageLeft);
+            }
+        }
+        if (direction.equals("right")){
+            if(specialDashTicker > 0){
+                setImage(bigImageRight);
+            } else {
+                setImage(imageRight);
+            }
+        }
     }
     
     // Getters and Setters

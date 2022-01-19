@@ -58,7 +58,8 @@ public class Character extends Actor
             autoTimer.mark();
         }
         // Special
-        if (canUseSpecial && Greenfoot.isKeyDown(special)) {
+        // Take out canUseSpecial to test special
+        if (Greenfoot.isKeyDown(special)) {
             actor.special();
             canUseSpecial = false;
         }
