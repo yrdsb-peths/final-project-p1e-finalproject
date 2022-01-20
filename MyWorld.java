@@ -17,7 +17,7 @@ public class MyWorld extends World
     public static Snake player2; 
 
     // Player stocks
-    int oneStock = 0; // CHANGE THIS BACK
+    int oneStock = 3; // CHANGE THIS BACK
     int twoStock = 3;
     
     Label player1Label;

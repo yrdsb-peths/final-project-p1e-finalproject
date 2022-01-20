@@ -55,6 +55,7 @@ public class Snake extends Character implements Playable
         controls(id, up, left, down, right, auto, special, this);
         gravity();
         checkHit();
+        checkAlive();
     }
 
     public int auto() {
@@ -104,6 +105,17 @@ public class Snake extends Character implements Playable
         this.direction = direction;
         if (direction.equals("left")) setImage(imageLeft);
         if (direction.equals("right")) setImage(imageRight);
+    }
+    
+    private void checkAlive() {
+        if (!alive) {
+            imageRight.setTransparency(0);
+            imageLeft.setTransparency(0);
+        }
+        else {
+            imageRight.setTransparency(255);
+            imageLeft.setTransparency(255);
+        }
     }
     
     // Getters and Setters
