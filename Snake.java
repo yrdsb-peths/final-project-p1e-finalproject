@@ -29,8 +29,8 @@ public class Snake extends Character implements Playable
     private boolean beingRespawned = false;
     private boolean isHit = false;
 
-    GreenfootImage imageRight = new GreenfootImage("snake.png");
-    GreenfootImage imageLeft = new GreenfootImage("snake_left.png");
+    public static GreenfootImage imageRight = new GreenfootImage("snake.png");
+    public static GreenfootImage imageLeft = new GreenfootImage("snake_left.png");
 
     /**
      * Constructor for objects of class Snake
@@ -55,7 +55,7 @@ public class Snake extends Character implements Playable
         controls(id, up, left, down, right, auto, special, this);
         gravity();
         checkHit();
-        checkAlive();
+        //checkAlive();
     }
 
     public int auto() {
@@ -78,11 +78,11 @@ public class Snake extends Character implements Playable
     public int special() {
         Bullet b;
         if(getImage() == imageLeft){
-            b = new Bullet(-10, direction);
+            b = new Bullet(-3, direction);
             b.getImage().scale(200, 200);
             getWorld().addObject(b, this.getX() - 100, this.getY());
         } else {
-            b = new Bullet(10, direction);
+            b = new Bullet(3, direction);
             b.getImage().scale(200, 200);
             getWorld().addObject(b, this.getX() + 100, this.getY());
         }

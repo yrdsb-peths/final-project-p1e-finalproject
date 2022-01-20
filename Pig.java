@@ -63,7 +63,7 @@ public class Pig extends Character implements Playable
         controls(id, up, left, down, right, auto, special, this);
         gravity();
         checkDash();
-        checkAlive();
+        //checkAlive();
     }
 
     // Start auto attack

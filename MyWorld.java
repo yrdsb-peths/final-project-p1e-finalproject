@@ -54,41 +54,50 @@ public class MyWorld extends World
     public void act() {
         updateTimer();
         try {
-            if (player1.isAtEdge() && player1.getBeingRespawned() == false) {
-                if (oneStock > 0) {
-                    player1.setAlive(false);
-                    player1.setBeingRespawned(true);
-                    oneStock--;
-                    startRespawn();
+            // Check if Player 1 needs to be respawned
+            if(player1.getBeingRespawned() == false){
+                if (player1.isAtEdge() || player1.getHP() <= 0) {
+                    if (oneStock > 0) {
+                        player1.setAlive(false);
+                        player1.setBeingRespawned(true);
+                        oneStock--;
+                        
+                        makePlayer1Invisible();
+                        player1RespawnTimer.mark();
+                    }
+                    else gameOver(player1);
                 }
-                else gameOver(player1);
-            }
-            if (player2.isAtEdge() && player2.getBeingRespawned() == false) {
-                if (twoStock > 0) {
-                    player2.setAlive(false);
-                    player2.setBeingRespawned(true);
-                    twoStock--;
-                    startRespawn();
-                }
-                else gameOver(player2);
-            }
-            
-            if(player1.getHP() <= 0){
-                player1.getImage().setTransparency(0);
-                respawnPlayer1();
-                player1.setHP(4);
-            }
-            
-            // Checks if enough time has passed before characters respawn
-            if(player1.getBeingRespawned() == true){
+            } else {
                 if(player1RespawnTimer.millisElapsed() > 3000){
-                    respawnPlayer1();
+                    player1.setLocation(x, y);
+                    
+                    makePlayer1Visible();
+                    player1.setHP(4);
+                    player1.setAlive(true);
                     player1.setBeingRespawned(false);
                 }
             }
-            if(player2.getBeingRespawned() == true){
+            
+            // Check if Player 2 needs to be respawned
+            if(player2.getBeingRespawned() == false){
+                if (player2.isAtEdge() || player2.getHP() <= 0) {
+                    if (twoStock > 0) {
+                        player2.setAlive(false);
+                        player2.setBeingRespawned(true);
+                        twoStock--;
+                        
+                        makePlayer2Invisible();
+                        player2RespawnTimer.mark();
+                    }
+                    else gameOver(player2);
+                }
+            } else {
                 if(player2RespawnTimer.millisElapsed() > 3000){
-                    respawnPlayer2();
+                    player2.setLocation(x, y);
+                    
+                    makePlayer2Visible();
+                    player2.setHP(4);
+                    player2.setAlive(true);
                     player2.setBeingRespawned(false);
                 }
             }
@@ -107,24 +116,29 @@ public class MyWorld extends World
         }
     }
     
-    private void respawnPlayer1(){
-        player1.setLocation(x, y);
-        player1.setAlive(true);
+    // Set transparencies of all images of a character
+    public void makePlayer1Invisible(){
+        player1.imageLeft.setTransparency(0);
+        player1.imageRight.setTransparency(0);
+        player1.bigImageRight.setTransparency(0);
+        player1.bigImageRight.setTransparency(0);
     }
     
-    private void respawnPlayer2(){
-        player2.setLocation(x, y);
-        player2.setAlive(true);
+    public void makePlayer1Visible(){
+        player1.imageLeft.setTransparency(255);
+        player1.imageRight.setTransparency(255);
+        player1.bigImageRight.setTransparency(255);
+        player1.bigImageRight.setTransparency(255);
     }
     
-    // Start respawn timer if a player dies
-    private void startRespawn(){
-        if(player1.getAlive() == false){
-            player1RespawnTimer.mark();
-        }
-        if(player2.getAlive() == false){
-            player2RespawnTimer.mark();
-        }
+    public void makePlayer2Invisible(){
+        player2.imageLeft.setTransparency(0);
+        player2.imageRight.setTransparency(0);
+    }
+    
+    public void makePlayer2Visible(){
+        player2.imageLeft.setTransparency(255);
+        player2.imageRight.setTransparency(255);
     }
 
     /**
