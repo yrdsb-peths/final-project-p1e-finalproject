@@ -62,6 +62,9 @@ public class MyWorld extends World
                         player1.setBeingRespawned(true);
                         oneStock--;
                         
+                        player1.setHP(0);
+                        player1HPBar.getImage().setTransparency(0);
+                        
                         makePlayer1Invisible();
                         player1RespawnTimer.mark();
                     }
@@ -73,6 +76,9 @@ public class MyWorld extends World
                     
                     makePlayer1Visible();
                     player1.setHP(4);
+                    player1HPBar.setWidth(400);
+                    player1HPBar.getImage().setTransparency(255);
+                    player1HPBar.setLocation(220, 100);
                     player1.setAlive(true);
                     player1.setBeingRespawned(false);
                 }
@@ -86,6 +92,9 @@ public class MyWorld extends World
                         player2.setBeingRespawned(true);
                         twoStock--;
                         
+                        player2.setHP(0);
+                        player2HPBar.getImage().setTransparency(0);
+                        
                         makePlayer2Invisible();
                         player2RespawnTimer.mark();
                     }
@@ -97,6 +106,9 @@ public class MyWorld extends World
                     
                     makePlayer2Visible();
                     player2.setHP(4);
+                    player2HPBar.setWidth(400);
+                    player2HPBar.getImage().setTransparency(255);
+                    player2HPBar.setLocation(1050, 100);
                     player2.setAlive(true);
                     player2.setBeingRespawned(false);
                 }
