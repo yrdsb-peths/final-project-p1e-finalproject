@@ -63,7 +63,7 @@ public class Pig extends Character implements Playable
         controls(id, up, left, down, right, auto, special, this);
         gravity();
         checkDash();
-        checkSpecialDash();
+        checkAlive();
     }
 
     // Start auto attack
@@ -181,6 +181,17 @@ public class Pig extends Character implements Playable
             } else {
                 setImage(imageRight);
             }
+        }
+    }
+
+    private void checkAlive() {
+        if (!alive) {
+            imageRight.setTransparency(0);
+            imageLeft.setTransparency(0);
+        }
+        else {
+            imageRight.setTransparency(255);
+            imageLeft.setTransparency(255);
         }
     }
     
