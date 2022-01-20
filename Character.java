@@ -94,7 +94,13 @@ public class Character extends Actor
     
     private boolean isOnGround() {
         Actor platform = getOneObjectAtOffset(0, getImage().getHeight()/2, PlatformX.class);
-        if (platform != null) setLocation(getX(), 438); // Locks character in place. Determine y.
+    if (platform != null){
+            if(getImage() == Pig.bigImageRight || getImage() == Pig.bigImageLeft){
+                setLocation(getX(), 420);
+            } else {
+                setLocation(getX(), 438);
+            }
+        }
         return platform != null;
     }
 
@@ -115,7 +121,13 @@ public class Character extends Actor
 
     private boolean isTouchingPlatform() {
         Actor platform = getOneObjectAtOffset(0, getImage().getHeight()/2, PlatformSmall.class);
-        if (platform != null) setLocation(getX(), 288); // Locks character in place. Determine y experimentally.
+        if (platform != null){
+            if(getImage() == Pig.bigImageRight || getImage() == Pig.bigImageLeft){
+                setLocation(getX(), 270);
+            } else {
+                setLocation(getX(), 288);
+            }
+        }
         return platform != null;
     }
 }

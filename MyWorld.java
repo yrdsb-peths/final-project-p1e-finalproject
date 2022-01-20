@@ -243,7 +243,7 @@ public class MyWorld extends World
         }
         
         // Game over when time reaches 0
-        if(currentSecs == 0 && currentMins < 0){
+        if(currentSecs == 0 && currentMins == 0){
             Greenfoot.setWorld(new ScoresWorld(0, scoreTimer.millisElapsed()));
         }
     }

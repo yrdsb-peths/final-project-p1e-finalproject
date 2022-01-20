@@ -64,10 +64,12 @@ public class Snake extends Character implements Playable
             b = new Bullet(-1, direction);
             b.getImage().scale(20, 20);
             getWorld().addObject(b, this.getX() - 50, this.getY());
+            setLocation(getX() + 50, getY());
         } else {
             b = new Bullet(1, direction);
             b.getImage().scale(20, 20);
             getWorld().addObject(b, this.getX() + 50, this.getY());
+            setLocation(getX() - 50, getY());
         }
         
         return 1;

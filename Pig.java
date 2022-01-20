@@ -33,10 +33,10 @@ public class Pig extends Character implements Playable
     private boolean canUpdateSpecialBar = true;
     private boolean changedSpecialLocation = false;
 
-    GreenfootImage imageRight = new GreenfootImage("pig.png");
-    GreenfootImage imageLeft = new GreenfootImage("pig_left.png");
-    GreenfootImage bigImageRight = new GreenfootImage("bigPig.png");
-    GreenfootImage bigImageLeft = new GreenfootImage("bigPig_left.png");
+    public static GreenfootImage imageRight = new GreenfootImage("pig.png");
+    public static GreenfootImage imageLeft = new GreenfootImage("pig_left.png");
+    public static GreenfootImage bigImageRight = new GreenfootImage("bigPig.png");
+    public static GreenfootImage bigImageLeft = new GreenfootImage("bigPig_left.png");
     
     SimpleTimer dashTimer = new SimpleTimer();
     SimpleTimer specialDashTimer = new SimpleTimer();
@@ -162,7 +162,7 @@ public class Pig extends Character implements Playable
             setLocation(getX(), getY() - 21);
         } else if(getImage() == imageRight){
             setImage(bigImageRight);
-            setLocation(getX(), getY() - 43);
+            setLocation(getX(), getY() - 21);
         }
         return 1;
     }
