@@ -2,16 +2,20 @@ import greenfoot.*;
 /**
  * Class handes sound effects
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Yoyo and Carl
+ * @version 2022.01.20
  */
 public class SoundEffects  
 {
+    // Method plays sound effect x, at volume y
+    private static void playSound(GreenfootSound x, int y) {
+        x.setVolume(y);
+        x.play();
+    }
+
     // Menu music before game loads
     public static void menuSound(){
-        GreenfootSound sfxMenuSound = new GreenfootSound("menySound.mp3");
-        sfxMenuSound.setVolume(30);
-        sfxMenuSound.play();
+        playSound(new GreenfootSound("menySound.mp3"), 30);
     }
     
     // Ranged character attack auto sound
@@ -23,9 +27,7 @@ public class SoundEffects
     
     // Ranged character attack special sound
     public static void shootSpecialSound(){
-        GreenfootSound sfxShootSpecial = new GreenfootSound("shootSpecialSound.mp3");
-        sfxShootSpecial.setVolume(30);
-        sfxShootSpecial.play();
+        playSound(new GreenfootSound("shootSpecialSound.mp3"), 30);
     }
     
     // Melee character attack auto sound
@@ -35,9 +37,7 @@ public class SoundEffects
     
     // Melee character attack special sound
     public static void dashSpecialSound(){
-        GreenfootSound sfxDashSpecial = new GreenfootSound("dashSpecialSound.mp3");
-        sfxDashSpecial.setVolume(30);
-        sfxDashSpecial.play();
+        playSound(new GreenfootSound("dashSpecialSound.mp3"), 30);
     }
     
     // Sound when character is hit by special ability
@@ -63,15 +63,27 @@ public class SoundEffects
     
     // Death sound when a character dies
     public static void deathSound(){
-        GreenfootSound sfxDeathSound = new GreenfootSound("deathSound.mp3");
-        sfxDeathSound.setVolume(30);
-        sfxDeathSound.play();
+        playSound(new GreenfootSound("deathSound.mp3"), 30);
     }
     
     // Victory sound when a player wins
     public static void victorySound(){
-        GreenfootSound sfxVictorySound = new GreenfootSound("victorySound.mp3");
-        sfxVictorySound.setVolume(50);
-        sfxVictorySound.play();
+        playSound(new GreenfootSound("victorySound.mp3"), 50);
+    }
+
+    // Carl - I'm going to get these from Smash https://www.youtube.com/watch?v=3TT_9Sp-PpQ
+    // Announcer: Player 1 wins
+    public static void player1Sound(){
+
+    }
+
+    // Announcer: Player 2 wins
+    public static void player2Sound(){
+
+    }
+
+    // Announcer: Player 3 wins
+    public static void tieSound(){
+
     }
 }

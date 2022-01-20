@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MyWorld here.
+ * Main game world
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Yoyo and Carl
+ * @version 2022.01.20
  */
 public class MyWorld extends World
 {
@@ -55,74 +55,71 @@ public class MyWorld extends World
 
     public void act() {
         updateTimer();
-        try {
-            // Check if Player 1 needs to be respawned
-            if(player1.getBeingRespawned() == false){
-                // Check if touching edge or if no HP left
-                if (player1.isAtEdge() || player1.getHP() <= 0) {
-                    // Respawn if Player 1 has lives remaining
-                    if (oneStock > 0) {
-                        player1.setAlive(false);
-                        player1.setBeingRespawned(true);
-                        oneStock--;
-                        
-                        player1.setHP(0);
-                        player1HPBar.getImage().setTransparency(0);
-                        
-                        makePlayer1Invisible();
-                        player1RespawnTimer.mark();
-                    }
-                    else gameOver(player1);
-                }
-            } else {
-                // Waits 3 seconds to respawn the Player
-                if(player1RespawnTimer.millisElapsed() > 3000){
-                    player1.setLocation(x, y);
+        // Check if Player 1 needs to be respawned
+        if(player1.getBeingRespawned() == false){
+            // Check if touching edge or if no HP left
+            if (player1.isAtEdge() || player1.getHP() <= 0) {
+                // Respawn if Player 1 has lives remaining
+                if (oneStock > 0) {
+                    player1.setAlive(false);
+                    player1.setBeingRespawned(true);
+                    oneStock--;
                     
-                    makePlayer1Visible();
-                    player1.setHP(4);
-                    player1HPBar.setWidth(400);
-                    player1HPBar.getImage().setTransparency(255);
-                    player1HPBar.setLocation(220, 100);
-                    player1.setAlive(true);
-                    player1.setBeingRespawned(false);
+                    player1.setHP(0);
+                    player1HPBar.getImage().setTransparency(0);
+                    
+                    makePlayer1Invisible();
+                    player1RespawnTimer.mark();
                 }
+                else gameOver(player1);
             }
-            
-            // Check if Player 2 needs to be respawned
-            if(player2.getBeingRespawned() == false){
-                // Check if touching edge or if no HP left
-                if (player2.isAtEdge() || player2.getHP() <= 0) {
-                    // Respawn if Player 2 has lives remaining
-                    if (twoStock > 0) {
-                        player2.setAlive(false);
-                        player2.setBeingRespawned(true);
-                        twoStock--;
-                        
-                        player2.setHP(0);
-                        player2HPBar.getImage().setTransparency(0);
-                        
-                        makePlayer2Invisible();
-                        player2RespawnTimer.mark();
-                    }
-                    else gameOver(player2);
-                }
-            } else {
-                // Wait 3 seconds to respawn the player
-                if(player2RespawnTimer.millisElapsed() > 3000){
-                    player2.setLocation(x, y);
-                    
-                    makePlayer2Visible();
-                    player2.setHP(4);
-                    player2HPBar.setWidth(400);
-                    player2HPBar.getImage().setTransparency(255);
-                    player2HPBar.setLocation(1050, 100);
-                    player2.setAlive(true);
-                    player2.setBeingRespawned(false);
-                }
+        } else {
+            // Waits 3 seconds to respawn the Player
+            if(player1RespawnTimer.millisElapsed() > 3000){
+                player1.setLocation(x, y);
+                
+                makePlayer1Visible();
+                player1.setHP(4);
+                player1HPBar.setWidth(400);
+                player1HPBar.getImage().setTransparency(255);
+                player1HPBar.setLocation(220, 100);
+                player1.setAlive(true);
+                player1.setBeingRespawned(false);
             }
         }
-        catch (Exception e){} // Change world
+        
+        // Check if Player 2 needs to be respawned
+        if(player2.getBeingRespawned() == false){
+            // Check if touching edge or if no HP left
+            if (player2.isAtEdge() || player2.getHP() <= 0) {
+                // Respawn if Player 2 has lives remaining
+                if (twoStock > 0) {
+                    player2.setAlive(false);
+                    player2.setBeingRespawned(true);
+                    twoStock--;
+                    
+                    player2.setHP(0);
+                    player2HPBar.getImage().setTransparency(0);
+                    
+                    makePlayer2Invisible();
+                    player2RespawnTimer.mark();
+                }
+                else gameOver(player2);
+            }
+        } else {
+            // Wait 3 seconds to respawn the player
+            if(player2RespawnTimer.millisElapsed() > 3000){
+                player2.setLocation(x, y);
+                
+                makePlayer2Visible();
+                player2.setHP(4);
+                player2HPBar.setWidth(400);
+                player2HPBar.getImage().setTransparency(255);
+                player2HPBar.setLocation(1050, 100);
+                player2.setAlive(true);
+                player2.setBeingRespawned(false);
+            }
+        }
     }
     
     // Ends game and shows scores world
@@ -164,7 +161,6 @@ public class MyWorld extends World
 
     /**
      * Constructor for objects of class MyWorld.
-     * 
      */
     public MyWorld()
     {   
@@ -173,8 +169,8 @@ public class MyWorld extends World
         super(1280, 720, 1); 
         
         // Add players to world
-        player1 = new Pig("pig","w", "a", "s", "d", "g", "h");
-        player2 = new Snake("snake","up", "left", "down", "right", "n", "m");
+        player1 = new Pig("w", "a", "s", "d", "g", "h");
+        player2 = new Snake("up", "left", "down", "right", "n", "m");
         addObject(player1, 462, 435);
         addObject(player2, 900, 425);
         

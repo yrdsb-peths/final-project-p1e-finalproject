@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;    
 
 /**
- * Write a description of class ScoreUtilities here.
+ * Static methods used for score processing
  * 
  * @author Carl
  * @version 2022.01.18
@@ -115,6 +115,11 @@ public class ScoreUtilities {
         }
     }
 
+    /**
+     * Method gets a date using system information
+     * 
+     * @return A date (String) formatted in yyyy.MM.dd
+     */
     private static String getDate() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy.MM.dd");
         LocalDateTime now = LocalDateTime.now();

@@ -1,14 +1,13 @@
 import greenfoot.*;
 /**
- * Write a description of class Snake here.
+ * Player 2 - Character that attacks using ranged abilities at the cost of low mobility
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Yoyo and Carl
+ * @version 2022.01.20
  */
 public class Snake extends Character implements Playable
 {
     // Movement variables
-    private String id;
     private String up;
     private String left;
     private String down;
@@ -35,8 +34,7 @@ public class Snake extends Character implements Playable
     /**
      * Constructor for objects of class Snake
      */
-    public Snake(String id, String up, String left, String down, String right, String auto, String special) {
-        this.id = id;
+    public Snake(String up, String left, String down, String right, String auto, String special) {
         this.up = up;
         this.left = left;
         this.down = down;
@@ -52,7 +50,7 @@ public class Snake extends Character implements Playable
      */
     public void act()
     {
-        controls(id, up, left, down, right, auto, special, this);
+        controls(up, left, down, right, auto, special, this);
         gravity();
     }
 
@@ -94,17 +92,6 @@ public class Snake extends Character implements Playable
         this.direction = direction;
         if (direction.equals("left")) setImage(imageLeft);
         if (direction.equals("right")) setImage(imageRight);
-    }
-    
-    private void checkAlive() {
-        if (!alive) {
-            imageRight.setTransparency(0);
-            imageLeft.setTransparency(0);
-        }
-        else {
-            imageRight.setTransparency(255);
-            imageLeft.setTransparency(255);
-        }
     }
     
     // Getters and Setters

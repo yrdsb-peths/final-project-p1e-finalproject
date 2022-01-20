@@ -2,10 +2,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
 /**
- * Write a description of class ScoresWorld here.
+ * World that displays the session score and the past 5 highest scores
+ * Top 5 highest scores can include the session score
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Carl
+ * @version 2022.01.20
  */
 public class ScoresWorld extends World
 {
@@ -30,17 +31,24 @@ public class ScoresWorld extends World
         if (!lever) run();
     }
     
+    /**
+     * Writes the session score to text file
+     * Extracts data from textfile and processes the data
+     */
     private void run() {
         lever = true;
         ScoreUtilities.writeScore(Integer.toString(score));
         ArrayList<String> inputs = ScoreUtilities.extractScores();
-        scores = ScoreUtilities.convertArray(inputs);
+        scores = ScoreUtilities.convertArray(inputs); 
         ScoreUtilities.quickSort(scores);
         ScoreUtilities.reverse(scores);
         displaySessionScore();
         displayScores();
     }
 
+    /**
+     * Create the labels to display top 5 previous (or 4 previous + 1 current) high scores
+     */
     private void displayScores() {
         Label title = new Label("Top 5 High Scores", 100);
         addObject(title, getWidth()/2, (getHeight()/2)-100);
@@ -52,6 +60,9 @@ public class ScoresWorld extends World
         }
     }
 
+    /**
+     * Create the label to display the session score
+     */
     private void displaySessionScore() {
         Label l = new Label("Winner's Score: " + Integer.toString(score), 125);
         addObject(l, getWidth()/2, (getHeight()/2)-250);

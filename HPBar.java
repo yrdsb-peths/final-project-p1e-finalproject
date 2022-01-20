@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class HPBar here.
+ * StatsBar representing a Character's current hit points
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Yoyo
+ * @version 2022.01.20
  */
 public class HPBar extends StatsBar
 {
@@ -44,8 +44,6 @@ public class HPBar extends StatsBar
             } else {
                 setLocation(getX() + adjust, getY());
             }
-            
         }
     }
-    
 }

@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=PlatformSmall
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ PlatformSmall\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Thin\ platform\ that\ Characters\ can\ duck\ under\r\n\ \r\n\ @author\ Carl\r\n\ @version\ 2022.01.20\r\n
 comment1.params=
 comment1.target=void\ act()
 comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ PlatformSmall\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
