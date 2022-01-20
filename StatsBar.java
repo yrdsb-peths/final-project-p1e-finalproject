@@ -1,15 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class HPBarEmpty here.
+ * Write a description of class StatsBar here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class HPBarEmpty extends StatsBar
+public class StatsBar extends Actor
 {
     /**
-     * Act - do whatever the HPBarEmpty wants to do. This method is called whenever
+     * Act - do whatever the StatsBar wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()

@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class SpecialBar extends Actor
+public class SpecialBar extends StatsBar
 {
     private int originalWidth = 0;
     private int width = 0;

@@ -114,7 +114,7 @@ public class Character extends Actor
     }
 
     private boolean isTouchingPlatform() {
-        Actor platform = getOneObjectAtOffset(0, getImage().getHeight()/2, Platform.class);
+        Actor platform = getOneObjectAtOffset(0, getImage().getHeight()/2, PlatformSmall.class);
         if (platform != null) setLocation(getX(), 288); // Locks character in place. Determine y experimentally.
         return platform != null;
     }

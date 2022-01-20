@@ -21,12 +21,12 @@ public class ScoresWorld extends World
      * Constructor for objects of class ScoresWorld.
      * 
      */
-    public ScoresWorld(int winner, int min, int sec)
+    public ScoresWorld(int winner, int timeElasped)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1280, 720, 1); 
         this.winner = winner;
-        this.score = min*100 + sec*10;
+        this.score = 120000-timeElasped;
         if (!lever) run();
     }
     
@@ -53,7 +53,7 @@ public class ScoresWorld extends World
     }
 
     private void displaySessionScore() {
-        Label l = new Label("Winner's Score: " + Integer.toString(score), 150);
+        Label l = new Label("Winner's Score: " + Integer.toString(score), 125);
         addObject(l, getWidth()/2, (getHeight()/2)-250);
     }
 }

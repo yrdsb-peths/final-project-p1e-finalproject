@@ -17,7 +17,7 @@ public class MyWorld extends World
     public static Snake player2; 
 
     // Player stocks
-    int oneStock = 3; // CHANGE THIS BACK
+    int oneStock = 3; 
     int twoStock = 3;
     
     Label player1Label;
@@ -42,6 +42,7 @@ public class MyWorld extends World
     SimpleTimer secTimer;
     SimpleTimer player1RespawnTimer;
     SimpleTimer player2RespawnTimer;
+    SimpleTimer scoreTimer = new SimpleTimer();
     
     Label minLabel;
     Label secLabel;
@@ -98,12 +99,11 @@ public class MyWorld extends World
     public void gameOver(Character actor) {
         if (oneStock == 0) { 
             actor.getImage().setTransparency(0);
-            ScoresWorld sw = new ScoresWorld(2, currentMins, currentSecs);
-            Greenfoot.setWorld(sw);
+            Greenfoot.setWorld(new ScoresWorld(2, scoreTimer.millisElapsed()));
         }
         else { 
             actor.getImage().setTransparency(0);
-            Greenfoot.setWorld(new ScoresWorld(1, currentMins, currentSecs));
+            Greenfoot.setWorld(new ScoresWorld(1, scoreTimer.millisElapsed()));
         }
     }
     
@@ -168,7 +168,7 @@ public class MyWorld extends World
         addObject(platformYL,346,589);
         PlatformYR platformYR = new PlatformYR();
         addObject(platformYR,966,590);
-        Platform platform = new Platform();
+        PlatformSmall platform = new PlatformSmall();
         addObject(platform,857,312);
     }
     
@@ -244,7 +244,7 @@ public class MyWorld extends World
         
         // Game over when time reaches 0
         if(currentSecs == 0 && currentMins < 0){
-            Greenfoot.setWorld(new ScoresWorld(0, currentMins, currentSecs));
+            Greenfoot.setWorld(new ScoresWorld(0, scoreTimer.millisElapsed()));
         }
     }
 }

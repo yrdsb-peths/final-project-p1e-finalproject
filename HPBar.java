@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class HPBar extends Actor
+public class HPBar extends StatsBar
 {
     /**
      * Act - do whatever the HPBar wants to do. This method is called whenever
