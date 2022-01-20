@@ -1,30 +1,31 @@
+import greenfoot.*;
 /**
- * Write a description of class SoundEffects here.
+ * Class handes sound effects
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
 public class SoundEffects  
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class SoundEffects
-     */
-    public SoundEffects()
-    {
+    public static void shootAutoSound(){
+        GreenfootSound sfxShootAuto = new GreenfootSound("shootAutoSound.mp3");
+        sfxShootAuto.setVolume(25);
+        sfxShootAuto.play();
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    
+    public static void shootSpecialSound(){
+        GreenfootSound sfxShootSpecial = new GreenfootSound("shootSpecialSound.mp3");
+        sfxShootSpecial.setVolume(30);
+        sfxShootSpecial.play();
+    }
+    
+    public static void dashAutoSound(){
+        
+    }
+    
+    public static void dashSpecialSound(){
+        GreenfootSound sfxDashSpecial = new GreenfootSound("dashSpecialSound.mp3");
+        sfxDashSpecial.setVolume(30);
+        sfxDashSpecial.play();
     }
 }

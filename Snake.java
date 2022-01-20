@@ -71,6 +71,7 @@ public class Snake extends Character implements Playable
             getWorld().addObject(b, this.getX() + 50, this.getY());
             setLocation(getX() - 50, getY());
         }
+        SoundEffects.shootAutoSound();
         
         return 1;
     }
