@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class HPBarEmpty here.
+ * Stats Bar that is under the HP bar to indicate hitpoints lost
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Yoyo
+ * @version 2021.01.20
  */
 public class HPBarEmpty extends StatsBar
 {

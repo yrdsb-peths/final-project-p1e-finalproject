@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class InstructionsScreen here.
+ * Screen informing two users how to play the game
  * 
  * @author (your name) 
  * @version (a version number or a date)

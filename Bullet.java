@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Bullet here.
+ * Projectile that player 2 will shoot out
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Yoyo
+ * @version 2022.01.20
  */
 public class Bullet extends Actor
 {

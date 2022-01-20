@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class SpecialBar here.
+ * StatsBar that lets users know when a Character can use their special ability
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Yoyo
+ * @version 2022.01.20
  */
 public class SpecialBar extends StatsBar
 {
@@ -24,7 +24,7 @@ public class SpecialBar extends StatsBar
         // Add your action code here.
     }
     
-        // Getter and setter
+    // Getter and setter
     public int getWidth(){
         return width;
     }

@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class PlatformSmall here.
+ * Thin platform that Characters can duck under
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Carl
+ * @version 2022.01.20
  */
 public class PlatformSmall extends Platform
 {

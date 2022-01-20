@@ -1,15 +1,14 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Pig here.
+ * Player 1 - A playable character that uses movement as an attacks
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Yoyo and Carl
+ * @version 2022.01.20
  */
 public class Pig extends Character implements Playable
 {
     // Movement variables
-    private String id;
     private String up;
     private String left;
     private String down;
@@ -17,7 +16,7 @@ public class Pig extends Character implements Playable
     private String auto;
     private String special;
     
-    // Direction
+    // Direction - Spawns facing right
     private String direction = "right";
 
     // Stocks
@@ -46,8 +45,7 @@ public class Pig extends Character implements Playable
     private int dashTicker = 0;
     private int specialDashTicker = 0;
     
-    public Pig(String id, String up, String left, String down, String right, String auto, String special) {
-        this.id = id;
+    public Pig(String up, String left, String down, String right, String auto, String special) {
         this.up = up;
         this.left = left;
         this.down = down;
@@ -63,7 +61,7 @@ public class Pig extends Character implements Playable
      */
     public void act()
     {
-        controls(id, up, left, down, right, auto, special, this);
+        controls(up, left, down, right, auto, special, this);
         gravity();
         checkDash();
         checkSpecialDash();
@@ -190,17 +188,6 @@ public class Pig extends Character implements Playable
             } else {
                 setImage(imageRight);
             }
-        }
-    }
-
-    private void checkAlive() {
-        if (!alive) {
-            imageRight.setTransparency(0);
-            imageLeft.setTransparency(0);
-        }
-        else {
-            imageRight.setTransparency(255);
-            imageLeft.setTransparency(255);
         }
     }
     

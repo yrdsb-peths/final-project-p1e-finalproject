@@ -1,11 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.util.List;
 
 /**
- * Write a description of class Character here.
+ * Parent class that contains methods that all Characters require
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Carl and Yoyo
+ * @version 2022.01.20
  */
 public class Character extends Actor
 {
@@ -24,8 +23,18 @@ public class Character extends Actor
     // Loop control
     private boolean kDown;
     
-    
-    public void controls(String id, String up, String left, String down, String right, String auto, String special, Playable actor) {
+    /**
+     * Method controls the movement of characters and sets the direction they are facing
+     * 
+     * @param up String/key for jumping
+     * @param left String/key for moving left and setting image to go left
+     * @param down String/key to duck under thin platforms
+     * @param right String/key to move right and setting image to go right
+     * @param auto String/key to use Playable's auto move
+     * @param special String/key to use Playble's special move
+     * @param actor String/key The actor that is to be controlled
+     */
+    public void controls(String up, String left, String down, String right, String auto, String special, Playable actor) {
         // Jump
         if (kDown != Greenfoot.isKeyDown(up)) {
             kDown = !kDown;
@@ -65,6 +74,33 @@ public class Character extends Actor
         }
     }
     
+    /**
+     * Method allows characters to fall if not on platform
+     */
+    public void gravity() {
+        if (!isOnGround() && !isTouchingPlatform()) fall();
+        else {
+            velocity = 0;
+            counter = 0;
+        }
+    }
+    
+    /**
+     * Method allows characters to fall
+     */
+    private void fall() {
+        setLocation(getX(), getY() + (int) velocity);
+        velocity = velocity + acceleration;
+    }
+
+    /**
+     * Method allows character to jump while following gravity
+     */
+    private void jump() {
+        velocity = jumpHeight; 
+        fall(); 
+    }
+
     // Getters and Setters
     public SimpleTimer getAutoTimer(){
         return autoTimer;
@@ -73,37 +109,7 @@ public class Character extends Actor
     public void setCanUseSpecial(boolean newCanUseSpecial){
         canUseSpecial = newCanUseSpecial;
     }
-
-    public void gravity() {
-        if (!isOnGround() && !isTouchingPlatform()) fall();
-        else {
-            velocity = 0;
-            counter = 0;
-        }
-    }
-
-    private void jump() {
-        velocity = jumpHeight; 
-        fall(); 
-    }
-
-    private void fall() {
-        setLocation(getX(), getY() + (int) velocity);
-        velocity = velocity + acceleration;
-    }
     
-    private boolean isOnGround() {
-        Actor platform = getOneObjectAtOffset(0, getImage().getHeight()/2, PlatformX.class);
-    if (platform != null){
-            if(getImage() == Pig.bigImageRight || getImage() == Pig.bigImageLeft){
-                setLocation(getX(), 420);
-            } else {
-                setLocation(getX(), 438);
-            }
-        }
-        return platform != null;
-    }
-
     private boolean isInAir() {
         if (isOnGround() || isTouchingPlatform()) return false;
         return true;
@@ -119,6 +125,20 @@ public class Character extends Actor
         return false;
     }
 
+    // Returns true if touching main (thick) platform
+    private boolean isOnGround() {
+        Actor platform = getOneObjectAtOffset(0, getImage().getHeight()/2, PlatformX.class);
+        if (platform != null){
+            if(getImage() == Pig.bigImageRight || getImage() == Pig.bigImageLeft){
+                setLocation(getX(), 420);
+            } else {
+                setLocation(getX(), 438);
+            }
+        }
+        return platform != null;
+    }
+
+    // Returns true if touching secondary (thin) platform
     private boolean isTouchingPlatform() {
         Actor platform = getOneObjectAtOffset(0, getImage().getHeight()/2, PlatformSmall.class);
         if (platform != null){

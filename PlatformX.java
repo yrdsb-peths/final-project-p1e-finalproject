@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class PlatformX here.
+ * Main platform that characters will stand on
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Carl
+ * @version 2022.01.20
  */
 public class PlatformX extends Platform
 {

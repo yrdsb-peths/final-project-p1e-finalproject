@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class PlatformYL here.
+ * Platform that prevents Characters from moving right/left
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Carl
+ * @version 2022.01.20
  */
 public class PlatformYL extends Platform
 {

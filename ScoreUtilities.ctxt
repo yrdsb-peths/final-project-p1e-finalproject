@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=ScoreUtilities
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ ScoreUtilities\ here.\r\n\ \r\n\ @author\ Carl\r\n\ @version\ 2022.01.18\r\n
+comment0.text=\r\n\ Static\ methods\ used\ for\ score\ processing\r\n\ \r\n\ @author\ Carl\r\n\ @version\ 2022.01.18\r\n
 comment1.params=inputs
 comment1.target=java.lang.String[][]\ convertArray(java.util.ArrayList)
 comment1.text=\r\n\ Converts\ an\ ArrayList<String>\ with\ a\ delimiter\ into\ String[][]\r\n\ \r\n\ @param\ inputs\ ArrayList<String>\ with\ a\ delimiter\ in\ each\ index\r\n\ @return\ String[][],\ formated\ according\ to\ demiliter\:\ Score\ ->\ Date\r\n
@@ -33,6 +33,7 @@ comment7.target=void\ writeScore(java.lang.String)
 comment7.text=\r\n\ Method\ writes\ score\ to\ Scores.txt\r\n\ \r\n\ @param\ score\ String\ containing\ delimiter\ (-)\r\n
 comment8.params=
 comment8.target=java.lang.String\ getDate()
+comment8.text=\r\n\ Method\ gets\ a\ date\ using\ system\ information\r\n\ \r\n\ @return\ A\ date\ (String)\ formatted\ in\ yyyy.MM.dd\r\n
 comment9.params=arr
 comment9.target=void\ quickSort(java.lang.String[][])
 comment9.text=\r\n\ Quicksort\ method\ that\ gets\ called\r\n\ \r\n\ @param\ arr\ String[][]\r\n
