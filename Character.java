@@ -59,7 +59,7 @@ public class Character extends Actor
         }
         // Special
         // Take out canUseSpecial to test special
-        if (Greenfoot.isKeyDown(special)) {
+        if (Greenfoot.isKeyDown(special) && canUseSpecial == true) {
             actor.special();
             canUseSpecial = false;
         }

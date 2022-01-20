@@ -38,6 +38,7 @@ public class Bullet extends Actor
             getWorld().removeObject(this);
         } else if(isTouching(Pig.class)){
             getWorld().removeObject(this);
+            SoundEffects.hitByBulletSound();
             
             // Update player bars
             MyWorld.player1.setHP(MyWorld.player1.getHP() - 1);

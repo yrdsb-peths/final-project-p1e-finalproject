@@ -17,7 +17,7 @@ public class SoundEffects
     // Ranged character attack auto sound
     public static void shootAutoSound(){
         GreenfootSound sfxShootAuto = new GreenfootSound("shootAutoSound.mp3");
-        sfxShootAuto.setVolume(25);
+        sfxShootAuto.setVolume(40);
         sfxShootAuto.play();
     }
     
@@ -38,6 +38,27 @@ public class SoundEffects
         GreenfootSound sfxDashSpecial = new GreenfootSound("dashSpecialSound.mp3");
         sfxDashSpecial.setVolume(30);
         sfxDashSpecial.play();
+    }
+    
+    // Sound when character is hit by special ability
+    public static void hitBySpecialSound(){
+        GreenfootSound sfxHitBySpecial = new GreenfootSound("hitBySpecialSound.mp3");
+        sfxHitBySpecial.setVolume(30);
+        sfxHitBySpecial.play();
+    }
+    
+    // Sound when character is hit by bullet
+    public static void hitByBulletSound(){
+        GreenfootSound sfxHitByBullet = new GreenfootSound("hitByBulletSound.mp3");
+        sfxHitByBullet.setVolume(40);
+        sfxHitByBullet.play();
+    }
+    
+    // Sound when character is his by dash
+    public static void hitByDashSound(){
+        GreenfootSound sfxHitByDash = new GreenfootSound("hitByDashSound.mp3");
+        sfxHitByDash.setVolume(40);
+        sfxHitByDash.play();
     }
     
     // Death sound when a character dies

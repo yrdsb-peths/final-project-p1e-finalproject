@@ -133,6 +133,7 @@ public class Pig extends Character implements Playable
         if(isTouching(Snake.class)){
             if(canUpdateSpecialBar == true){
                 canUpdateSpecialBar = false;
+                SoundEffects.hitByDashSound();
                 MyWorld.player2.setHP(MyWorld.player2.getHP() - 1);
                 MyWorld.player2HPBar.setWidth(MyWorld.player2HPBar.getWidth() - 100);
                 MyWorld.player1.setSpecial(MyWorld.player1.getSpecial() + 1);
@@ -173,6 +174,7 @@ public class Pig extends Character implements Playable
             setImage(bigImageRight);
             setLocation(getX(), getY() - 21);
         }
+        SoundEffects.dashSpecialSound();
         return 1;
     }
 
