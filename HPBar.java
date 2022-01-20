@@ -8,10 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class HPBar extends StatsBar
 {
-    /**
-     * Act - do whatever the HPBar wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    // Default variables 
     private int originalWidth = 400;
     private int width = 400;
     private int adjust = 50;
@@ -22,18 +19,13 @@ public class HPBar extends StatsBar
     public HPBar(String newPlayer){
         this.player = newPlayer;
     }
-    
-    public void act()
-    {
-        // Add your action code here.
-    }
-    
-    // Getter and setter
+
+    // Getter
     public int getWidth(){
         return width;
     }
     
-    // Change length of green bar as HP decreases
+    // Setter to change the length of green bar as HP decreases
     public void setWidth(int newWidth){
         if(newWidth == 0){
             width = originalWidth;

@@ -23,6 +23,7 @@ public class Pig extends Character implements Playable
     // Stocks
     public int stock = 3;
     
+    // Player variables
     private int originalHP = 4;
     private int HP = 4;
     private int SP = 1;
@@ -31,13 +32,15 @@ public class Pig extends Character implements Playable
     private boolean startedDash = false;
     private boolean startedSpecial = false;
     private boolean canUpdateSpecialBar = true;
-    private boolean changedSpecialLocation = false;
+    private boolean hitOnce = false;
 
+    // Image variables
     public static GreenfootImage imageRight = new GreenfootImage("pig.png");
     public static GreenfootImage imageLeft = new GreenfootImage("pig_left.png");
     public static GreenfootImage bigImageRight = new GreenfootImage("bigPig.png");
     public static GreenfootImage bigImageLeft = new GreenfootImage("bigPig_left.png");
     
+    // Timer variables
     SimpleTimer dashTimer = new SimpleTimer();
     SimpleTimer specialDashTimer = new SimpleTimer();
     private int dashTicker = 0;
@@ -91,6 +94,7 @@ public class Pig extends Character implements Playable
             // Stops dash animation
             if(dashTicker >= 20){
                 startedDash = false;
+                hitOnce = false;
                 dashTicker = 0;
             }
         }
@@ -112,6 +116,7 @@ public class Pig extends Character implements Playable
             checkLandedHit();
             // Stops dash animation
             if(specialDashTicker >= 15){
+                hitOnce = false;
                 startedSpecial = false;
                 specialDashTicker = 0;
                 if(getImage() == bigImageRight){
@@ -125,21 +130,25 @@ public class Pig extends Character implements Playable
     
     // Check if dash hits opposing player
     public void checkLandedHit(){
-        if(isTouching(Snake.class) && canUpdateSpecialBar == true){
-            //canUpdateSpecialBar = false;
-            MyWorld.player2.setHP(MyWorld.player2.getHP() - 1);
-            MyWorld.player2HPBar.setWidth(MyWorld.player2HPBar.getWidth() - 100);
-            MyWorld.player1.setSpecial(MyWorld.player1.getSpecial() + 1);
-            MyWorld.player1SpecialBar.setWidth(MyWorld.player1.getSpecial() + 1);
-
-            if(getImage() == imageRight || getImage() == bigImageRight){
-                MyWorld.player2.setLocation(getX() + 200, getY());
-            } else if(getImage() == imageLeft || getImage() == bigImageLeft){
-                MyWorld.player2.setLocation(getX() - 200, getY());
-            } else if(getImage() == bigImageLeft){
-                MyWorld.player2.setLocation(getX() + 300, getY() + 100);
-            } else if(getImage() == bigImageRight){
-                MyWorld.player2.setLocation(getX() - 300, getY() + 100);
+        if(isTouching(Snake.class)){
+            if(canUpdateSpecialBar == true){
+                canUpdateSpecialBar = false;
+                MyWorld.player2.setHP(MyWorld.player2.getHP() - 1);
+                MyWorld.player2HPBar.setWidth(MyWorld.player2HPBar.getWidth() - 100);
+                MyWorld.player1.setSpecial(MyWorld.player1.getSpecial() + 1);
+                MyWorld.player1SpecialBar.setWidth(MyWorld.player1.getSpecial() + 1);
+            }
+            if(hitOnce == false){
+                hitOnce = true;
+                if(getImage() == imageRight || getImage() == bigImageRight){
+                    MyWorld.player2.setLocation(getX() + 200, getY());
+                } else if(getImage() == imageLeft || getImage() == bigImageLeft){
+                    MyWorld.player2.setLocation(getX() - 200, getY());
+                } else if(getImage() == bigImageLeft){
+                    MyWorld.player2.setLocation(getX() + 300, getY() + 100);
+                } else if(getImage() == bigImageRight){
+                    MyWorld.player2.setLocation(getX() - 300, getY() + 100);
+                }
             }
         }
     }

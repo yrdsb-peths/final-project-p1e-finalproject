@@ -52,29 +52,8 @@ public class Bullet extends Actor
                 MyWorld.player1.setLocation(MyWorld.player1.getX() + 80, MyWorld.player1.getY());
             }
         } else {
+            // Travel
             move(speed * bulletDirection);
         }
-    }
-    
-    public void shoot(int s, int bd){
-        // Base case
-        if(s <= 1){
-            move(bd * 1);
-        } else {
-            //shoot(s, bd) + shoot(s, bd);
-        }
-    }
-    
-    // Recursive algorithm for determining movement speed
-    public int travel(int s){
-        // Base case
-        if(s <= 0){
-            move(bulletDirection);
-            return 1;
-        }
-        
-        // Recursive case
-
-        return travel(s - 1) + travel(s - 2);
     }
 }

@@ -20,9 +20,6 @@ public class MyWorld extends World
     int oneStock = 3; 
     int twoStock = 3;
     
-    Label player1Label;
-    Label player2Label;
-    
     // HP bar variables
     public static HPBar player1HPBar;
     public static HPBar player2HPBar;
@@ -44,10 +41,12 @@ public class MyWorld extends World
     SimpleTimer player2RespawnTimer;
     SimpleTimer scoreTimer = new SimpleTimer();
     
+    // Label variables
     Label minLabel;
     Label secLabel;
     Label colonLabel;
-    
+    Label player1Label;
+    Label player2Label;
     int currentMins;
     int currentSecs;
 
@@ -56,7 +55,9 @@ public class MyWorld extends World
         try {
             // Check if Player 1 needs to be respawned
             if(player1.getBeingRespawned() == false){
+                // Check if touching edge or if no HP left
                 if (player1.isAtEdge() || player1.getHP() <= 0) {
+                    // Respawn if Player 1 has lives remaining
                     if (oneStock > 0) {
                         player1.setAlive(false);
                         player1.setBeingRespawned(true);
@@ -71,6 +72,7 @@ public class MyWorld extends World
                     else gameOver(player1);
                 }
             } else {
+                // Waits 3 seconds to respawn the Player
                 if(player1RespawnTimer.millisElapsed() > 3000){
                     player1.setLocation(x, y);
                     
@@ -86,7 +88,9 @@ public class MyWorld extends World
             
             // Check if Player 2 needs to be respawned
             if(player2.getBeingRespawned() == false){
+                // Check if touching edge or if no HP left
                 if (player2.isAtEdge() || player2.getHP() <= 0) {
+                    // Respawn if Player 2 has lives remaining
                     if (twoStock > 0) {
                         player2.setAlive(false);
                         player2.setBeingRespawned(true);
@@ -101,6 +105,7 @@ public class MyWorld extends World
                     else gameOver(player2);
                 }
             } else {
+                // Wait 3 seconds to respawn the player
                 if(player2RespawnTimer.millisElapsed() > 3000){
                     player2.setLocation(x, y);
                     
@@ -116,7 +121,8 @@ public class MyWorld extends World
         }
         catch (Exception e){} // Change world
     }
-
+    
+    // Ends game and shows scores world
     public void gameOver(Character actor) {
         if (oneStock == 0) { 
             actor.getImage().setTransparency(0);
@@ -128,7 +134,7 @@ public class MyWorld extends World
         }
     }
     
-    // Set transparencies of all images of a character
+    // Various methods to set transparencies of all images of characters
     public void makePlayer1Invisible(){
         player1.imageLeft.setTransparency(0);
         player1.imageRight.setTransparency(0);
@@ -177,6 +183,7 @@ public class MyWorld extends World
         player1RespawnTimer = new SimpleTimer();
         player2RespawnTimer = new SimpleTimer();
         
+        // Add elements to world
         addBars();
         addLabels();
         prepare();
