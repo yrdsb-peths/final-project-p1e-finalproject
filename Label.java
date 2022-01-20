@@ -91,6 +91,11 @@ public class Label extends Actor
         updateImage();
     }
     
+    // Get fillColor
+    public Color getFillColor(){
+        return fillColor;
+    }
+    
 
     /**
      * Update the image on screen to show the current value.

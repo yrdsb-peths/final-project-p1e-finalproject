@@ -49,6 +49,9 @@ public class MyWorld extends World
     Label player2Label;
     int currentMins;
     int currentSecs;
+    int flashDelay = 500;
+    boolean startedFlash = false;
+    SimpleTimer flashTimer;
 
     public void act() {
         updateTimer();
@@ -234,6 +237,10 @@ public class MyWorld extends World
         addObject(minLabel, 600, 50);
         addObject(secLabel, 700, 50);
         addObject(colonLabel, 650, 50);
+        
+        // Initiate flash variables for timer labels
+        startedFlash = false;
+        flashTimer = new SimpleTimer();
     }
     
     // Add needed rectangular bars to game
@@ -267,6 +274,27 @@ public class MyWorld extends World
             if(currentSecs < 0){
                 currentSecs = 59;
             }
+            
+            // Flash timer red and orange once there are ten seconds left
+            if(currentSecs < 11 && currentMins < 1){
+                if(startedFlash == false){
+                    startedFlash = true;
+                    flashTimer.mark();
+                }
+                if(flashTimer.millisElapsed() > flashDelay){
+                    flashTimer.mark();
+                    if(minLabel.getFillColor() == Color.RED){
+                        minLabel.setFillColor(Color.ORANGE);
+                        colonLabel.setFillColor(Color.ORANGE);
+                        secLabel.setFillColor(Color.ORANGE);
+                    } else {
+                        minLabel.setFillColor(Color.RED);
+                        colonLabel.setFillColor(Color.RED);
+                        secLabel.setFillColor(Color.RED);
+                    }
+                }
+            }
+            // Add a 0 in front of single digit seconds
             if(currentSecs < 10){
                 secLabel.setValue("0" + currentSecs);
             } else {
