@@ -25,6 +25,6 @@ public class player1 extends Player
     
     public void act()
     {
-        player1movement(p1jump, p1idle);
+        player1movement(p1jump, p1idle, p1idle, p1idle);
     }
 }
