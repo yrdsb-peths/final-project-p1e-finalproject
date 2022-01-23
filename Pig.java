@@ -33,17 +33,29 @@ public class Pig extends Character implements Playable
     private boolean canUpdateSpecialBar = true;
     private boolean hitOnce = false;
 
-    // Image variables
-    public static GreenfootImage imageRight = new GreenfootImage("pig.png");
+    // Placeholder image variables
+    public static GreenfootImage imageRight = new GreenfootImage("p1idleright.png");
     public static GreenfootImage imageLeft = new GreenfootImage("pig_left.png");
     public static GreenfootImage bigImageRight = new GreenfootImage("bigPig.png");
     public static GreenfootImage bigImageLeft = new GreenfootImage("bigPig_left.png");
+    
+    // Gif element variables
+    public static GifImage p1IdleRight = new GifImage("p1idleright.gif");
+    public static GifImage p1IdleLeft = new GifImage("p1idleleft.gif");
+    public static GifImage p1PunchLeft = new GifImage("p1punchleft.gif");
+    public static GifImage p1PunchRight = new GifImage("p1punchright.gif");
     
     // Timer variables
     SimpleTimer dashTimer = new SimpleTimer();
     SimpleTimer specialDashTimer = new SimpleTimer();
     private int dashTicker = 0;
     private int specialDashTicker = 0;
+    
+    //act method booleans
+    boolean facingRight = true;
+    boolean punch = false;
+    
+
     
     public Pig(String up, String left, String down, String right, String auto, String special) {
         this.up = up;
@@ -53,6 +65,7 @@ public class Pig extends Character implements Playable
         this.auto = auto;
         this.special = special;
         setImage(imageRight);
+        idleAnimationRescale();
     }
 
     /**
@@ -61,14 +74,52 @@ public class Pig extends Character implements Playable
      */
     public void act()
     {
+        animations();
         controls(up, left, down, right, auto, special, this);
         gravity();
         checkDash();
         checkSpecialDash();
     }
-
+    
+    //All animations
+    public void animations()
+    {
+        if(facingRight == true){
+            setImage(p1IdleRight.getCurrentImage());
+        }
+        else
+        {
+            setImage(p1IdleLeft.getCurrentImage());
+        }
+        if(punch == true && facingRight == true){
+            for(int i = 0; i < 5; i++){
+                setImage(p1PunchRight.getCurrentImage());
+                Greenfoot.delay(2);
+            }
+            punch = false;
+        }
+        else if(punch == true && facingRight == false){
+            for(int i = 0; i < 5; i++){
+                setImage(p1PunchLeft.getCurrentImage());
+                Greenfoot.delay(2);
+            }
+            punch = false;
+        }
+    }
+    
+    // Resize all frames of idle animation
+    public void idleAnimationRescale() {
+        int scalePercent = 100;
+        for(GreenfootImage image : p1IdleRight.getImages()) {
+            int wide = image.getWidth()*scalePercent/100;
+            int high = image.getHeight()*scalePercent/100;
+            image.scale(wide,high);
+        }
+    }
+    
     // Start auto attack
     public int auto() {
+        punch = true;
         dashTimer.mark();
         startedDash = true;
         canUpdateSpecialBar = true;
@@ -179,16 +230,20 @@ public class Pig extends Character implements Playable
     public void direction(String direction) {
         if (direction.equals("left")){
             if(specialDashTicker > 0){
-                setImage(bigImageLeft);
+                //setImage(bigImageLeft);
+                facingRight = false;
             } else {
-                setImage(imageLeft);
+                //setImage(imageLeft);
+                facingRight = false;
             }
         }
         if (direction.equals("right")){
             if(specialDashTicker > 0){
-                setImage(bigImageRight);
+                //setImage(bigImageRight);
+                facingRight = true;
             } else {
-                setImage(imageRight);
+                //setImage(imageRight);
+                facingRight = true;
             }
         }
     }
