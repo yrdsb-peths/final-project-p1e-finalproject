@@ -167,12 +167,8 @@ public class MyWorld extends World
         // "up", "left", "down", "right", "n", "m"
         // "w", "a", "s", "d", "g", "h"
         super(1280, 720, 1); 
-        
-        // Add players to world
-        player1 = new Pig("w", "a", "s", "d", "g", "h");
-        player2 = new Snake("up", "left", "down", "right", "n", "m");
-        addObject(player1, 462, 435);
-        addObject(player2, 900, 425);
+    
+
         
         // Timers
         minTimer = new SimpleTimer();
@@ -186,6 +182,15 @@ public class MyWorld extends World
         addBars();
         addLabels();
         prepare();
+        
+        Background1 bb = new Background1();
+        addObject(bb, 640, 500);
+        
+        // Add players to world
+        player1 = new Pig("w", "a", "s", "d", "g", "h");
+        player2 = new Snake("up", "left", "down", "right", "n", "m");
+        addObject(player1, 462, 435);
+        addObject(player2, 900, 425);
     }
     
     /**

@@ -52,10 +52,9 @@ public class Pig extends Character implements Playable
     private int specialDashTicker = 0;
     
     //act method booleans
-    boolean facingRight = true;
-    boolean punch = false;
+    private boolean facingRight = true;
+    private boolean punch = false;
     
-
     
     public Pig(String up, String left, String down, String right, String auto, String special) {
         this.up = up;
@@ -65,7 +64,8 @@ public class Pig extends Character implements Playable
         this.auto = auto;
         this.special = special;
         setImage(imageRight);
-        idleAnimationRescale();
+        //this.getImage().scale(50, 50);
+        //idleAnimationRescale();
     }
 
     /**
@@ -94,14 +94,14 @@ public class Pig extends Character implements Playable
         if(punch == true && facingRight == true){
             for(int i = 0; i < 5; i++){
                 setImage(p1PunchRight.getCurrentImage());
-                Greenfoot.delay(2);
+                //Greenfoot.delay(1);
             }
             punch = false;
         }
         else if(punch == true && facingRight == false){
             for(int i = 0; i < 5; i++){
                 setImage(p1PunchLeft.getCurrentImage());
-                Greenfoot.delay(2);
+                //Greenfoot.delay(1);
             }
             punch = false;
         }
@@ -113,7 +113,27 @@ public class Pig extends Character implements Playable
         for(GreenfootImage image : p1IdleRight.getImages()) {
             int wide = image.getWidth()*scalePercent/100;
             int high = image.getHeight()*scalePercent/100;
-            image.scale(wide,high);
+            image.scale(50, 50);
+        }
+        for(GreenfootImage image : p1IdleLeft.getImages()) {
+            int wide = image.getWidth()*scalePercent/100;
+            int high = image.getHeight()*scalePercent/100;
+            image.scale(50, 50);
+        }
+    }
+    
+    // Resize all frames of special animation
+    public void specialAnimationRescale() {
+        int scalePercent = 200;
+        for(GreenfootImage image : p1IdleRight.getImages()) {
+            //int wide = image.getWidth()*scalePercent/100;
+            //int high = image.getHeight()*scalePercent/100;
+            image.scale(100, 100);
+        }
+        for(GreenfootImage image : p1IdleLeft.getImages()) {
+            //int wide = image.getWidth()*scalePercent/100;
+            //int high = image.getHeight()*scalePercent/100;
+            image.scale(100, 100);
         }
     }
     
@@ -133,9 +153,9 @@ public class Pig extends Character implements Playable
             // Start dash animation
             if(dashTimer.millisElapsed() % 1 == 0){
                 dashTicker++;
-                if(getImage() == imageRight){
+                if(facingRight == true){
                     move(10);
-                } else if(getImage() == imageLeft){
+                } else {
                     move(-10);
                 }
             }
@@ -154,11 +174,12 @@ public class Pig extends Character implements Playable
         // Check if can special dash
         if(startedSpecial == true){
             // Start dash animation
+            specialAnimationRescale();
             if(specialDashTimer.millisElapsed() % 1 == 0){
                 specialDashTicker++;
-                if(getImage() == bigImageRight){
+                if(facingRight){
                     move(15);
-                } else if(getImage() == bigImageLeft){
+                } else {
                     move(-15);
                 }
             }
@@ -168,6 +189,7 @@ public class Pig extends Character implements Playable
                 hitOnce = false;
                 startedSpecial = false;
                 specialDashTicker = 0;
+                idleAnimationRescale();
                 if(getImage() == bigImageRight){
                     setImage(imageRight);
                 } else if(getImage() == bigImageLeft){
