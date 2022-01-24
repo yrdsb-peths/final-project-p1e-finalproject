@@ -5,7 +5,7 @@ import greenfoot.*;
  * @author Yoyo and Carl
  * @version 2022.01.20
  */
-public class SoundEffects  
+public class SoundEffects
 {
     // Method plays sound effect x, at volume y
     private static void playSound(GreenfootSound x, int y) {
@@ -15,19 +15,26 @@ public class SoundEffects
 
     // Menu music before game loads
     public static void menuSound(){
-        playSound(new GreenfootSound("menySound.mp3"), 30);
+        try {
+            playSound(new GreenfootSound("menuSound.mp3"), 30);
+        }
+        catch (Exception e){}
     }
     
     // Ranged character attack auto sound
     public static void shootAutoSound(){
-        GreenfootSound sfxShootAuto = new GreenfootSound("shootAutoSound.mp3");
-        sfxShootAuto.setVolume(40);
-        sfxShootAuto.play();
+        try {
+            playSound(new GreenfootSound("shootAutoSound.mp3"), 40);
+        }
+        catch (Exception e){}
     }
     
     // Ranged character attack special sound
     public static void shootSpecialSound(){
-        playSound(new GreenfootSound("shootSpecialSound.mp3"), 30);
+        try {
+            playSound(new GreenfootSound("shootSpecialSound.mp3"), 30);
+        }
+        catch (Exception e){}
     }
     
     // Melee character attack auto sound
@@ -37,53 +44,81 @@ public class SoundEffects
     
     // Melee character attack special sound
     public static void dashSpecialSound(){
-        playSound(new GreenfootSound("dashSpecialSound.mp3"), 30);
+        try {
+            playSound(new GreenfootSound("dashSpecialSound.mp3"), 30);
+        }
+        catch (Exception e){}
     }
     
     // Sound when character is hit by special ability
     public static void hitBySpecialSound(){
-        GreenfootSound sfxHitBySpecial = new GreenfootSound("hitBySpecialSound.mp3");
-        sfxHitBySpecial.setVolume(30);
-        sfxHitBySpecial.play();
+        try {
+            playSound(new GreenfootSound("hitBySpecialSound.mp3"), 30);
+        }
+        catch (Exception e){}
     }
     
     // Sound when character is hit by bullet
     public static void hitByBulletSound(){
-        GreenfootSound sfxHitByBullet = new GreenfootSound("hitByBulletSound.mp3");
-        sfxHitByBullet.setVolume(40);
-        sfxHitByBullet.play();
+        try {
+            playSound(new GreenfootSound("hitByBulletSound.mp3"), 40);
+        }
+        catch (Exception e){}
     }
     
     // Sound when character is his by dash
     public static void hitByDashSound(){
-        GreenfootSound sfxHitByDash = new GreenfootSound("hitByDashSound.mp3");
-        sfxHitByDash.setVolume(40);
-        sfxHitByDash.play();
+        try {
+            playSound(new GreenfootSound("hitByDashSound.mp3"), 40);
+        }
+        catch (Exception e){}
     }
     
     // Death sound when a character dies
     public static void deathSound(){
-        playSound(new GreenfootSound("deathSound.mp3"), 30);
+        try {
+            playSound(new GreenfootSound("deathSound.mp3"), 30);
+        }
+        catch (Exception e){}
     }
     
     // Victory sound when a player wins
     public static void victorySound(){
-        playSound(new GreenfootSound("victorySound.mp3"), 50);
+        try {
+            playSound(new GreenfootSound("victorySound.mp3"), 50);
+        }
+        catch (Exception e){}
     }
 
-    // Carl - I'm going to get these from Smash https://www.youtube.com/watch?v=3TT_9Sp-PpQ
     // Announcer: Player 1 wins
     public static void player1Sound(){
-
+        try {
+            playSound(new GreenfootSound("player1Wins.mp3"), 30);
+        }
+        catch (Exception e){}
     }
 
     // Announcer: Player 2 wins
     public static void player2Sound(){
-
+        try {
+            playSound(new GreenfootSound("player2Wins.mp3"), 30);
+        }
+        catch (Exception e){}
     }
 
     // Announcer: Player 3 wins
     public static void tieSound(){
+        try {
+            playSound(new GreenfootSound("noContest.mp3"), 30);
+        }
+        catch (Exception e){}
+    }
 
+    // When players jump 
+    public static void jumpSound() {
+        try {
+            playSound(new GreenfootSound("jump.mp3"), 30);
+        }
+        catch (Exception e){}
     }
 }

@@ -44,6 +44,16 @@ public class ScoresWorld extends World
         ScoreUtilities.reverse(scores);
         displaySessionScore();
         displayScores();
+        announceResult();
+    }
+
+    /**
+     * Announces the outcome of the battle
+     */
+    private void announceResult() {
+        if (winner == 1) SoundEffects.player1Sound();
+        if (winner == 2) SoundEffects.player2Sound();
+        if (winner == 0) SoundEffects.tieSound();
     }
 
     /**

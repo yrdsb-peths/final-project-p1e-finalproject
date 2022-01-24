@@ -40,6 +40,7 @@ public class Character extends Actor
             kDown = !kDown;
             if (kDown && counter < 2) {
                 jump();
+                SoundEffects.jumpSound();
                 counter++;
             }
         }
