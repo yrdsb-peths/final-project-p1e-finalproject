@@ -14,16 +14,23 @@ public class TitleScreen extends World
      * Constructor for objects of class TitleScreen.
      * 
      */
+    Button playButton = new Button();
+    
     public TitleScreen()
     {    
         super(1280, 720, 1); 
-        Label title = new Label("The game", 150);
-        addObject(title, getWidth()/2, getHeight()/2);
+        GreenfootImage title = new GreenfootImage("titlescreen.png");
+        title.scale(1280,720);
+        setBackground(title);
+        
+        
+        addObject(playButton, getWidth()/2, getHeight()/2 + 100);
     }
 
     public void act() {
         // Press space to continue
-        if (("space").equals(Greenfoot.getKey()) && !lever) {
+        
+        if ((("space").equals(Greenfoot.getKey()) && !lever) || (Greenfoot.mouseClicked(playButton) && !lever)) {
             changeWorld();
             lever = true;
         }

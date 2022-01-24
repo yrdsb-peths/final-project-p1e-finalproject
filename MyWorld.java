@@ -184,7 +184,7 @@ public class MyWorld extends World
         prepare();
         
         Background1 bb = new Background1();
-        addObject(bb, 640, 500);
+        addObject(bb, 670, 500);
         
         // Add players to world
         player1 = new Pig("w", "a", "s", "d", "g", "h");
