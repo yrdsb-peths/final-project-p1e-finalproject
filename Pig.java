@@ -212,7 +212,7 @@ public class Pig extends Character implements Playable
             }
             if(hitOnce == false){
                 hitOnce = true;
-                if(getImage() == imageRight || getImage() == bigImageRight){
+                /*if(getImage() == imageRight || getImage() == bigImageRight){
                     MyWorld.player2.setLocation(getX() + 200, getY());
                 } else if(getImage() == imageLeft || getImage() == bigImageLeft){
                     MyWorld.player2.setLocation(getX() - 200, getY());
@@ -220,6 +220,30 @@ public class Pig extends Character implements Playable
                     MyWorld.player2.setLocation(getX() + 300, getY() + 100);
                 } else if(getImage() == bigImageRight){
                     MyWorld.player2.setLocation(getX() - 300, getY() + 100);
+                }*/
+                for(GreenfootImage image : p1IdleRight.getImages()) {
+                    if(getImage() == image){
+                        MyWorld.player2.setLocation(getX() + 200, getY());
+                        break;
+                    }
+                }
+                for(GreenfootImage image : p1IdleLeft.getImages()) {
+                    if(getImage() == image){
+                        MyWorld.player2.setLocation(getX() - 200, getY());
+                        break;
+                    }
+                }
+                for(GreenfootImage image : p1PunchRight.getImages()) {
+                    if(getImage() == image){
+                        MyWorld.player2.setLocation(getX() + 200, getY());
+                        break;
+                    }
+                }
+                for(GreenfootImage image : p1PunchLeft.getImages()) {
+                    if(getImage() == image){
+                        MyWorld.player2.setLocation(getX() - 200, getY());
+                        break;
+                    }
                 }
             }
         }
