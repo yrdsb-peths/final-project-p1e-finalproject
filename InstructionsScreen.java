@@ -9,7 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class InstructionsScreen extends World
 {
     boolean lever = false;
-
+    GreenfootImage image = new GreenfootImage("tempInstructions.png");
+    
     /**
      * Constructor for objects of class InstructionsScreen.
      * 
@@ -17,7 +18,7 @@ public class InstructionsScreen extends World
     public InstructionsScreen()
     {    
         super(1280, 720, 1);
-        // setImage(Instructions image); 
+        getBackground().drawImage(image, 0, 0);
     }
 
     public void act() {

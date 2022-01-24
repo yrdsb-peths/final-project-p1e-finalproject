@@ -17,7 +17,7 @@ public class TitleScreen extends World
     public TitleScreen()
     {    
         super(1280, 720, 1); 
-        Label title = new Label("The game", 150);
+        Label title = new Label("The game\nPress space to start", 150);
         addObject(title, getWidth()/2, getHeight()/2);
     }
 
