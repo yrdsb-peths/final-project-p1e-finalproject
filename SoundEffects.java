@@ -37,7 +37,7 @@ public class SoundEffects
     
     // Melee character attack special sound
     public static void dashSpecialSound(){
-        playSound(new GreenfootSound("dashSpecialSound.mp3"), 30);
+        playSound(new GreenfootSound("dashSpecialSound.mp3"), 15);
     }
     
     // Sound when character is hit by special ability

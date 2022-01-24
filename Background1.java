@@ -13,7 +13,7 @@ public class Background1 extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
     public ba */
     public Background1(){
-        getImage().scale(1280, 720);
+        getImage().scale(1000, 600);
     }
     
     public void act()
