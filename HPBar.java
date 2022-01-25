@@ -26,6 +26,7 @@ public class HPBar extends StatsBar
     }
     
     // Setter to change the length of green bar as HP decreases
+    // Adjusts location based on new bar size
     public void setWidth(int newWidth){
         if(newWidth == 0){
             width = originalWidth;

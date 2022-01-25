@@ -28,6 +28,7 @@ public class Snake extends Character implements Playable
     private boolean beingRespawned = false;
     private boolean isHit = false;
 
+    // Image variables
     public static GreenfootImage imageRight = new GreenfootImage("snake.png");
     public static GreenfootImage imageLeft = new GreenfootImage("snake_left.png");
 
@@ -44,17 +45,16 @@ public class Snake extends Character implements Playable
         setImage(imageLeft);
     }
 
-    /**
-     * Act - do whatever the Snake wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    // Act method, constantly check controls and gravity
     public void act()
     {
         controls(up, left, down, right, auto, special, this);
         gravity();
     }
 
+    // Auto attack method
     public int auto() {
+        // Shoot bullet based on direction snake is facing
         Bullet b;
         if(getImage() == imageLeft){
             b = new Bullet(-1, direction);
@@ -71,7 +71,9 @@ public class Snake extends Character implements Playable
         return 1;
     }
 
+    // Special attack method
     public int special() {
+        // Shoot large bullet based on direction snake is facing
         Bullet b;
         if(getImage() == imageLeft){
             b = new Bullet(-2, direction);
@@ -82,6 +84,8 @@ public class Snake extends Character implements Playable
             b.getImage().scale(200, 200);
             getWorld().addObject(b, this.getX() + 100, this.getY());
         }
+        
+        // Reset special bar
         SP = 0;
         MyWorld.player2SpecialBar.setWidth(2);
         SoundEffects.shootSpecialSound();

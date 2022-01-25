@@ -45,6 +45,7 @@ public class Pig extends Character implements Playable
     private int dashTicker = 0;
     private int specialDashTicker = 0;
     
+    // Pig constructor, takes in keys that will command the pig
     public Pig(String up, String left, String down, String right, String auto, String special) {
         this.up = up;
         this.left = left;
@@ -55,10 +56,7 @@ public class Pig extends Character implements Playable
         setImage(imageRight);
     }
 
-    /**
-     * Act - do whatever the Pig wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    // Act method, constantly checks controls, gravity and if pig can attack
     public void act()
     {
         controls(up, left, down, right, auto, special, this);
@@ -75,7 +73,7 @@ public class Pig extends Character implements Playable
         return 1;
     }
     
-    // Dash if player can dash
+    // Method to see if player can dash
     public void checkDash(){
         // Check if can dash
         if(startedDash == true){
@@ -133,6 +131,7 @@ public class Pig extends Character implements Playable
     // Check if dash hits opposing player
     public void checkLandedHit(){
         if(isTouching(Snake.class)){
+            // Updates special bar of pig
             if(canUpdateSpecialBar == true){
                 canUpdateSpecialBar = false;
                 SoundEffects.hitByDashSound();
@@ -141,6 +140,8 @@ public class Pig extends Character implements Playable
                 MyWorld.player1.setSpecial(MyWorld.player1.getSpecial() + 1);
                 MyWorld.player1SpecialBar.setWidth(MyWorld.player1.getSpecial() + 1);
             }
+            
+            // Knockback the snake based on type of dash and direction
             if(hitOnce == false){
                 hitOnce = true;
                 if(getImage() == imageRight || getImage() == bigImageRight){

@@ -8,12 +8,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Bullet extends Actor
 {
+    // Bullet variables
     private int bulletDirection;
     private String playerDirection;
-    
     private int speed = 5;
     private boolean startMove = false;
     
+    // Bullet constructor
     public Bullet(int bulletDirection, String playerDirection){
         this.bulletDirection = bulletDirection;
         this.playerDirection = playerDirection;
@@ -28,11 +29,14 @@ public class Bullet extends Actor
         bulletDirection = newDirection;
     }
     
+    // Act method
     public void act()
     {
+        // Remove bullet if no longer in the screen
         if(this.getX() <= 50 || this.getX() >= 1230){
             getWorld().removeObject(this);
         } else if(isTouching(Pig.class)){
+            // Remove bullet if hit pig
             getWorld().removeObject(this);
             SoundEffects.hitByBulletSound();
             
@@ -49,7 +53,7 @@ public class Bullet extends Actor
                 MyWorld.player1.setLocation(MyWorld.player1.getX() + 80, MyWorld.player1.getY());
             }
         } else {
-            // Travel
+            // Bullet travels
             move(speed * bulletDirection);
         }
     }

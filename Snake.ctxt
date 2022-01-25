@@ -18,7 +18,6 @@ comment15.params=newBeingRespawned
 comment15.target=void\ setBeingRespawned(boolean)
 comment2.params=
 comment2.target=void\ act()
-comment2.text=\r\n\ Act\ -\ do\ whatever\ the\ Snake\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
 comment3.params=
 comment3.target=int\ auto()
 comment4.params=

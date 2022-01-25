@@ -8,28 +8,26 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class SpecialBar extends StatsBar
 {
+    // Default variables
     private int originalWidth = 0;
     private int width = 0;
     private int adjust = 50;
     
     private String player;
     
+    // Assigns each bar to a player
     public SpecialBar(String player){
         this.player = player;
         getImage().scale(50, 20);
     }
     
-    public void act()
-    {
-        // Add your action code here.
-    }
-    
-    // Getter and setter
+    // Getter
     public int getWidth(){
         return width;
     }
     
-    // Change length of special bar as attacks are successful
+    // Setter to hange length of special bar as attacks are successful
+    // Adjusts location based on new bar size
     public void setWidth(int newWidth){
         if(newWidth == 0){
             width = 1;
@@ -49,6 +47,8 @@ public class SpecialBar extends StatsBar
                 setLocation(1225 - 25 * (newWidth - 2), getY());
             }             
         }
+        
+        // Allow player to use special if the bar is full
         if(newWidth == 8){
             if(player.equals("one")){
                 MyWorld.player1.setCanUseSpecial(true);

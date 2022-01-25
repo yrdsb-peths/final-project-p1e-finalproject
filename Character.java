@@ -111,6 +111,7 @@ public class Character extends Actor
         canUseSpecial = newCanUseSpecial;
     }
     
+    // Methods to check location of character
     private boolean isInAir() {
         if (isOnGround() || isTouchingPlatform()) return false;
         return true;

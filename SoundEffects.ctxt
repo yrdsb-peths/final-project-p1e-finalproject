@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=SoundEffects
-comment0.text=\r\n\ Class\ handes\ sound\ effects\r\n\ \r\n\ @author\ Yoyo\ and\ Carl\r\n\ @version\ 2022.01.20\r\n\ \r\n\ NOTE\:\ Due\ to\ how\ some\ of\ the\ files\ were\ downloaded,\ Greenfoot\ will\ throw\ a\ warning/error\ because\r\n\ of\ these\ files.\ We\ are\ certain\ that\ the\ game\ works\ fine\ still\ and\ that\ the\ sound\ effects\ still\ work\r\n
+comment0.text=\r\n\ Class\ handes\ sound\ effects\r\n\ \r\n\ @author\ Yoyo\ and\ Carl\r\n\ @version\ 2022.01.20\r\n\ \r\n\ NOTE\:\ Due\ to\ how\ some\ of\ the\ files\ were\ downloaded,\ Greenfoot\ will\ throw\ a\ warning/error\ because\r\n\ of\ these\ files.\ We\ are\ certain\ that\ the\ game\ works\ fine\ still\ and\ that\ the\ sound\ effects\ still\ work\r\n\ \r\n\ Edit\:\ The\ files\ were\ re-processed\ with\ ffmpeg,\ but\ Greenfoot\ still\ might\ throw\ a\ random\ error\ with\ these\r\n\ files\ for\ some\ reason.\r\n
 comment1.params=x\ y
 comment1.target=void\ playSound(greenfoot.GreenfootSound,\ int)
 comment10.params=
