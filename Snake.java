@@ -88,12 +88,12 @@ public class Snake extends Character implements Playable
     
     public int auto() {
         Bullet b;
-        if(direction.equals("left")){
+        if(facingRight == false){
             b = new Bullet(-1, direction);
             b.getImage().scale(20, 20);
             getWorld().addObject(b, this.getX() - 50, this.getY());
             setLocation(getX() + 50, getY());
-        } else if (direction.equals("right")) {
+        } else {
             b = new Bullet(1, direction);
             b.getImage().scale(20, 20);
             getWorld().addObject(b, this.getX() + 50, this.getY());
