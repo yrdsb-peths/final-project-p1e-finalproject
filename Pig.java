@@ -33,11 +33,17 @@ public class Pig extends Character implements Playable
     private boolean canUpdateSpecialBar = true;
     private boolean hitOnce = false;
 
-    // Image variables
-    public static GreenfootImage imageRight = new GreenfootImage("pig.png");
+    // Placeholder image variables
+    public static GreenfootImage imageRight = new GreenfootImage("p1idleright.png");
     public static GreenfootImage imageLeft = new GreenfootImage("pig_left.png");
     public static GreenfootImage bigImageRight = new GreenfootImage("bigPig.png");
     public static GreenfootImage bigImageLeft = new GreenfootImage("bigPig_left.png");
+    
+    // Gif sprite animations
+    public static GifImage p1IdleRight = new GifImage("p1idleright.gif");
+    public static GifImage p1IdleLeft = new GifImage("p1idleleft.gif");
+    public static GifImage p1PunchLeft = new GifImage("p1punchleft.gif");
+    public static GifImage p1PunchRight = new GifImage("p1punchright.gif");
     
     // Timer variables
     SimpleTimer dashTimer = new SimpleTimer();
@@ -45,7 +51,11 @@ public class Pig extends Character implements Playable
     private int dashTicker = 0;
     private int specialDashTicker = 0;
     
-    // Pig constructor, takes in keys that will command the pig
+    //act method booleans
+    private boolean facingRight = true;
+    private boolean punch = false;
+    
+    
     public Pig(String up, String left, String down, String right, String auto, String special) {
         this.up = up;
         this.left = left;
@@ -54,19 +64,79 @@ public class Pig extends Character implements Playable
         this.auto = auto;
         this.special = special;
         setImage(imageRight);
+        //this.getImage().scale(50, 50);
+        //idleAnimationRescale();
     }
 
     // Act method, constantly checks controls, gravity and if pig can attack
     public void act()
     {
+        animations();
         controls(up, left, down, right, auto, special, this);
         gravity();
         checkDash();
         checkSpecialDash();
     }
-
+    
+    //All animations
+    public void animations()
+    {
+        if(facingRight == true){
+            setImage(p1IdleRight.getCurrentImage());
+        }
+        else
+        {
+            setImage(p1IdleLeft.getCurrentImage());
+        }
+        if(punch == true && facingRight == true){
+            for(int i = 0; i < 5; i++){
+                setImage(p1PunchRight.getCurrentImage());
+                //Greenfoot.delay(1);
+            }
+            punch = false;
+        }
+        else if(punch == true && facingRight == false){
+            for(int i = 0; i < 5; i++){
+                setImage(p1PunchLeft.getCurrentImage());
+                //Greenfoot.delay(1);
+            }
+            punch = false;
+        }
+    }
+    
+    // Resize all frames of idle animation
+    public void idleAnimationRescale() {
+        int scalePercent = 100;
+        for(GreenfootImage image : p1IdleRight.getImages()) {
+            int wide = image.getWidth()*scalePercent/100;
+            int high = image.getHeight()*scalePercent/100;
+            image.scale(50, 50);
+        }
+        for(GreenfootImage image : p1IdleLeft.getImages()) {
+            int wide = image.getWidth()*scalePercent/100;
+            int high = image.getHeight()*scalePercent/100;
+            image.scale(50, 50);
+        }
+    }
+    
+    // Resize all frames of special animation
+    public void specialAnimationRescale() {
+        int scalePercent = 200;
+        for(GreenfootImage image : p1IdleRight.getImages()) {
+            //int wide = image.getWidth()*scalePercent/100;
+            //int high = image.getHeight()*scalePercent/100;
+            image.scale(100, 100);
+        }
+        for(GreenfootImage image : p1IdleLeft.getImages()) {
+            //int wide = image.getWidth()*scalePercent/100;
+            //int high = image.getHeight()*scalePercent/100;
+            image.scale(100, 100);
+        }
+    }
+    
     // Start auto attack
     public int auto() {
+        punch = true;
         dashTimer.mark();
         startedDash = true;
         canUpdateSpecialBar = true;
@@ -80,7 +150,7 @@ public class Pig extends Character implements Playable
             // Start dash animation
             if(dashTimer.millisElapsed() % 1 == 0){
                 dashTicker++;
-                if(getImage() == imageRight){
+                if(facingRight == true){
                     move(10);
                     if (this.isTouching(PlatformYL.class)) move(-10);
                 } else if(getImage() == imageLeft){
@@ -103,9 +173,10 @@ public class Pig extends Character implements Playable
         // Check if can special dash
         if(startedSpecial == true){
             // Start dash animation
+            specialAnimationRescale();
             if(specialDashTimer.millisElapsed() % 1 == 0){
                 specialDashTicker++;
-                if(getImage() == bigImageRight){
+                if(facingRight){
                     move(15);
                     if (this.isTouching(PlatformYL.class)) move(-10);
                 } else if(getImage() == bigImageLeft){
@@ -119,6 +190,7 @@ public class Pig extends Character implements Playable
                 hitOnce = false;
                 startedSpecial = false;
                 specialDashTicker = 0;
+                idleAnimationRescale();
                 if(getImage() == bigImageRight){
                     setImage(imageRight);
                 } else if(getImage() == bigImageLeft){
@@ -144,7 +216,7 @@ public class Pig extends Character implements Playable
             // Knockback the snake based on type of dash and direction
             if(hitOnce == false){
                 hitOnce = true;
-                if(getImage() == imageRight || getImage() == bigImageRight){
+                /*if(getImage() == imageRight || getImage() == bigImageRight){
                     MyWorld.player2.setLocation(getX() + 200, getY());
                 } else if(getImage() == imageLeft || getImage() == bigImageLeft){
                     MyWorld.player2.setLocation(getX() - 200, getY());
@@ -152,6 +224,30 @@ public class Pig extends Character implements Playable
                     MyWorld.player2.setLocation(getX() + 300, getY() + 100);
                 } else if(getImage() == bigImageRight){
                     MyWorld.player2.setLocation(getX() - 300, getY() + 100);
+                }*/
+                for(GreenfootImage image : p1IdleRight.getImages()) {
+                    if(getImage() == image){
+                        MyWorld.player2.setLocation(getX() + 200, getY());
+                        break;
+                    }
+                }
+                for(GreenfootImage image : p1IdleLeft.getImages()) {
+                    if(getImage() == image){
+                        MyWorld.player2.setLocation(getX() - 200, getY());
+                        break;
+                    }
+                }
+                for(GreenfootImage image : p1PunchRight.getImages()) {
+                    if(getImage() == image){
+                        MyWorld.player2.setLocation(getX() + 200, getY());
+                        break;
+                    }
+                }
+                for(GreenfootImage image : p1PunchLeft.getImages()) {
+                    if(getImage() == image){
+                        MyWorld.player2.setLocation(getX() - 200, getY());
+                        break;
+                    }
                 }
             }
         }
@@ -185,16 +281,20 @@ public class Pig extends Character implements Playable
     public void direction(String direction) {
         if (direction.equals("left")){
             if(specialDashTicker > 0){
-                setImage(bigImageLeft);
+                //setImage(bigImageLeft);
+                facingRight = false;
             } else {
-                setImage(imageLeft);
+                //setImage(imageLeft);
+                facingRight = false;
             }
         }
         if (direction.equals("right")){
             if(specialDashTicker > 0){
-                setImage(bigImageRight);
+                //setImage(bigImageRight);
+                facingRight = true;
             } else {
-                setImage(imageRight);
+                //setImage(imageRight);
+                facingRight = true;
             }
         }
     }

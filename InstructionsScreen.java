@@ -18,7 +18,10 @@ public class InstructionsScreen extends World
     public InstructionsScreen()
     {    
         super(1280, 720, 1);
-        getBackground().drawImage(image, 0, 0);
+        GreenfootImage instructions = new GreenfootImage("instructions.png");
+        instructions.scale(1280,720);
+        setBackground(instructions);
+        // setImage(Instructions image);
     }
 
     public void act() {

@@ -136,17 +136,33 @@ public class MyWorld extends World
     
     // Various methods to set transparencies of all images of characters
     public void makePlayer1Invisible(){
-        player1.imageLeft.setTransparency(0);
-        player1.imageRight.setTransparency(0);
-        player1.bigImageRight.setTransparency(0);
-        player1.bigImageRight.setTransparency(0);
+        for(GreenfootImage image : player1.p1IdleRight.getImages()) {
+            image.setTransparency(0);
+        }
+        for(GreenfootImage image : player1.p1IdleLeft.getImages()) {
+            image.setTransparency(0);
+        }
+        for(GreenfootImage image : player1.p1PunchRight.getImages()) {
+            image.setTransparency(0);
+        }
+        for(GreenfootImage image : player1.p1PunchLeft.getImages()) {
+            image.setTransparency(0);
+        }
     }
     
     public void makePlayer1Visible(){
-        player1.imageLeft.setTransparency(255);
-        player1.imageRight.setTransparency(255);
-        player1.bigImageRight.setTransparency(255);
-        player1.bigImageRight.setTransparency(255);
+        for(GreenfootImage image : player1.p1IdleRight.getImages()) {
+            image.setTransparency(255);
+        }
+        for(GreenfootImage image : player1.p1IdleLeft.getImages()) {
+            image.setTransparency(255);
+        }
+        for(GreenfootImage image : player1.p1PunchRight.getImages()) {
+            image.setTransparency(255);
+        }
+        for(GreenfootImage image : player1.p1PunchLeft.getImages()) {
+            image.setTransparency(255);
+        }
     }
     
     public void makePlayer2Invisible(){
@@ -167,12 +183,8 @@ public class MyWorld extends World
         // "up", "left", "down", "right", "n", "m"
         // "w", "a", "s", "d", "g", "h"
         super(1280, 720, 1); 
-        
-        // Add players to world
-        player1 = new Pig("w", "a", "s", "d", "g", "h");
-        player2 = new Snake("up", "left", "down", "right", "n", "m");
-        addObject(player1, 462, 435);
-        addObject(player2, 900, 425);
+    
+
         
         // Timers
         minTimer = new SimpleTimer();
@@ -186,6 +198,15 @@ public class MyWorld extends World
         addBars();
         addLabels();
         prepare();
+        
+        Background1 bb = new Background1();
+        addObject(bb, 670, 500);
+        
+        // Add players to world
+        player1 = new Pig("w", "a", "s", "d", "g", "h");
+        player2 = new Snake("up", "left", "down", "right", "n", "m");
+        addObject(player1, 462, 435);
+        addObject(player2, 900, 425);
     }
     
     /**
