@@ -27,10 +27,16 @@ public class Snake extends Character implements Playable
     private boolean alive = true;
     private boolean beingRespawned = false;
     private boolean isHit = false;
-
+    private boolean facingRight = false;
+    private boolean punch = false;
+    
     public static GreenfootImage imageRight = new GreenfootImage("snake.png");
     public static GreenfootImage imageLeft = new GreenfootImage("snake_left.png");
-
+    public static GifImage p2IdleLeft = new GifImage("snakeidle.gif");
+    public static GifImage p2IdleRight = new GifImage("snakeidle2.gif");
+    public static GifImage p2PunchLeft = new GifImage("snakepunchleft.gif");
+    public static GifImage p2PunchRight = new GifImage("snakepunchright.gif");
+        
     /**
      * Constructor for objects of class Snake
      */
@@ -50,10 +56,36 @@ public class Snake extends Character implements Playable
      */
     public void act()
     {
+        animations();
         controls(up, left, down, right, auto, special, this);
         gravity();
     }
 
+    public void animations()
+    {
+        if(facingRight == true){
+            setImage(p2IdleRight.getCurrentImage());
+        }
+        else
+        {
+            setImage(p2IdleLeft.getCurrentImage());
+        }
+        if(punch == true && facingRight == true){
+            for(int i = 0; i < 5; i++){
+                setImage(p2PunchRight.getCurrentImage());
+                //Greenfoot.delay(1);
+            }
+            punch = false;
+        }
+        else if(punch == true && facingRight == false){
+            for(int i = 0; i < 5; i++){
+                setImage(p2PunchLeft.getCurrentImage());
+                //Greenfoot.delay(1);
+            }
+            punch = false;
+        }
+    }
+    
     public int auto() {
         Bullet b;
         if(getImage() == imageLeft){
@@ -90,8 +122,14 @@ public class Snake extends Character implements Playable
 
     public void direction(String direction) {
         this.direction = direction;
-        if (direction.equals("left")) setImage(imageLeft);
-        if (direction.equals("right")) setImage(imageRight);
+        if (direction.equals("left")) {
+            setImage(imageLeft);
+            facingRight = false;
+        }
+        if (direction.equals("right")) {
+            setImage(imageRight);
+            facingRight = true;
+        }
     }
     
     // Getters and Setters

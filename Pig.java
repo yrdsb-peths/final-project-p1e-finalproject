@@ -39,7 +39,7 @@ public class Pig extends Character implements Playable
     public static GreenfootImage bigImageRight = new GreenfootImage("bigPig.png");
     public static GreenfootImage bigImageLeft = new GreenfootImage("bigPig_left.png");
     
-    // Gif element variables
+    // Gif sprite animations
     public static GifImage p1IdleRight = new GifImage("p1idleright.gif");
     public static GifImage p1IdleLeft = new GifImage("p1idleleft.gif");
     public static GifImage p1PunchLeft = new GifImage("p1punchleft.gif");

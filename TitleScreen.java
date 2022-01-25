@@ -15,6 +15,8 @@ public class TitleScreen extends World
      * 
      */
     Button playButton = new Button();
+    public static Pig pig;
+    public static Snake snake; 
     
     public TitleScreen()
     {    
