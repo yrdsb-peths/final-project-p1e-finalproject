@@ -88,7 +88,7 @@ public class Snake extends Character implements Playable
     
     public int auto() {
         Bullet b;
-        if(getImage() == imageLeft){
+        if(facingRight == false){
             b = new Bullet(-1, direction);
             b.getImage().scale(20, 20);
             getWorld().addObject(b, this.getX() - 50, this.getY());
@@ -105,7 +105,7 @@ public class Snake extends Character implements Playable
 
     public int special() {
         Bullet b;
-        if(getImage() == imageLeft){
+        if(facingRight == false){
             b = new Bullet(-2, direction);
             b.getImage().scale(200, 200);
             getWorld().addObject(b, this.getX() - 100, this.getY());
@@ -120,7 +120,7 @@ public class Snake extends Character implements Playable
         return 1;
     }
 
-    public void direction(String direction) {
+    /*public void direction(String direction) {
         this.direction = direction;
         if (direction.equals("left")) {
             setImage(imageLeft);
@@ -128,6 +128,14 @@ public class Snake extends Character implements Playable
         }
         if (direction.equals("right")) {
             setImage(imageRight);
+            facingRight = true;
+        }
+    }*/
+    
+    public void direction(String direction) {
+        if (direction.equals("left")){
+            facingRight = false;
+        } else if (direction.equals("right")){
             facingRight = true;
         }
     }
