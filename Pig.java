@@ -50,6 +50,12 @@ public class Pig extends Character implements Playable
     SimpleTimer specialDashTimer = new SimpleTimer();
     private int dashTicker = 0;
     private int specialDashTicker = 0;
+    SimpleTimer animTimer = new SimpleTimer();
+    
+    // Animation variables
+    boolean startedAnim = false;
+    int autoFrame = 0;
+    int specialFrame = 0;
     
     //act method booleans
     private boolean facingRight = true;
@@ -84,26 +90,42 @@ public class Pig extends Character implements Playable
     //All animations
     public void animations()
     {
-        if(facingRight == true){
-            setImage(p1IdleRight.getCurrentImage());
-        }
-        else
-        {
-            setImage(p1IdleLeft.getCurrentImage());
-        }
-        if(punch == true && facingRight == true){
-            for(int i = 0; i < 5; i++){
-                setImage(p1PunchRight.getCurrentImage());
-                //Greenfoot.delay(1);
+        if(startedAnim == true){
+            if(punch == true && facingRight == true){
+                if(autoFrame < 5){
+                    if(animTimer.millisElapsed() > 100){
+                        //setImage(p1PunchRight.getCurrentImage());
+                        setImage(p1PunchRight.getImages().get(autoFrame));
+                        autoFrame++;
+                        animTimer.mark();
+                    }
+                } else {
+                    punch = false;
+                    autoFrame = 0;
+                    startedAnim = false;
+                }
+            } else if(punch == true && facingRight == false){
+                if(autoFrame < 5){
+                    if(animTimer.millisElapsed() > 100){
+                        //setImage(p1PunchLeft.getCurrentImage());
+                        setImage(p1PunchLeft.getImages().get(autoFrame));
+                        autoFrame++;
+                        animTimer.mark();
+                    }
+                } else {
+                    punch = false;
+                    autoFrame = 0;
+                    startedAnim = false;
+                }
             }
-            punch = false;
-        }
-        else if(punch == true && facingRight == false){
-            for(int i = 0; i < 5; i++){
-                setImage(p1PunchLeft.getCurrentImage());
-                //Greenfoot.delay(1);
+        } else {
+            if(facingRight == true){
+                setImage(p1IdleRight.getCurrentImage());
             }
-            punch = false;
+            else
+            {
+                setImage(p1IdleLeft.getCurrentImage());
+            }
         }
     }
     
@@ -118,6 +140,12 @@ public class Pig extends Character implements Playable
         for(GreenfootImage image : p1IdleLeft.getImages()) {
             int wide = image.getWidth()*scalePercent/100;
             int high = image.getHeight()*scalePercent/100;
+            image.scale(50, 50);
+        }
+        for(GreenfootImage image : p1PunchRight.getImages()){
+            image.scale(50, 50);
+        }
+        for(GreenfootImage image : p1PunchLeft.getImages()){
             image.scale(50, 50);
         }
     }
@@ -135,6 +163,12 @@ public class Pig extends Character implements Playable
             //int high = image.getHeight()*scalePercent/100;
             image.scale(100, 100);
         }
+        for(GreenfootImage image : p1PunchRight.getImages()){
+            image.scale(100, 100);
+        }
+        for(GreenfootImage image : p1PunchLeft.getImages()){
+            image.scale(100, 100);
+        }
     }
     
     // Start auto attack
@@ -150,7 +184,11 @@ public class Pig extends Character implements Playable
     public void checkDash(){
         // Check if can dash
         if(startedDash == true){
-            // Start dash animation
+            if(startedAnim == false){
+                startedAnim = true;
+                animTimer.mark();
+            }
+            // Start dash
             if(dashTimer.millisElapsed() % 1 == 0){
                 dashTicker++;
                 if(facingRight == true){
@@ -162,7 +200,7 @@ public class Pig extends Character implements Playable
                 }
             }
             checkLandedHit();
-            // Stops dash animation
+            // Stops dash
             if(dashTicker >= 20){
                 startedDash = false;
                 hitOnce = false;
@@ -177,6 +215,10 @@ public class Pig extends Character implements Playable
         if(startedSpecial == true){
             // Start dash animation
             specialAnimationRescale();
+            if(startedAnim == false){
+                startedAnim = true;
+                animTimer.mark();
+            }
             if(specialDashTimer.millisElapsed() % 1 == 0){
                 specialDashTicker++;
                 if(facingRight){
@@ -263,6 +305,7 @@ public class Pig extends Character implements Playable
 
     public int special() {
         specialDashTimer.mark();
+        punch = true;
         startedSpecial = true;
         SP = 0;
         MyWorld.player2SpecialBar.setWidth(2);
