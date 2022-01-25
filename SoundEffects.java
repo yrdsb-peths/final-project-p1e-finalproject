@@ -11,6 +11,8 @@ import greenfoot.*;
  */
 public class SoundEffects
 {
+    static GreenfootSound theme = new GreenfootSound("finalDestination.mp3"); // Main theme
+
     // Method plays sound effect x, at volume y
     private static void playSound(GreenfootSound x, int y) {
         x.setVolume(y);
@@ -85,5 +87,15 @@ public class SoundEffects
     // When players jump 
     public static void jumpSound() {
         playSound(new GreenfootSound("jump.mp3"), 30);
+    }
+
+    // Plays the theme song until the scores screen appears
+    public static void playTheme() {
+        theme.setVolume(25);
+        theme.playLoop();
+    }
+
+    public static void stopTheme() {
+        theme.stop();
     }
 }

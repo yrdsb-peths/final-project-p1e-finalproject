@@ -44,6 +44,7 @@ public class ScoresWorld extends World
         ScoreUtilities.reverse(scores);
         displaySessionScore();
         displayScores();
+        SoundEffects.stopTheme();
         announceResult();
     }
 
