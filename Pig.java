@@ -158,7 +158,7 @@ public class Pig extends Character implements Playable
                     if (this.isTouching(PlatformYL.class)) move(-15);
                 } else {
                     move(-10);
-                    if (this.isTouching(PlatofrmYR.class)) move(15);
+                    if (this.isTouching(PlatformYR.class)) move(15);
                 }
             }
             checkLandedHit();
