@@ -9,7 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class TitleScreen extends World
 {
     boolean lever = false;
-
+    boolean leverB = false;
+    
     /**
      * Constructor for objects of class TitleScreen.
      * 
@@ -31,10 +32,17 @@ public class TitleScreen extends World
 
     public void act() {
         // Press space to continue
-        
         if ((("space").equals(Greenfoot.getKey()) && !lever) || (Greenfoot.mouseClicked(playButton) && !lever)) {
             changeWorld();
             lever = true;
+        }
+        runOnce();
+    }
+    
+    public void runOnce() {
+        if (!leverB) {
+            SoundEffects.playTheme();
+            leverB = true;
         }
     }
 

@@ -166,13 +166,33 @@ public class MyWorld extends World
     }
     
     public void makePlayer2Invisible(){
-        player2.imageLeft.setTransparency(0);
-        player2.imageRight.setTransparency(0);
+        for(GreenfootImage image : player2.p2IdleRight.getImages()) {
+            image.setTransparency(0);
+        }
+        for(GreenfootImage image : player2.p2IdleLeft.getImages()) {
+            image.setTransparency(0);
+        }
+        for(GreenfootImage image : player2.p2PunchRight.getImages()) {
+            image.setTransparency(0);
+        }
+        for(GreenfootImage image : player2.p2PunchLeft.getImages()) {
+            image.setTransparency(0);
+        }
     }
     
     public void makePlayer2Visible(){
-        player2.imageLeft.setTransparency(255);
-        player2.imageRight.setTransparency(255);
+        for(GreenfootImage image : player2.p2IdleRight.getImages()) {
+            image.setTransparency(255);
+        }
+        for(GreenfootImage image : player2.p2IdleLeft.getImages()) {
+            image.setTransparency(255);
+        }
+        for(GreenfootImage image : player2.p2PunchRight.getImages()) {
+            image.setTransparency(255);
+        }
+        for(GreenfootImage image : player2.p2PunchLeft.getImages()) {
+            image.setTransparency(255);
+        }
     }
 
     /**
