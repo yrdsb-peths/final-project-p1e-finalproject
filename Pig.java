@@ -84,8 +84,10 @@ public class Pig extends Character implements Playable
                 dashTicker++;
                 if(getImage() == imageRight){
                     move(10);
+                    if (this.isTouching(PlatformYL.class)) move(-10);
                 } else if(getImage() == imageLeft){
                     move(-10);
+                    if (this.isTouching(PlatformYR.class)) move(10);
                 }
             }
             checkLandedHit();
@@ -107,8 +109,10 @@ public class Pig extends Character implements Playable
                 specialDashTicker++;
                 if(getImage() == bigImageRight){
                     move(15);
+                    if (this.isTouching(PlatformYL.class)) move(-10);
                 } else if(getImage() == bigImageLeft){
                     move(-15);
+                    if (this.isTouching(PlatformYR.class)) move(10);
                 }
             }
             checkLandedHit();
@@ -164,7 +168,7 @@ public class Pig extends Character implements Playable
         specialDashTimer.mark();
         startedSpecial = true;
         SP = 0;
-        MyWorld.player2SpecialBar.setWidth(2);
+        MyWorld.player1SpecialBar.setWidth(2);
         if(getImage() == imageLeft){
             setImage(bigImageLeft);
             setLocation(getX(), getY() - 21);

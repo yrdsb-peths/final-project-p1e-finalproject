@@ -91,8 +91,15 @@ public class SoundEffects
 
     // Plays the theme song until the scores screen appears
     public static void playTheme() {
-        theme.setVolume(25);
-        theme.playLoop();
+        if (theme.isPlaying()) {
+            theme.stop();
+            theme.setVolume(25);
+            theme.playLoop();
+        }
+        else {
+            theme.setVolume(25);
+            theme.playLoop();
+        }
     }
 
     public static void stopTheme() {
