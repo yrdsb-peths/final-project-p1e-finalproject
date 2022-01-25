@@ -204,6 +204,7 @@ public class MyWorld extends World
         // "w", "a", "s", "d", "g", "h"
         super(1280, 720, 1); 
         prepare();
+        setBackground(new GreenfootImage("gamebackground.jpg"));
         
         // Timers
         minTimer = new SimpleTimer();

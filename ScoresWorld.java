@@ -46,6 +46,22 @@ public class ScoresWorld extends World
         displayScores();
         SoundEffects.stopTheme();
         announceResult();
+        setBackground();
+    }
+
+    private void setBackground() {
+        if (winner == 1) {
+            GreenfootImage b = new GreenfootImage("Player1Wins.png");
+            setBackground(b);
+        }
+        if (winner == 2) {
+            GreenfootImage b = new GreenfootImage("Player2Wins.png");
+            setBackground(b);
+        }
+        if (winner == 0) {
+            GreenfootImage b = new GreenfootImage("tie.jpg");
+            setBackground(b);
+        }
     }
 
     /**
@@ -61,13 +77,13 @@ public class ScoresWorld extends World
      * Create the labels to display top 5 previous (or 4 previous + 1 current) high scores
      */
     private void displayScores() {
-        Label title = new Label("Top 5 High Scores", 100);
-        addObject(title, getWidth()/2, (getHeight()/2)-100);
-        Label underline = new Label("________________", 100);
-        addObject(underline, getWidth()/2, (getHeight()/2)-90);
+        Label title = new Label("Top 5 High Scores", 50);
+        addObject(title, getWidth()/2+300, (getHeight()/2)-50);
+        Label underline = new Label("________________", 50);
+        addObject(underline, getWidth()/2+300, (getHeight()/2)-45);
         for (int i = 0; i < 5; i++) {
-            Label label = new Label(scores[i][0] + " scored on " + scores[i][1], 75);
-            addObject(label, getWidth()/2, (getHeight()/2) + (i*70));
+            Label label = new Label(scores[i][0] + " scored on " + scores[i][1], 35);
+            addObject(label, getWidth()/2+300, (getHeight()/2) + (i*35));
         }
     }
 
@@ -75,7 +91,7 @@ public class ScoresWorld extends World
      * Create the label to display the session score
      */
     private void displaySessionScore() {
-        Label l = new Label("Winner's Score: " + Integer.toString(score), 125);
-        addObject(l, getWidth()/2, (getHeight()/2)-250);
+        Label l = new Label("Winner's Score: " + Integer.toString(score), 62);
+        addObject(l, getWidth()/2+300, (getHeight()/2)-250);
     }
 }
