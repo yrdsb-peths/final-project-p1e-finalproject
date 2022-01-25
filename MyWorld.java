@@ -203,8 +203,13 @@ public class MyWorld extends World
         // "up", "left", "down", "right", "n", "m"
         // "w", "a", "s", "d", "g", "h"
         super(1280, 720, 1); 
-    
-
+        prepare();
+        
+        // Add players
+        player1 = new Pig("w", "a", "s", "d", "g", "h");
+        addObject(player1,640-200,410);
+        player2 = new Snake("up", "left", "down", "right", "n", "m");
+        addObject(player2,640+200,410);
         
         // Timers
         minTimer = new SimpleTimer();
@@ -217,16 +222,7 @@ public class MyWorld extends World
         // Add elements to world
         addBars();
         addLabels();
-        prepare();
         
-        Background1 bb = new Background1();
-        addObject(bb, 670, 500);
-        
-        // Add players to world
-        player1 = new Pig("w", "a", "s", "d", "g", "h");
-        player2 = new Snake("up", "left", "down", "right", "n", "m");
-        addObject(player1, 462, 435);
-        addObject(player2, 900, 425);
     }
     
     /**
@@ -236,13 +232,15 @@ public class MyWorld extends World
     private void prepare()
     {
         PlatformX platformX = new PlatformX();
-        addObject(platformX,656,487);
+        addObject(platformX,637,491);
         PlatformYL platformYL = new PlatformYL();
-        addObject(platformYL,346,589);
+        addObject(platformYL,322,593);
         PlatformYR platformYR = new PlatformYR();
-        addObject(platformYR,966,590);
-        PlatformSmall platform = new PlatformSmall();
-        addObject(platform,857,312);
+        addObject(platformYR,953,593);
+        PlatformSmall platformSmall = new PlatformSmall();
+        addObject(platformSmall,640,302);
+        Background1 bb = new Background1();
+        addObject(bb, 640, 500);
     }
     
     // Add labels to the game

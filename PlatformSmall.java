@@ -14,6 +14,6 @@ public class PlatformSmall extends Platform
      */
     public void act()
     {
-        // Add your action code here.
+
     }
 }
