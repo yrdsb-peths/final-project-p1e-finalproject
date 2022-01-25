@@ -8,6 +8,9 @@ import greenfoot.*;
  * 
  * NOTE: Due to how some of the files were downloaded, Greenfoot will throw a warning/error because
  * of these files. We are certain that the game works fine still and that the sound effects still work
+ * 
+ * Edit: The files were re-processed with ffmpeg, but Greenfoot still might throw a random error with these
+ * files for some reason.
  */
 public class SoundEffects
 {
