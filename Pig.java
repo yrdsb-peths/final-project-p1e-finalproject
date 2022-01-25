@@ -155,8 +155,10 @@ public class Pig extends Character implements Playable
                 dashTicker++;
                 if(facingRight == true){
                     move(10);
+                    if (this.isTouching(PlatformYL.class)) move(-15);
                 } else {
                     move(-10);
+                    if (this.isTouching(PlatformYR.class)) move(15);
                 }
             }
             checkLandedHit();
@@ -179,8 +181,10 @@ public class Pig extends Character implements Playable
                 specialDashTicker++;
                 if(facingRight){
                     move(15);
+                    if (this.isTouching(PlatformYL.class)) move(-15);
                 } else {
                     move(-15);
+                    if (this.isTouching(PlatformYR.class)) move(15);
                 }
             }
             checkLandedHit();
