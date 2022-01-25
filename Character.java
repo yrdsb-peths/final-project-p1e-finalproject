@@ -32,7 +32,7 @@ public class Character extends Actor
      * @param right String/key to move right and setting image to go right
      * @param auto String/key to use Playable's auto move
      * @param special String/key to use Playble's special move
-     * @param actor String/key The actor that is to be controlled
+     * @param actor The actor that is to be controlled
      */
     public void controls(String up, String left, String down, String right, String auto, String special, Playable actor) {
         // Jump

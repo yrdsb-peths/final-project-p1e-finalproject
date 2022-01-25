@@ -37,7 +37,7 @@ public class ScoreUtilities {
      */
     public static String getDate(String input) {
         int delimiter = input.indexOf('-');
-        return input.substring(0, delimiter);
+        return input.substring(0, delimiter); // Obtains left side of "-"
     }
 
     /**
@@ -48,7 +48,7 @@ public class ScoreUtilities {
      */
     public static String getScore(String input) {
         int delimiter = input.indexOf('-');
-        return input.substring(delimiter + 1, input.length());
+        return input.substring(delimiter + 1, input.length()); // Obtains right side of "-"
     }
 
     /**
@@ -77,17 +77,15 @@ public class ScoreUtilities {
     /**
      * Method accesses Words.txt and stores all entries into an ArrayList<String>
      * 
-     * @return ArrayList<String> 
+     * @return ArrayList<String> with each index reflecting a line in .txt file
      */
     public static ArrayList<String> extractScores() {
         ArrayList<String> output = new ArrayList<String>();
         try {
-            File file = new File("Scores.txt"); // File that contains words
-            Scanner scanner = new Scanner(file); // To extract words
+            File file = new File("Scores.txt"); // File that contains scores
+            Scanner scanner = new Scanner(file); // To extract scores
 
-            while (scanner.hasNextLine()) {
-                output.add(scanner.nextLine().toLowerCase()); // .txt -> ArrayList
-            }
+            while (scanner.hasNextLine()) output.add(scanner.nextLine().toLowerCase()); // .txt -> ArrayList
 
             scanner.close(); // Destroy scanner
         } 
@@ -111,7 +109,7 @@ public class ScoreUtilities {
             fw.close();
         } 
         catch (IOException ioe) {
-            System.err.println("IOException: " + ioe.getMessage());
+            System.err.println("Something went wrong while trying to read Scores.txt");
         }
     }
 

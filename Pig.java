@@ -176,6 +176,7 @@ public class Pig extends Character implements Playable
         return 1;
     }
 
+    // Called through Character class
     public void direction(String direction) {
         if (direction.equals("left")){
             if(specialDashTicker > 0){
