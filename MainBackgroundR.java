@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MainBackgroundR here.
+ * Actor for small right corner of platform
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Carl
+ * @version 2022.01.26
  */
 public class MainBackgroundR extends Background
 {

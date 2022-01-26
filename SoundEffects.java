@@ -49,7 +49,7 @@ public class SoundEffects
     
     // Melee character attack auto sound
     public static void dashAutoSound(){
-        
+        playSound(new GreenfootSound("dashAutoSound.mp3"), 30);
     }
     
     // Melee character attack special sound
@@ -75,6 +75,11 @@ public class SoundEffects
     // Death sound when a character dies
     public static void deathSound(){
         playSound(new GreenfootSound("deathSound.mp3"), 30);
+    }
+    
+    // Respawn sound when a character respawns
+    public static void respawnSound(){
+        playSound(new GreenfootSound("respawnSound.mp3"), 30);
     }
     
     // Victory sound when a player wins

@@ -11,14 +11,13 @@ public class CountdownScreen extends World
     // Countdown Variables
     Label count;
     boolean acted = false;
+    
+    GreenfootImage background = new GreenfootImage("CountdownBackground.jpg");
 
     /**
      * Constructor for objects of class CountdownScreen.
      * 
      */
-    
-    GreenfootImage background = new GreenfootImage("CountdownBackground.jpg");
-    
     public CountdownScreen()
     {    
         super(1280, 720, 1); 
@@ -44,6 +43,8 @@ public class CountdownScreen extends World
             count.setValue(i);
             Greenfoot.delay(60);
         }
+        
+        // Start the game by switching to MyWorld
         count.setValue("START!");
         SoundEffects.startSound();
         Greenfoot.delay(30);

@@ -22,7 +22,6 @@ public class Bullet extends Actor
     public Bullet(int bulletDirection, String playerDirection){
         this.bulletDirection = bulletDirection;
         this.playerDirection = playerDirection;
-        
         setImage(snakeShot);
     }
     

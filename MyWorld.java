@@ -20,6 +20,10 @@ public class MyWorld extends World
     int oneStock = 3; 
     int twoStock = 3;
     
+    // Respawn variables
+    boolean playingPlayer1RespawnSound = false;
+    boolean playingPlayer2RespawnSound = false;
+    
     // HP bar variables
     public static HPBar player1HPBar;
     public static HPBar player2HPBar;
@@ -61,6 +65,7 @@ public class MyWorld extends World
             if (player1.isAtEdge() || player1.getHP() <= 0) {
                 // Respawn if Player 1 has lives remaining
                 if (oneStock > 0) {
+                    SoundEffects.deathSound();
                     player1.setAlive(false);
                     player1.setBeingRespawned(true);
                     oneStock--;
@@ -74,10 +79,18 @@ public class MyWorld extends World
                 else gameOver(player1);
             }
         } else {
-            // Waits 3 seconds to respawn the Player
+            // Wait 2 seconds to play respawn sound
+            if(player1RespawnTimer.millisElapsed() > 1500){
+                if(playingPlayer1RespawnSound == false){
+                    SoundEffects.respawnSound();
+                    playingPlayer1RespawnSound = true;
+                }
+            }
+            
+            // Wait 3 seconds to respawn player 1
             if(player1RespawnTimer.millisElapsed() > 3000){
+                // Reset all variables
                 player1.setLocation(x, y);
-                
                 makePlayer1Visible();
                 player1.setHP(4);
                 player1HPBar.setWidth(400);
@@ -85,6 +98,7 @@ public class MyWorld extends World
                 player1HPBar.setLocation(220, 100);
                 player1.setAlive(true);
                 player1.setBeingRespawned(false);
+                playingPlayer1RespawnSound = false;
             }
         }
         
@@ -94,6 +108,7 @@ public class MyWorld extends World
             if (player2.isAtEdge() || player2.getHP() <= 0) {
                 // Respawn if Player 2 has lives remaining
                 if (twoStock > 0) {
+                    SoundEffects.deathSound();
                     player2.setAlive(false);
                     player2.setBeingRespawned(true);
                     twoStock--;
@@ -107,10 +122,17 @@ public class MyWorld extends World
                 else gameOver(player2);
             }
         } else {
-            // Wait 3 seconds to respawn the player
+            // Wait 2 seconds to play respawn sound
+            if(player2RespawnTimer.millisElapsed() > 1500){
+                if(playingPlayer2RespawnSound == false){
+                    SoundEffects.respawnSound();
+                    playingPlayer2RespawnSound = true;
+                }
+            }
+            // Wait 3 seconds to respawn player 2
             if(player2RespawnTimer.millisElapsed() > 3000){
+                // Reset all variables
                 player2.setLocation(x, y);
-                
                 makePlayer2Visible();
                 player2.setHP(4);
                 player2HPBar.setWidth(400);
@@ -118,6 +140,7 @@ public class MyWorld extends World
                 player2HPBar.setLocation(1050, 100);
                 player2.setAlive(true);
                 player2.setBeingRespawned(false);
+                playingPlayer2RespawnSound = false;
             }
         }
     }
@@ -232,6 +255,8 @@ public class MyWorld extends World
         addObject(player1,640-200,410);
         player2 = new Snake("up", "left", "down", "right", "n", "m");
         addObject(player2,640+200,410);
+        makePlayer1Visible();
+        makePlayer2Visible();
         
         addBackground(new MainBackgroundR());
         addBackground(new MainBackgroundL());

@@ -3,6 +3,7 @@ comment0.target=CountdownScreen
 comment0.text=\r\n\ Play\ a\ countdown\ before\ the\ game\ starts\r\n\ \r\n\ @author\ Yoyo,\ Carl\r\n\ @version\ 2022.01.25\r\n
 comment1.params=
 comment1.target=CountdownScreen()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ CountdownScreen.\r\n\ \r\n
 comment2.params=
 comment2.target=void\ act()
 comment3.params=

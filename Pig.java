@@ -176,6 +176,7 @@ public class Pig extends Character implements Playable
         dashTimer.mark();
         startedDash = true;
         canUpdateSpecialBar = true;
+        SoundEffects.dashAutoSound();
         return 1;
     }
     
