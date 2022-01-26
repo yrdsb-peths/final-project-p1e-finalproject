@@ -1,6 +1,0 @@
-#BlueJ class context
-comment0.target=StatsBar
-comment0.text=\r\n\ Parent\ class\ for\ all\ StatBars\r\n\ \r\n\ @author\ Yoyo\r\n\ @version\ 2022.01.20\r\n
-comment1.params=
-comment1.target=void\ act()
-numComments=2
