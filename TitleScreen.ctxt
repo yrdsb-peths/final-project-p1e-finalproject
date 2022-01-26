@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=TitleScreen
+comment0.text=\r\n\ The\ first\ world\ to\ be\ loaded\r\n\ \r\n\ @author\ Jayden,\ Carl\r\n\ @version\ 2022.01.26\r\n
+comment1.params=
+comment1.target=TitleScreen()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ TitleScreen.\r\n\ \r\n
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ runOnce()
+comment4.params=
+comment4.target=void\ changeWorld()
+numComments=5
