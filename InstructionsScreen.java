@@ -20,7 +20,6 @@ public class InstructionsScreen extends World
         GreenfootImage instructions = new GreenfootImage("instructions.png");
         instructions.scale(1280,720);
         setBackground(instructions);
-        // setImage(Instructions image);
     }
 
     public void act() {

@@ -8,7 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MainBackgroundR extends Background
 {
+    GreenfootImage mainBR = new GreenfootImage("MainPlatformR.png");
+    
     public MainBackgroundR() {
+        setImage(mainBR);
         setScale(this);
     }
 }
