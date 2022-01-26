@@ -262,7 +262,13 @@ public class MyWorld extends World
     private void prepare()
     {
         addBackground(new MainBackground());
-
+        
+        // Add top platform
+        PlatformSmall platformSmall = new PlatformSmall();
+        addObject(platformSmall,640,312);
+        TopBackground tb = new TopBackground();
+        addObject(tb, 640, 325);
+        
         // Add players
         player1 = new Pig("w", "a", "s", "d", "g", "h");
         addObject(player1,640-200,410);
@@ -280,8 +286,7 @@ public class MyWorld extends World
         addObject(platformYL,330,591);
         PlatformYR platformYR = new PlatformYR();
         addObject(platformYR,948,589);
-        PlatformSmall platformSmall = new PlatformSmall();
-        addObject(platformSmall,640,312);
+    
     }
     
     // Helper method to add background assests because typing on a laggy greenfoot editor

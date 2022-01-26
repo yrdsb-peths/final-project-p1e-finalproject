@@ -74,12 +74,12 @@ public class SoundEffects
     
     // Death sound when a character dies
     public static void deathSound(){
-        playSound(new GreenfootSound("deathSound.mp3"), 30);
+        playSound(new GreenfootSound("deathSound.mp3"), 50);
     }
     
     // Respawn sound when a character respawns
     public static void respawnSound(){
-        playSound(new GreenfootSound("respawnSound.mp3"), 30);
+        playSound(new GreenfootSound("respawnSound.mp3"), 50);
     }
     
     // Victory sound when a player wins
