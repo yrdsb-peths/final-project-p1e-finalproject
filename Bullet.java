@@ -17,10 +17,13 @@ public class Bullet extends Actor
     
     private int speed = 5;
     private boolean startMove = false;
+    GreenfootImage snakeShot = new GreenfootImage("snakebullet.png");
     
     public Bullet(int bulletDirection, String playerDirection){
         this.bulletDirection = bulletDirection;
         this.playerDirection = playerDirection;
+        
+        setImage(snakeShot);
     }
     
     // Getter and Setter

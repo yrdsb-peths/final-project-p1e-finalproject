@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Player 1 - A playable character that uses movement as an attacks
  * 
- * @author Yoyo and Carl
+ * @author Yoyo, Carl and Jayden
  * @version 2022.01.20
  */
 public class Pig extends Character implements Playable

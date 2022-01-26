@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Snake
-comment0.text=\r\n\ Player\ 2\ -\ Character\ that\ attacks\ using\ ranged\ abilities\ at\ the\ cost\ of\ low\ mobility\r\n\ \r\n\ @author\ Yoyo\ and\ Carl\r\n\ @version\ 2022.01.20\r\n
+comment0.text=\r\n\ Player\ 2\ -\ Character\ that\ attacks\ using\ ranged\ abilities\ at\ the\ cost\ of\ low\ mobility\r\n\ \r\n\ @author\ Yoyo,\ Carl\ and\ Jayden\r\n\ @version\ 2022.01.20\r\n
 comment1.params=up\ left\ down\ right\ auto\ special
 comment1.target=Snake(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Snake\r\n

@@ -204,12 +204,7 @@ public class MyWorld extends World
         // "w", "a", "s", "d", "g", "h"
         super(1280, 720, 1); 
         prepare();
-        
-        // Add players
-        player1 = new Pig("w", "a", "s", "d", "g", "h");
-        addObject(player1,640-200,410);
-        player2 = new Snake("up", "left", "down", "right", "n", "m");
-        addObject(player2,640+200,410);
+        setBackground(new GreenfootImage("gamebackground.jpg"));
         
         // Timers
         minTimer = new SimpleTimer();
@@ -222,7 +217,6 @@ public class MyWorld extends World
         // Add elements to world
         addBars();
         addLabels();
-        
     }
     
     /**
@@ -231,16 +225,30 @@ public class MyWorld extends World
      */
     private void prepare()
     {
+        addBackground(new MainBackground());
+
+        // Add players
+        player1 = new Pig("w", "a", "s", "d", "g", "h");
+        addObject(player1,640-200,410);
+        player2 = new Snake("up", "left", "down", "right", "n", "m");
+        addObject(player2,640+200,410);
+        
+        addBackground(new MainBackgroundR());
+        addBackground(new MainBackgroundL());
         PlatformX platformX = new PlatformX();
-        addObject(platformX,637,491);
+        addObject(platformX,640,485);
         PlatformYL platformYL = new PlatformYL();
-        addObject(platformYL,322,593);
+        addObject(platformYL,330,591);
         PlatformYR platformYR = new PlatformYR();
-        addObject(platformYR,953,593);
+        addObject(platformYR,948,589);
         PlatformSmall platformSmall = new PlatformSmall();
-        addObject(platformSmall,640,302);
-        Background1 bb = new Background1();
-        addObject(bb, 640, 500);
+        addObject(platformSmall,640,312);
+    }
+    
+    // Helper method to add background assests because typing on a laggy greenfoot editor
+    // does NOT help my nerves
+    private void addBackground(Background x) {
+        addObject(x, 640, 500);
     }
     
     // Add labels to the game
