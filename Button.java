@@ -7,12 +7,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class Button extends Actor
-{
-    /**
-     * Act - do whatever the button wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    
+{ 
     GreenfootImage buttonIdle = new GreenfootImage("playbutton2.png");
 
 
@@ -28,7 +23,8 @@ public class Button extends Actor
         if(Greenfoot.mouseClicked(this))
         {
             setImage(new GreenfootImage("playbutton3.png"));
-            Greenfoot.delay(3);
+            Greenfoot.setWorld(new InstructionsScreen());
+            SoundEffects.playTheme();
         }
         
         setImage(buttonIdle);
@@ -36,7 +32,6 @@ public class Button extends Actor
     
     private void buttonHover()
     {
-
         int transparency = 255;
 
         for(int i = 0; i < 10; i++) {
