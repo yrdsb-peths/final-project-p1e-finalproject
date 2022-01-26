@@ -24,9 +24,6 @@ public class CountdownScreen extends World
         background.scale(1280, 720);
         setBackground(background);
         
-        Heart h = new Heart();
-        addObject(h, 500, 500);
-        
         count = new Label(3, 200);
         addObject(count, getWidth()/2, getHeight()/2);
     }

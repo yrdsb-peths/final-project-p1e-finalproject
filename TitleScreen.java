@@ -3,22 +3,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * The first world to be loaded
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jayden, Carl
+ * @version 2022.01.26
  */
 public class TitleScreen extends World
 {
     boolean lever = false;
     boolean leverB = false;
+
+    Button playButton = new Button();
+    public static Pig pig;
+    public static Snake snake; 
     
     /**
      * Constructor for objects of class TitleScreen.
      * 
      */
-    Button playButton = new Button();
-    public static Pig pig;
-    public static Snake snake; 
-    
     public TitleScreen()
     {    
         super(1280, 720, 1); 
@@ -26,10 +26,10 @@ public class TitleScreen extends World
         title.scale(1280,720);
         setBackground(title);
         
-        
         addObject(playButton, getWidth()/2, getHeight()/2 + 100);
     }
 
+    // Act method
     public void act() {
         // Press space to continue
         if ((("space").equals(Greenfoot.getKey()) && !lever) || (Greenfoot.mouseClicked(playButton) && !lever)) {

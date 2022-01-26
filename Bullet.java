@@ -8,10 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Bullet extends Actor
 {
-    /**
-     * Act - do whatever the Bullet wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    // Default variables
     private int bulletDirection;
     private String playerDirection;
     
@@ -19,6 +16,7 @@ public class Bullet extends Actor
     private boolean startMove = false;
     GreenfootImage snakeShot = new GreenfootImage("snakebullet.png");
     
+    // Bullet constructor
     public Bullet(int bulletDirection, String playerDirection){
         this.bulletDirection = bulletDirection;
         this.playerDirection = playerDirection;
@@ -34,8 +32,13 @@ public class Bullet extends Actor
         bulletDirection = newDirection;
     }
     
+     /**
+     * Act - do whatever the Bullet wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
     public void act()
     {
+        // Remove bullet if out of world or touching pig 
         if(this.getX() <= 50 || this.getX() >= 1230){
             getWorld().removeObject(this);
         } else if(isTouching(Pig.class)){
