@@ -15,7 +15,7 @@ public class Snake extends Character implements Playable
     private String auto;
     private String special;
     
-    // Direction
+    // Direction - Spawns facing left
     private String direction = "left";
 
     // Default variables
@@ -84,6 +84,7 @@ public class Snake extends Character implements Playable
      */
     public void act()
     {
+        // Constantly check animations, controls and gravity
         animations();
         controls(up, left, down, right, auto, special, this);
         gravity();

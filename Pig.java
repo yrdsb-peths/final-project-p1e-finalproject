@@ -77,6 +77,7 @@ public class Pig extends Character implements Playable
      */
     public void act()
     {
+        // Constantly check animations, controls, gravity, and if pig can use abilities
         animations();
         controls(up, left, down, right, auto, special, this);
         gravity();
@@ -185,6 +186,7 @@ public class Pig extends Character implements Playable
             // Start dash
             if(dashTimer.millisElapsed() % 1 == 0){
                 dashTicker++;
+                // Animate a dash based on direction pig is facing
                 if(facingRight == true){
                     move(10);
                     if (this.isTouching(PlatformYL.class)) move(-15);
@@ -215,6 +217,7 @@ public class Pig extends Character implements Playable
             }
             if(specialDashTimer.millisElapsed() % 1 == 0){
                 specialDashTicker++;
+                // Animate a dash based on direction player is facing
                 if(facingRight){
                     move(15);
                     if (this.isTouching(PlatformYL.class)) move(-15);
@@ -230,11 +233,6 @@ public class Pig extends Character implements Playable
                 startedSpecial = false;
                 specialDashTicker = 0;
                 idleAnimationRescale();
-                if(getImage() == bigImageRight){
-                    setImage(imageRight);
-                } else if(getImage() == bigImageLeft){
-                    setImage(imageLeft);
-                }
             }
         }
     }
