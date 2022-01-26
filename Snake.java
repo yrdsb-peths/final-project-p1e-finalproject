@@ -2,7 +2,7 @@ import greenfoot.*;
 /**
  * Player 2 - Character that attacks using ranged abilities at the cost of low mobility
  * 
- * @author Yoyo and Carl
+ * @author Yoyo, Carl and Jayden
  * @version 2022.01.20
  */
 public class Snake extends Character implements Playable

@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Pig
-comment0.text=\r\n\ Player\ 1\ -\ A\ playable\ character\ that\ uses\ movement\ as\ an\ attacks\r\n\ \r\n\ @author\ Yoyo\ and\ Carl\r\n\ @version\ 2022.01.20\r\n
+comment0.text=\r\n\ Player\ 1\ -\ A\ playable\ character\ that\ uses\ movement\ as\ an\ attacks\r\n\ \r\n\ @author\ Yoyo,\ Carl\ and\ Jayden\r\n\ @version\ 2022.01.20\r\n
 comment1.params=up\ left\ down\ right\ auto\ special
 comment1.target=Pig(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
 comment10.params=
