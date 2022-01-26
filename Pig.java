@@ -19,10 +19,8 @@ public class Pig extends Character implements Playable
     // Direction - Spawns facing right
     private String direction = "right";
 
-    // Stocks
+    // Default variables
     public int stock = 3;
-    
-    // Player variables
     private int originalHP = 4;
     private int HP = 4;
     private int SP = 1;
@@ -60,7 +58,9 @@ public class Pig extends Character implements Playable
     private boolean facingRight = true;
     private boolean punch = false;
     
-    
+    /**
+     * Constructor for objects of class Pig
+     */
     public Pig(String up, String left, String down, String right, String auto, String special) {
         this.up = up;
         this.left = left;
@@ -86,14 +86,14 @@ public class Pig extends Character implements Playable
         checkSpecialDash();
     }
     
-    //All animations
+    // All animations
     public void animations()
     {
         if(startedAnim == true){
+            // Play punch animation if pig is dashing
             if(punch == true && facingRight == true){
                 if(autoFrame < 5){
                     if(animTimer.millisElapsed() > 100){
-                        //setImage(p1PunchRight.getCurrentImage());
                         setImage(p1PunchRight.getImages().get(autoFrame));
                         autoFrame++;
                         animTimer.mark();
@@ -106,7 +106,6 @@ public class Pig extends Character implements Playable
             } else if(punch == true && facingRight == false){
                 if(autoFrame < 5){
                     if(animTimer.millisElapsed() > 100){
-                        //setImage(p1PunchLeft.getCurrentImage());
                         setImage(p1PunchLeft.getImages().get(autoFrame));
                         autoFrame++;
                         animTimer.mark();
@@ -118,6 +117,7 @@ public class Pig extends Character implements Playable
                 }
             }
         } else {
+            // Play idle animation if pig isn't dashing
             if(facingRight == true){
                 setImage(p1IdleRight.getCurrentImage());
             }
@@ -153,13 +153,9 @@ public class Pig extends Character implements Playable
     public void specialAnimationRescale() {
         int scalePercent = 200;
         for(GreenfootImage image : p1IdleRight.getImages()) {
-            //int wide = image.getWidth()*scalePercent/100;
-            //int high = image.getHeight()*scalePercent/100;
             image.scale(100, 100);
         }
         for(GreenfootImage image : p1IdleLeft.getImages()) {
-            //int wide = image.getWidth()*scalePercent/100;
-            //int high = image.getHeight()*scalePercent/100;
             image.scale(100, 100);
         }
         for(GreenfootImage image : p1PunchRight.getImages()){
@@ -248,6 +244,7 @@ public class Pig extends Character implements Playable
     // Check if dash hits opposing player
     public void checkLandedHit(){
         if(isTouching(Snake.class)){
+            // Changes special bar value if applicable
             if(canUpdateSpecialBar == true){
                 canUpdateSpecialBar = false;
                 SoundEffects.hitByDashSound();
@@ -256,6 +253,8 @@ public class Pig extends Character implements Playable
                 MyWorld.player1.setSpecial(MyWorld.player1.getSpecial() + 1);
                 MyWorld.player1SpecialBar.setWidth(MyWorld.player1.getSpecial() + 1);
             }
+            
+            // Knockback the snake if hit
             if(hitOnce == false){
                 hitOnce = true;
                 /*if(getImage() == imageRight || getImage() == bigImageRight){
@@ -295,23 +294,18 @@ public class Pig extends Character implements Playable
         }
     }
 
+    // Start special attack
     public int special() {
         specialDashTimer.mark();
         punch = true;
         startedSpecial = true;
         SP = 0;
         MyWorld.player2SpecialBar.setWidth(2);
-        if(getImage() == imageLeft){
-            setImage(bigImageLeft);
-            setLocation(getX(), getY() - 21);
-        } else if(getImage() == imageRight){
-            setImage(bigImageRight);
-            setLocation(getX(), getY() - 21);
-        }
         SoundEffects.dashSpecialSound();
         return 1;
     }
 
+    // Changes direction of pig through facingRight boolean
     public void direction(String direction) {
         if (direction.equals("left")){
             facingRight = false;

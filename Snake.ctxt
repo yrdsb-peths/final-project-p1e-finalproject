@@ -29,7 +29,6 @@ comment5.params=
 comment5.target=int\ special()
 comment6.params=direction
 comment6.target=void\ direction(java.lang.String)
-comment6.text=public\ void\ direction(String\ direction)\ {\r\n\ \ \ \ \ \ \ \ this.direction\ \=\ direction;\r\n\ \ \ \ \ \ \ \ if\ (direction.equals("left"))\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ setImage(imageLeft);\r\n\ \ \ \ \ \ \ \ \ \ \ \ facingRight\ \=\ false;\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ if\ (direction.equals("right"))\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ setImage(imageRight);\r\n\ \ \ \ \ \ \ \ \ \ \ \ facingRight\ \=\ true;\r\n\ \ \ \ \ \ \ \ }\r\n}
 comment7.params=
 comment7.target=int\ getHP()
 comment8.params=newHP

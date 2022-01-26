@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.ArrayList;
 
 /**
  * Main game world
@@ -32,6 +33,10 @@ public class MyWorld extends World
     HPBarEmpty player1HPBarEmpty;
     HPBarEmpty player2HPBarEmpty;
     
+    // Hearts variables
+    ArrayList<Heart> player1Hearts = new ArrayList<Heart>();
+    ArrayList<Heart> player2Hearts = new ArrayList<Heart>();
+    
     // Special bar variables
     public static SpecialBar player1SpecialBar;
     public static SpecialBar player2SpecialBar;
@@ -63,15 +68,18 @@ public class MyWorld extends World
         if(player1.getBeingRespawned() == false){
             // Check if touching edge or if no HP left
             if (player1.isAtEdge() || player1.getHP() <= 0) {
-                // Respawn if Player 1 has lives remaining
+                // Respawn if Player 1 has lives remaining, end game if no lives left
                 if (oneStock > 0) {
                     SoundEffects.deathSound();
                     player1.setAlive(false);
                     player1.setBeingRespawned(true);
                     oneStock--;
                     
+                    // Update HP graphics
                     player1.setHP(0);
                     player1HPBar.getImage().setTransparency(0);
+                    removeObject(player1Hearts.get(player1Hearts.size() - 1));
+                    player1Hearts.remove(player1Hearts.size() - 1);
                     
                     makePlayer1Invisible();
                     player1RespawnTimer.mark();
@@ -106,15 +114,18 @@ public class MyWorld extends World
         if(player2.getBeingRespawned() == false){
             // Check if touching edge or if no HP left
             if (player2.isAtEdge() || player2.getHP() <= 0) {
-                // Respawn if Player 2 has lives remaining
+                // Respawn if Player 2 has lives remaining, end game if no lives left
                 if (twoStock > 0) {
                     SoundEffects.deathSound();
                     player2.setAlive(false);
                     player2.setBeingRespawned(true);
                     twoStock--;
                     
+                    // Update HP graphics
                     player2.setHP(0);
                     player2HPBar.getImage().setTransparency(0);
+                    removeObject(player2Hearts.get(player2Hearts.size() - 1));
+                    player2Hearts.remove(player2Hearts.size() - 1);
                     
                     makePlayer2Invisible();
                     player2RespawnTimer.mark();
@@ -240,6 +251,7 @@ public class MyWorld extends World
         // Add elements to world
         addBars();
         addLabels();
+        addHearts();
     }
     
     /**
@@ -328,6 +340,18 @@ public class MyWorld extends World
         addObject(player1SpecialBar, 45, 120);
         player2SpecialBar = new SpecialBar("two");
         addObject(player2SpecialBar, 1225, 120);
+    }
+    
+    // Add hearts to screen
+    private void addHearts(){
+        for(int i = 0; i < 4; i++){
+            Heart h1 = new Heart();
+            player1Hearts.add(h1);
+            addObject(h1, 220 + i * 50, 50);
+            Heart h2 = new Heart();
+            player2Hearts.add(h2);
+            addObject(h2, 1060 - i * 50, 50);
+        }
     }
     
     // Updates the timer at the top of the screen

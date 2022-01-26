@@ -18,9 +18,8 @@ public class Snake extends Character implements Playable
     // Direction
     private String direction = "left";
 
-    // Stocks
+    // Default variables
     public int stock = 3;
-    
     private int originalHP = 4;
     private int HP = 4;
     private int SP = 1;
@@ -29,6 +28,7 @@ public class Snake extends Character implements Playable
     private boolean isHit = false;
     private boolean rescaledImages = false;
     
+    // Image variables
     public static GreenfootImage imageRight = new GreenfootImage("snake.png");
     public static GreenfootImage imageLeft = new GreenfootImage("snake_left.png");
     public static GifImage p2IdleLeft = new GifImage("snakeidle.gif");
@@ -60,6 +60,7 @@ public class Snake extends Character implements Playable
         this.auto = auto;
         this.special = special;
         setImage(imageLeft);
+        // Scale image sizes
         if(rescaledImages == false){
             rescaledImages = true;
             for(GreenfootImage image : p2IdleRight.getImages()) {
@@ -88,6 +89,7 @@ public class Snake extends Character implements Playable
         gravity();
     }
 
+    // Play idle snake animation
     public void animations()
     {
         if(facingRight == true){
@@ -99,7 +101,9 @@ public class Snake extends Character implements Playable
         }
     }
     
+    // Start auto attack
     public int auto() {
+        // Shoot bullet based on direction facing
         Bullet b;
         if(facingRight == false){
             b = new Bullet(-1, direction);
@@ -117,7 +121,9 @@ public class Snake extends Character implements Playable
         return 1;
     }
 
+    // Start special attack
     public int special() {
+        // Shoot large bullet based on direction facing
         Bullet b;
         if(facingRight == false){
             b = new Bullet(-2, direction);
@@ -134,26 +140,13 @@ public class Snake extends Character implements Playable
         SoundEffects.shootSpecialSound();
         return 1;
     }
-
-    /*public void direction(String direction) {
-        this.direction = direction;
-        if (direction.equals("left")) {
-            setImage(imageLeft);
-            facingRight = false;
-        }
-        if (direction.equals("right")) {
-            setImage(imageRight);
-            facingRight = true;
-        }
-    }*/
     
+    // Changes direction of snake through facingRight boolean
     public void direction(String direction) {
         if (direction.equals("left")){
-            //direction = "left";
             facingRight = false;
         }
         if (direction.equals("right")){
-            //direction = "right";
             facingRight = true;
         }
     }
