@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=Platform
+comment0.text=\r\n\ Parent\ class\ for\ all\ platforms\ -\ What\ characters\ stand\ on\r\n\ \r\n\ @author\ Carl\r\n\ @version\ 2022.01.20\r\n
+comment1.params=actor
+comment1.target=void\ setTransparent(Platform)
+numComments=2

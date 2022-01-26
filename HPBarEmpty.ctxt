@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=HPBarEmpty
+comment0.text=\r\n\ Stats\ Bar\ that\ is\ under\ the\ HP\ bar\ to\ indicate\ hitpoints\ lost\r\n\ \r\n\ @author\ Yoyo\r\n\ @version\ 2021.01.20\r\n
+comment1.params=
+comment1.target=void\ act()
+comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ HPBarEmpty\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+numComments=2

@@ -31,18 +31,10 @@ public class TitleScreen extends World
 
     // Act method
     public void act() {
-        // Press space to continue
-        if ((("space").equals(Greenfoot.getKey()) && !lever) || (Greenfoot.mouseClicked(playButton) && !lever)) {
+        // Press space to continue (Mainly for debugging purposes)
+        if ((("space").equals(Greenfoot.getKey()) && !lever)) {
             changeWorld();
             lever = true;
-        }
-        runOnce();
-    }
-    
-    public void runOnce() {
-        if (!leverB) {
-            SoundEffects.playTheme();
-            leverB = true;
         }
     }
 

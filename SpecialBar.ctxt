@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=SpecialBar
+comment0.text=\r\n\ StatsBar\ that\ lets\ users\ know\ when\ a\ Character\ can\ use\ their\ special\ ability\r\n\ \r\n\ @author\ Yoyo\r\n\ @version\ 2022.01.20\r\n
+comment1.params=player
+comment1.target=SpecialBar(java.lang.String)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=int\ getWidth()
+comment4.params=newWidth
+comment4.target=void\ setWidth(int)
+numComments=5
