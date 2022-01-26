@@ -27,8 +27,7 @@ public class Snake extends Character implements Playable
     private boolean alive = true;
     private boolean beingRespawned = false;
     private boolean isHit = false;
-    private boolean facingRight = false;
-    private boolean punch = false;
+    private boolean rescaledImages = false;
     
     public static GreenfootImage imageRight = new GreenfootImage("snake.png");
     public static GreenfootImage imageLeft = new GreenfootImage("snake_left.png");
@@ -36,6 +35,19 @@ public class Snake extends Character implements Playable
     public static GifImage p2IdleRight = new GifImage("snakeidle2.gif");
     public static GifImage p2PunchLeft = new GifImage("snakepunchleft.gif");
     public static GifImage p2PunchRight = new GifImage("snakepunchright.gif");
+    
+    // Animation variables
+    private boolean startedAnim = false;
+    private boolean startedShoot = false;
+    private int autoFrame = 0;
+    private SimpleTimer animTimer = new SimpleTimer();
+    private SimpleTimer fillerTimer = new SimpleTimer();
+    private int fillerInt = 0;
+    
+    // Act method booleans
+    private boolean facingRight = false;
+    private boolean shoot = false;
+    private boolean endedShoot = false;
         
     /**
      * Constructor for objects of class Snake
@@ -48,6 +60,21 @@ public class Snake extends Character implements Playable
         this.auto = auto;
         this.special = special;
         setImage(imageLeft);
+        if(rescaledImages == false){
+            rescaledImages = true;
+            for(GreenfootImage image : p2IdleRight.getImages()) {
+                image.scale(50, 50);
+            }
+            for(GreenfootImage image : p2IdleLeft.getImages()) {
+                image.scale(50, 50);
+            }
+            for(GreenfootImage image : p2PunchRight.getImages()){
+                image.scale(50, 50);
+            }
+            for(GreenfootImage image : p2PunchLeft.getImages()){
+                image.scale(50, 50);
+            }
+        }
     }
 
     /**
@@ -70,20 +97,6 @@ public class Snake extends Character implements Playable
         {
             setImage(p2IdleLeft.getCurrentImage());
         }
-        if(punch == true && facingRight == true){
-            for(int i = 0; i < 5; i++){
-                setImage(p2PunchRight.getCurrentImage());
-                //Greenfoot.delay(1);
-            }
-            punch = false;
-        }
-        else if(punch == true && facingRight == false){
-            for(int i = 0; i < 5; i++){
-                setImage(p2PunchLeft.getCurrentImage());
-                //Greenfoot.delay(1);
-            }
-            punch = false;
-        }
     }
     
     public int auto() {
@@ -99,6 +112,7 @@ public class Snake extends Character implements Playable
             getWorld().addObject(b, this.getX() + 50, this.getY());
             setLocation(getX() - 50, getY());
         }
+        
         SoundEffects.shootAutoSound();
         return 1;
     }
@@ -114,6 +128,7 @@ public class Snake extends Character implements Playable
             b.getImage().scale(200, 200);
             getWorld().addObject(b, this.getX() + 100, this.getY());
         }
+        
         SP = 0;
         MyWorld.player2SpecialBar.setWidth(2);
         SoundEffects.shootSpecialSound();
@@ -134,8 +149,11 @@ public class Snake extends Character implements Playable
     
     public void direction(String direction) {
         if (direction.equals("left")){
+            //direction = "left";
             facingRight = false;
-        } else if (direction.equals("right")){
+        }
+        if (direction.equals("right")){
+            //direction = "right";
             facingRight = true;
         }
     }

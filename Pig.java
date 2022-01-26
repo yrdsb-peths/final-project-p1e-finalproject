@@ -46,18 +46,17 @@ public class Pig extends Character implements Playable
     public static GifImage p1PunchRight = new GifImage("p1punchright.gif");
     
     // Timer variables
-    SimpleTimer dashTimer = new SimpleTimer();
-    SimpleTimer specialDashTimer = new SimpleTimer();
+    private SimpleTimer dashTimer = new SimpleTimer();
+    private SimpleTimer specialDashTimer = new SimpleTimer();
     private int dashTicker = 0;
     private int specialDashTicker = 0;
-    SimpleTimer animTimer = new SimpleTimer();
+    private SimpleTimer animTimer = new SimpleTimer();
     
     // Animation variables
     boolean startedAnim = false;
     int autoFrame = 0;
-    int specialFrame = 0;
     
-    //act method booleans
+    // Act method booleans
     private boolean facingRight = true;
     private boolean punch = false;
     
@@ -294,14 +293,6 @@ public class Pig extends Character implements Playable
             }
         }
     }
-    
-    public void resetSize(){
-        if(getImage() == bigImageLeft){
-            setImage(imageLeft);
-        } else if(getImage() == bigImageRight){
-            setImage(imageRight);
-        }
-    }
 
     public int special() {
         specialDashTimer.mark();
@@ -322,22 +313,10 @@ public class Pig extends Character implements Playable
 
     public void direction(String direction) {
         if (direction.equals("left")){
-            if(specialDashTicker > 0){
-                //setImage(bigImageLeft);
-                facingRight = false;
-            } else {
-                //setImage(imageLeft);
-                facingRight = false;
-            }
+            facingRight = false;
         }
         if (direction.equals("right")){
-            if(specialDashTicker > 0){
-                //setImage(bigImageRight);
-                facingRight = true;
-            } else {
-                //setImage(imageRight);
-                facingRight = true;
-            }
+            facingRight = true;
         }
     }
     
