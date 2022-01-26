@@ -54,6 +54,9 @@ public class ScoresWorld extends World
         addPlayButton();
     }
 
+    /**
+     * Set background image based on winner of the game
+     */
     private void setBackground() {
         if (winner == 1) {
             GreenfootImage b = new GreenfootImage("Player1Wins.png");

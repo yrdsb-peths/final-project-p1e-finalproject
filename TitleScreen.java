@@ -8,12 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class TitleScreen extends World
 {
+    // Default variables
     boolean lever = false;
     boolean leverB = false;
 
     Button playButton = new Button();
-    public static Pig pig;
-    public static Snake snake; 
     
     /**
      * Constructor for objects of class TitleScreen.
@@ -37,6 +36,7 @@ public class TitleScreen extends World
         }
     }
 
+    // Change world to instructions screen
     private void changeWorld() {
         Greenfoot.setWorld(new InstructionsScreen());
     }

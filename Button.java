@@ -1,29 +1,33 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class button here.
+ * Button that starts the game
  * 
  * @author Jayden, Carl
  * @version 2022.01.26
  */
 public class Button extends Actor
 { 
+    // Default variables
     GreenfootImage buttonIdle = new GreenfootImage("playbutton2.png");
     private int delay;
     private int transparency;
     private boolean increase = false;
     private SimpleTimer timer = new SimpleTimer();
 
+    // Button constructor
     public Button()
     {
         setImage(buttonIdle);
         timer.mark();
     }
     
+    // Act method that loops
     public void act()
     {
         animateButton();
         
+        // Go to insturctions screen if button is clicked
         if(Greenfoot.mouseClicked(this))
         {
             setImage(new GreenfootImage("playbutton3.png"));

@@ -62,6 +62,7 @@ public class MyWorld extends World
     boolean startedFlash = false;
     SimpleTimer flashTimer;
 
+    // Act method that loops 
     public void act() {
         updateTimer();
         // Check if Player 1 needs to be respawned
@@ -72,7 +73,6 @@ public class MyWorld extends World
                 if (oneStock > 0) {
                     SoundEffects.deathSound();
                     player1.setAlive(false);
-                    player1.setBeingRespawned(true);
                     oneStock--;
                     
                     // Update HP graphics
@@ -81,6 +81,8 @@ public class MyWorld extends World
                     removeObject(player1Hearts.get(player1Hearts.size() - 1));
                     player1Hearts.remove(player1Hearts.size() - 1);
                     
+                    // Start respawn process
+                    player1.setBeingRespawned(true);
                     makePlayer1Invisible();
                     player1RespawnTimer.mark();
                 }
@@ -118,7 +120,6 @@ public class MyWorld extends World
                 if (twoStock > 0) {
                     SoundEffects.deathSound();
                     player2.setAlive(false);
-                    player2.setBeingRespawned(true);
                     twoStock--;
                     
                     // Update HP graphics
@@ -127,6 +128,8 @@ public class MyWorld extends World
                     removeObject(player2Hearts.get(player2Hearts.size() - 1));
                     player2Hearts.remove(player2Hearts.size() - 1);
                     
+                    // Start respawn process
+                    player2.setBeingRespawned(true);
                     makePlayer2Invisible();
                     player2RespawnTimer.mark();
                 }
@@ -156,7 +159,7 @@ public class MyWorld extends World
         }
     }
     
-    // Ends game and shows scores world
+    // Ends game and shows scores world based on winner
     public void gameOver(Character actor) {
         if (oneStock == 0) { // Player 2 wins
             actor.getImage().setTransparency(0);
@@ -234,13 +237,11 @@ public class MyWorld extends World
      */
     public MyWorld()
     {   
-        // "up", "left", "down", "right", "n", "m"
-        // "w", "a", "s", "d", "g", "h"
         super(1280, 720, 1); 
         prepare();
         setBackground(new GreenfootImage("gamebackground.jpg"));
         
-        // Timers
+        // Initialise and start some timers
         minTimer = new SimpleTimer();
         minTimer.mark();
         secTimer = new SimpleTimer();
@@ -270,6 +271,7 @@ public class MyWorld extends World
         makePlayer1Visible();
         makePlayer2Visible();
         
+        // Add platforms
         addBackground(new MainBackgroundR());
         addBackground(new MainBackgroundL());
         PlatformX platformX = new PlatformX();

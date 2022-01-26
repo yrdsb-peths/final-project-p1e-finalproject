@@ -9,6 +9,7 @@ comment2.target=void\ run()
 comment2.text=\r\n\ Writes\ the\ session\ score\ to\ text\ file\r\n\ Extracts\ data\ from\ textfile\ and\ processes\ the\ data\r\n\ Displays\ the\ labels\r\n\ Announces\ who\ wins\r\n\ Stops\ the\ music\ from\ playing\r\n\ Play\ button\ added\ to\ allow\ replay\r\n\ Background\ is\ set\ depending\ on\ the\ game\ outcome\ (win,\ tie,\ lose)\r\n
 comment3.params=
 comment3.target=void\ setBackground()
+comment3.text=\r\n\ Set\ background\ image\ based\ on\ winner\ of\ the\ game\r\n
 comment4.params=
 comment4.target=void\ announceResult()
 comment4.text=\r\n\ Announces\ the\ outcome\ of\ the\ battle\r\n

@@ -23,13 +23,14 @@ public class InstructionsScreen extends World
     }
 
     public void act() {
-        // Press any key to continue
+        // Press space key to continue
         if (("space").equals(Greenfoot.getKey()) && !lever) {
             changeWorld();
             lever = true;
         }
     }
 
+    // Switch to countdown screen
     public void changeWorld() {
         Greenfoot.setWorld(new CountdownScreen());
     }
