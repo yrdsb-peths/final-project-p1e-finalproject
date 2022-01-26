@@ -9,11 +9,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Button extends Actor
 { 
     GreenfootImage buttonIdle = new GreenfootImage("playbutton2.png");
-
+    private int delay;
+    private int transparency;
+    private boolean increase = false;
+    private SimpleTimer timer = new SimpleTimer();
 
     public Button()
     {
         setImage(buttonIdle);
+        timer.mark();
     }
     
     public void act()
@@ -32,17 +36,16 @@ public class Button extends Actor
     
     private void buttonHover()
     {
-        int transparency = 255;
-
-        for(int i = 0; i < 10; i++) {
-            transparency = transparency - 20;
-            getImage().setTransparency(transparency);
-            Greenfoot.delay(6);
+        if (timer.millisElapsed() > 20) {
+            if (increase) {
+                if (transparency > 245) increase = false;
+                else transparency+=10;
+            } else {
+                if (transparency < 15) increase = true;
+                else transparency-=10;
+            }
+            timer.mark();
         }
-        for(int i = 0; i <9; i++) {
-            transparency = transparency + 20;
-            getImage().setTransparency(transparency);
-            Greenfoot.delay(6);
-        }
+        getImage().setTransparency(transparency);
     }
 }
