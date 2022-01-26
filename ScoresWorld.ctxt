@@ -18,4 +18,6 @@ comment5.text=\r\n\ Create\ the\ labels\ to\ display\ top\ 5\ previous\ (or\ 4\ 
 comment6.params=
 comment6.target=void\ displaySessionScore()
 comment6.text=\r\n\ Create\ the\ label\ to\ display\ the\ session\ score\r\n
-numComments=7
+comment7.params=
+comment7.target=void\ addPlayButton()
+numComments=8

@@ -47,6 +47,7 @@ public class ScoresWorld extends World
         SoundEffects.stopTheme();
         announceResult();
         setBackground();
+        addPlayButton();
     }
 
     private void setBackground() {
@@ -93,5 +94,10 @@ public class ScoresWorld extends World
     private void displaySessionScore() {
         Label l = new Label("Winner's Score: " + Integer.toString(score), 62);
         addObject(l, getWidth()/2+300, (getHeight()/2)-250);
+    }
+    
+    private void addPlayButton(){
+        Button pb = new Button();
+        addObject(pb, 950, 600);
     }
 }

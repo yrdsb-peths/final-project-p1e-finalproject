@@ -27,6 +27,16 @@ public class SoundEffects
         playSound(new GreenfootSound("menuSound.mp3"), 30);
     }
     
+    // Countdown ticker sound 
+    public static void countdownSound(){
+        playSound(new GreenfootSound("countdown.mp3"), 30);
+    }
+    
+    // Start sound
+    public static void startSound(){
+        playSound(new GreenfootSound("start.mp3"), 30);
+    }
+    
     // Ranged character attack auto sound
     public static void shootAutoSound(){
         playSound(new GreenfootSound("shootAutoSound.mp3"), 40);

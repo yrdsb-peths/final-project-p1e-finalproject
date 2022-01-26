@@ -252,7 +252,7 @@ public class MyWorld extends World
     }
     
     // Add labels to the game
-    private void addLabels(){
+    public void addLabels(){
         // Add player name labels
         player1Label = new Label("Player 1", 50);
         addObject(player1Label, 100, 50);
