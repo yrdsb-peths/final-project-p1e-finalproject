@@ -24,16 +24,20 @@ public class ScoresWorld extends World
      */
     public ScoresWorld(int winner, int timeElasped)
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1280, 720, 1); 
         this.winner = winner;
         this.score = 120000-timeElasped;
-        if (!lever) run();
+        run();
     }
     
     /**
      * Writes the session score to text file
      * Extracts data from textfile and processes the data
+     * Displays the labels
+     * Announces who wins
+     * Stops the music from playing
+     * Play button added to allow replay
+     * Background is set depending on the game outcome (win, tie, lose)
      */
     private void run() {
         lever = true;
@@ -96,6 +100,7 @@ public class ScoresWorld extends World
         addObject(l, getWidth()/2+300, (getHeight()/2)-250);
     }
     
+    // Adds the play button 
     private void addPlayButton(){
         Button pb = new Button();
         addObject(pb, 950, 600);

@@ -32,7 +32,7 @@ public class Bullet extends Actor
         bulletDirection = newDirection;
     }
     
-     /**
+    /**
      * Act - do whatever the Bullet wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */

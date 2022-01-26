@@ -158,11 +158,11 @@ public class MyWorld extends World
     
     // Ends game and shows scores world
     public void gameOver(Character actor) {
-        if (oneStock == 0) { 
+        if (oneStock == 0) { // Player 2 wins
             actor.getImage().setTransparency(0);
             Greenfoot.setWorld(new ScoresWorld(2, scoreTimer.millisElapsed()));
         }
-        else { 
+        else { // Player 1 wins
             actor.getImage().setTransparency(0);
             Greenfoot.setWorld(new ScoresWorld(1, scoreTimer.millisElapsed()));
         }

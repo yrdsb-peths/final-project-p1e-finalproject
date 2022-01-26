@@ -14,6 +14,6 @@ public class PlatformSmall extends Platform
      */
     public void act()
     {
-
+        // Platform won't be set transparent; all players need to see this platform in it's glory
     }
 }

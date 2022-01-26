@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Background
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Background\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ All\ backgrounds\ are\ to\ be\ scaled\ to\ fit\ the\ world\r\n\ \r\n\ @author\ Carl\r\n\ @version\ 2022.01.26\r\n
 comment1.params=x
 comment1.target=void\ setScale(Background)
 numComments=2

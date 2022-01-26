@@ -69,8 +69,6 @@ public class Pig extends Character implements Playable
         this.auto = auto;
         this.special = special;
         setImage(imageRight);
-        //this.getImage().scale(50, 50);
-        //idleAnimationRescale();
     }
 
     /**
@@ -257,15 +255,6 @@ public class Pig extends Character implements Playable
             // Knockback the snake if hit
             if(hitOnce == false){
                 hitOnce = true;
-                /*if(getImage() == imageRight || getImage() == bigImageRight){
-                    MyWorld.player2.setLocation(getX() + 200, getY());
-                } else if(getImage() == imageLeft || getImage() == bigImageLeft){
-                    MyWorld.player2.setLocation(getX() - 200, getY());
-                } else if(getImage() == bigImageLeft){
-                    MyWorld.player2.setLocation(getX() + 300, getY() + 100);
-                } else if(getImage() == bigImageRight){
-                    MyWorld.player2.setLocation(getX() - 300, getY() + 100);
-                }*/
                 for(GreenfootImage image : p1IdleRight.getImages()) {
                     if(getImage() == image){
                         MyWorld.player2.setLocation(getX() + 200, getY());
@@ -300,7 +289,7 @@ public class Pig extends Character implements Playable
         punch = true;
         startedSpecial = true;
         SP = 0;
-        MyWorld.player2SpecialBar.setWidth(2);
+        MyWorld.player1SpecialBar.setWidth(2);
         SoundEffects.dashSpecialSound();
         return 1;
     }

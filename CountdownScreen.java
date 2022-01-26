@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Play a countdown before the game starts
  * 
- * @author Yoyo, Carl
+ * @author Yoyo
  * @version 2022.01.25
  */
 public class CountdownScreen extends World
@@ -11,8 +11,9 @@ public class CountdownScreen extends World
     // Countdown Variables
     Label count;
     boolean acted = false;
-    
+    boolean counted = false;
     GreenfootImage background = new GreenfootImage("CountdownBackground.jpg");
+    SimpleTimer timer = new SimpleTimer();
 
     /**
      * Constructor for objects of class CountdownScreen.

@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class button here.
  * 
- * @author Jayden
- * @version (a version number or a date)
+ * @author Jayden, Carl
+ * @version 2022.01.26
  */
 public class Button extends Actor
 { 
@@ -22,7 +22,7 @@ public class Button extends Actor
     
     public void act()
     {
-        buttonHover();
+        animateButton();
         
         if(Greenfoot.mouseClicked(this))
         {
@@ -34,7 +34,8 @@ public class Button extends Actor
         setImage(buttonIdle);
     }
     
-    private void buttonHover()
+    // Animate the button when idling
+    private void animateButton()
     {
         if (timer.millisElapsed() > 20) {
             if (increase) {

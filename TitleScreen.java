@@ -25,20 +25,19 @@ public class TitleScreen extends World
         GreenfootImage title = new GreenfootImage("titlescreen.png");
         title.scale(1280,720);
         setBackground(title);
-        
         addObject(playButton, getWidth()/2, getHeight()/2 + 100);
     }
 
     // Act method
     public void act() {
-        // Press space to continue (Mainly for debugging purposes)
+        // Press space to continue (Mainly for debugging purposes. user won't be prompted to press space)
         if ((("space").equals(Greenfoot.getKey()) && !lever)) {
             changeWorld();
             lever = true;
         }
     }
 
-    public void changeWorld() {
+    private void changeWorld() {
         Greenfoot.setWorld(new InstructionsScreen());
     }
 }

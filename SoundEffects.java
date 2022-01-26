@@ -120,6 +120,7 @@ public class SoundEffects
         }
     }
 
+    // Stop theme music
     public static void stopTheme() {
         theme.stop();
     }

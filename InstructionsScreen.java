@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Screen informing two users how to play the game
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Carl, Jayden
+ * @version 2022.01.26
  */
 public class InstructionsScreen extends World
 {
@@ -31,6 +31,6 @@ public class InstructionsScreen extends World
     }
 
     public void changeWorld() {
-        Greenfoot.setWorld(new MyWorld());
+        Greenfoot.setWorld(new CountdownScreen());
     }
 }

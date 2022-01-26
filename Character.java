@@ -133,7 +133,7 @@ public class Character extends Actor
         return platform != null;
     }
 
-    // Returns true if touching secondary (thin) platform
+    // Returns true if touching secondary (thin) platform. This platform is duck-able
     private boolean isTouchingPlatform() {
         Actor platform = getOneObjectAtOffset(0, getImage().getHeight()/2, PlatformSmall.class);
         if (platform != null){
